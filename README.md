@@ -26,4 +26,4 @@ rpc:dubbo
 
 jms:rabbitmq 
 
-deploy:jetty、tengine 
+deploy:maven、jetty、tengine 
