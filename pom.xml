@@ -28,6 +28,13 @@
 					<webApp>
 			           <contextPath>/mix-web</contextPath>
 			        </webApp>
+			        <connectors>
+			            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+			                <port>9999</port>
+			            </connector>
+			        </connectors>
+			        <stopPort>9998</stopPort>
+                    <stopKey>stop-jetty-for-mix-web</stopKey>
 				</configuration>
 			</plugin>
 		</plugins>
