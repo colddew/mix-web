@@ -16,11 +16,14 @@ tech
 - rpc: dubbo 
 - jms: rabbitmq 
 - deploy: maven、jetty、tengine 
+- open api: spring social 
 
-goal
+goal 
 =======
-- fine-grained access control
+- fine-grained access control 
 - multiple module architecture 
+- restful architecture 
+- sql optimization 
 - abstract basic non-business entity bean 
 - research distributed architecture 
 
