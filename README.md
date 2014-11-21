@@ -7,7 +7,7 @@ tech
 - front: bootstrap、jquery 
 - basic framework: springmvc、spring、mybatis 
 - templating engine: velocity、freemark 
-- security: shiro(fine-grained control)、oauth 
+- security: shiro、oauth 
 - workflow: jbpm 
 - rules engine: drools 
 - rdbms: mysql 
@@ -16,3 +16,11 @@ tech
 - rpc: dubbo 
 - jms: rabbitmq 
 - deploy: maven、jetty、tengine 
+
+goal
+=======
+- fine-grained access control
+- multiple module architecture 
+- abstract basic non-business entity bean 
+- research distributed architecture 
+
