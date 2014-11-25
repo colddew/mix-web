@@ -42,14 +42,6 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:springmvc.xml</param-value>
         </init-param>
-        <init-param>
-			<param-name>detectAllHandlerMappings</param-name>
-			<param-value>false</param-value>
-		</init-param>
-		<init-param>
-			<param-name>detectAllHandlerAdapters</param-name>
-			<param-value>false</param-value>
-		</init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
