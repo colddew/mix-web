@@ -55,19 +55,19 @@
 	
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
-		<location>/html/common/500.jsp</location>
+		<location>/html/template/error/500.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/html/common/500.jsp</location>
+		<location>/html/template/error/500.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>404</error-code>
-		<location>/html/common/404.jsp</location>
+		<location>/html/template/error/404.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>403</error-code>
-		<location>/html/common/403.jsp</location>
+		<location>/html/template/error/403.jsp</location>
 	</error-page>
 	
 	<welcome-file-list>

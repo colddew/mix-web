@@ -1,4 +1,4 @@
-package edu.ustc.sse.mix.core.entity;
+package edu.ustc.mix.core.entity;
 
 public enum FieldType {
 

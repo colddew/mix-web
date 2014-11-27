@@ -3,7 +3,7 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	
-	<groupId>edu.ustc.sse.mix</groupId>
+	<groupId>edu.ustc.mix</groupId>
 	<artifactId>mix-parent</artifactId>
 	<version>${project.version}</version>
 	<packaging>pom</packaging>
@@ -149,5 +149,6 @@
 		<module>mix-front</module>
     	<module>mix-persistence</module>
     	<module>mix-core</module>
+    	<module>mix-security</module>
 	</modules>
 </project>

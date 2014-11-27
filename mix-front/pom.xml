@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<groupId>edu.ustc.sse.mix</groupId>
+		<groupId>edu.ustc.mix</groupId>
 		<artifactId>mix-parent</artifactId>
 		<version>${project.version}</version>
 		<relativePath>../pom.xml</relativePath>

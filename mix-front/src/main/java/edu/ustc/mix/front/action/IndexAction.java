@@ -1,4 +1,4 @@
-package edu.ustc.sse.mix.front.action;
+package edu.ustc.mix.front.action;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
