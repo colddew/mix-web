@@ -61,7 +61,11 @@
 		<finalName>mix-front</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
+				<groupId>org.apache.maven.plugins</groupId>
+		    	<artifactId>maven-compiler-plugin</artifactId>  
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 			</plugin>
 		</plugins>

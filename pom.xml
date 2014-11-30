@@ -8,17 +8,16 @@
 	<version>${project.version}</version>
 	<packaging>pom</packaging>
 	
-	
 	<properties>
 		<project.version>0.0.1</project.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.11</junit.version>
-		<servlet-api.version>2.5</servlet-api.version>
-		<jsp-api.version>2.2</jsp-api.version>
+		<servlet.version>2.5</servlet.version>
+		<jsp.version>2.2</jsp.version>
 		<spring.version>3.2.12.RELEASE</spring.version>
 		<freemarker.version>2.3.21</freemarker.version>
 		<jackson.version>1.9.13</jackson.version>
-		<hibernate-validator.version>4.3.2.Final</hibernate-validator.version>
+		<hibernate.validator.version>4.3.2.Final</hibernate.validator.version>
 		<mybatis.version>3.2.8</mybatis.version>
 		<shiro.version>1.2.3</shiro.version>
 	</properties>
@@ -34,13 +33,13 @@
 			<dependency>
 	            <groupId>javax.servlet</groupId>
 	            <artifactId>servlet-api</artifactId>
-	            <version>${servlet-api.version}</version>
+	            <version>${servlet.version}</version>
 	            <scope>provided</scope>
 	        </dependency>
 			<dependency>
 				<groupId>javax.servlet.jsp</groupId>
 				<artifactId>jsp-api</artifactId>
-				<version>${jsp-api.version}</version>
+				<version>${jsp.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
@@ -86,7 +85,7 @@
 			<dependency>
 			    <groupId>org.hibernate</groupId>
 			    <artifactId>hibernate-validator</artifactId>
-			    <version>${hibernate-validator.version}</version>
+			    <version>${hibernate.validator.version}</version>
 			</dependency>
 			<dependency>
 			    <groupId>org.mybatis</groupId>
@@ -110,8 +109,8 @@
 		            <artifactId>maven-compiler-plugin</artifactId>  
 		            <version>3.1</version>  
 		            <configuration>
-		                <source>1.6</source>  
-		                <target>1.6</target>  
+		                <source>1.7</source>  
+		                <target>1.7</target>  
 		                <encoding>UTF-8</encoding>  
 		            </configuration>
 				</plugin>
@@ -130,21 +129,17 @@
 					</executions>
 				</plugin>
 				<plugin>
-					<groupId>org.mortbay.jetty</groupId>
+					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
-					<version>8.1.13.v20130916</version>
+					<version>9.2.5.v20141112</version>
 					<configuration>
 						<scanIntervalSeconds>10</scanIntervalSeconds>
+						<httpConnector>
+							<port>9999</port>
+						</httpConnector>
 						<webApp>
-				           <contextPath>/</contextPath>
-				        </webApp>
-				        <connectors>
-				            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-				                <port>9999</port>
-				            </connector>
-				        </connectors>
-				        <stopPort>9998</stopPort>
-	                    <stopKey>stop-jetty-for-mix-web</stopKey>
+							<contextPath>/</contextPath>
+						</webApp>
 					</configuration>
 				</plugin>
 			</plugins>
