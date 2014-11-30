@@ -5,11 +5,10 @@
 	
 	<groupId>edu.ustc.mix</groupId>
 	<artifactId>mix-parent</artifactId>
-	<version>${project.version}</version>
+	<version>0.0.1</version>
 	<packaging>pom</packaging>
 	
 	<properties>
-		<project.version>0.0.1</project.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.11</junit.version>
 		<servlet.version>2.5</servlet.version>
@@ -97,6 +96,11 @@
 				<artifactId>shiro-core</artifactId>
 				<version>${shiro.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-web</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	
@@ -147,9 +151,9 @@
 	</build>
 	
 	<modules>
-		<module>mix-front</module>
+    	<module>mix-security</module>
     	<module>mix-persistence</module>
     	<module>mix-core</module>
-    	<module>mix-security</module>
+		<module>mix-front</module>
 	</modules>
 </project>

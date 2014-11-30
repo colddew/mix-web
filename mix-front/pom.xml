@@ -7,14 +7,18 @@
 	<parent>
 		<groupId>edu.ustc.mix</groupId>
 		<artifactId>mix-parent</artifactId>
-		<version>${project.version}</version>
-		<relativePath>../pom.xml</relativePath>
+		<version>0.0.1</version>
 	</parent>
 	
 	<artifactId>mix-front</artifactId>
 	<packaging>war</packaging>
 		
 	<dependencies>
+		<dependency>
+			<groupId>edu.ustc.mix</groupId>
+			<artifactId>mix-security</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
