@@ -24,11 +24,26 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-				<scope>test</scope>
+				<groupId>edu.ustc.mix</groupId>
+				<artifactId>mix-security</artifactId>
+				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>edu.ustc.mix</groupId>
+				<artifactId>mix-persistence</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>edu.ustc.mix</groupId>
+				<artifactId>mix-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>edu.ustc.mix</groupId>
+				<artifactId>mix-front</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
 			<dependency>
 	            <groupId>javax.servlet</groupId>
 	            <artifactId>servlet-api</artifactId>
@@ -41,6 +56,7 @@
 				<version>${jsp.version}</version>
 				<scope>provided</scope>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
@@ -66,11 +82,13 @@
 				<artifactId>spring-orm</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.freemarker</groupId>
 				<artifactId>freemarker</artifactId>
 				<version>${freemarker.version}</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.codehaus.jackson</groupId>
 				<artifactId>jackson-core-lgpl</artifactId>
@@ -81,16 +99,19 @@
 				<artifactId>jackson-mapper-lgpl</artifactId>
 				<version>${jackson.version}</version>
 			</dependency>
+			
 			<dependency>
 			    <groupId>org.hibernate</groupId>
 			    <artifactId>hibernate-validator</artifactId>
 			    <version>${hibernate.validator.version}</version>
 			</dependency>
+			
 			<dependency>
 			    <groupId>org.mybatis</groupId>
 			    <artifactId>mybatis</artifactId>
 			    <version>${mybatis.version}</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.apache.shiro</groupId>
 				<artifactId>shiro-core</artifactId>
@@ -101,6 +122,13 @@
 				<artifactId>shiro-web</artifactId>
 				<version>${shiro.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	
@@ -110,18 +138,18 @@
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-		            <artifactId>maven-compiler-plugin</artifactId>  
-		            <version>3.1</version>  
+		            <artifactId>maven-compiler-plugin</artifactId>
+		            <version>3.2</version>
 		            <configuration>
-		                <source>1.7</source>  
-		                <target>1.7</target>  
-		                <encoding>UTF-8</encoding>  
+		                <source>1.7</source>
+		                <target>1.7</target>
+		                <encoding>UTF-8</encoding>
 		            </configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>2.2.1</version>
+					<version>2.4</version>
 					<executions>
 						<execution>
 							<id>attach-sources</id>
@@ -131,6 +159,26 @@
 							</goals>
 						</execution>
 					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<archive>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<archive>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.eclipse.jetty</groupId>
