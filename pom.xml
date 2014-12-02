@@ -124,6 +124,11 @@
 				<artifactId>shiro-web</artifactId>
 				<version>${shiro.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-ehcache</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
 			
 			<dependency>
 				<groupId>junit</groupId>
