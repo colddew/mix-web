@@ -21,6 +21,7 @@
 		<mybatis.version>3.2.8</mybatis.version>
 		<shiro.version>1.2.3</shiro.version>
 		<jetty.version>9.2.5.v20141112</jetty.version>
+		<slf4j.log4j.version>1.7.7</slf4j.log4j.version>
 	</properties>
 	
 	<dependencyManagement>
@@ -123,6 +124,17 @@
 				<groupId>org.apache.shiro</groupId>
 				<artifactId>shiro-web</artifactId>
 				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-spring</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.log4j.version}</version>
 			</dependency>
 			
 			<dependency>
