@@ -50,7 +50,7 @@
 		</property>
 	</bean>
 	
-	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	<bean id="freemarkerConfig" class="edu.ustc.mix.front.util.ShiroTagFreeMarkerConfigurer">
 		<property name="templateLoaderPath" value="/html/template/" />
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="freemarkerSettings">
