@@ -60,6 +60,14 @@
         <servlet-name>springmvc</servlet-name>
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
+    <servlet>
+		<servlet-name>DruidStatView</servlet-name>
+		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+		<url-pattern>/druid/*</url-pattern>
+	</servlet-mapping>
     
 	<session-config>
 		<session-timeout>30</session-timeout>

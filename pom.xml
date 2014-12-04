@@ -15,6 +15,7 @@
 		<servlet.version>2.5</servlet.version>
 		<jsp.version>2.2</jsp.version>
 		<spring.version>3.2.12.RELEASE</spring.version>
+		<aspectjweaver.version>1.8.4</aspectjweaver.version>
 		<freemarker.version>2.3.21</freemarker.version>
 		<jackson.version>1.9.13</jackson.version>
 		<hibernate.validator.version>4.3.2.Final</hibernate.validator.version>
@@ -88,6 +89,12 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-orm</artifactId>
 				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectjweaver.version}</version>
 			</dependency>
 			
 			<dependency>
