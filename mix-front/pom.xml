@@ -19,6 +19,10 @@
 			<groupId>edu.ustc.mix</groupId>
 			<artifactId>mix-security</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>edu.ustc.mix</groupId>
+			<artifactId>mix-core</artifactId>
+		</dependency>
 		
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -69,6 +73,16 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
 		</dependency>
 	</dependencies>
 	

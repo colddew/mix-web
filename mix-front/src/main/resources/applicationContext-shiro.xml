@@ -31,11 +31,11 @@
 		<property name="unauthorizedUrl" value="/login.html"/>
 		<property name="filterChainDefinitions">
 			<value>
-				/admin/** = authc, roles[admin]
-				/docs/** = authc, perms[document:read]
+				# /admin/** = authc, roles[admin]
+				# /docs/** = authc, perms[document:read]
 				/login.html = anon
-				/index.html = authc
-				/** = authc
+				# /index.html = authc
+				# /** = authc
 			</value>
 		</property>
 	</bean>
