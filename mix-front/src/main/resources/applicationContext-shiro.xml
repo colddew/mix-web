@@ -14,14 +14,15 @@
 	http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 	
-	<!-- <bean id="myRealm" class="..." /> -->
+	<!-- <bean id="myRealm" class="" /> -->
+	
+	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
 	
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!-- <property name="realm" ref="myRealm" /> -->
+		<property name="cacheManager" ref="cacheManager" />
 		<property name="sessionMode" value="native" />
 	</bean>
-	
-	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 	
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
@@ -32,10 +33,12 @@
 			<value>
 				/admin/** = authc, roles[admin]
 				/docs/** = authc, perms[document:read]
-				/login = anon
-				/index = authc
+				/login.html = anon
+				/index.html = authc
 				/** = authc
 			</value>
 		</property>
 	</bean>
+	
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 </beans>
