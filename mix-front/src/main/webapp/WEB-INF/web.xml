@@ -73,7 +73,7 @@
 		<session-timeout>30</session-timeout>
 	</session-config>
 	
-	<error-page>
+	<!-- <error-page>
 		<exception-type>java.lang.Throwable</exception-type>
 		<location>/html/template/error/500.jsp</location>
 	</error-page>
@@ -88,7 +88,7 @@
 	<error-page>
 		<error-code>403</error-code>
 		<location>/html/template/error/403.jsp</location>
-	</error-page>
+	</error-page> -->
 	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

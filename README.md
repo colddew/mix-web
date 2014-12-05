@@ -27,4 +27,5 @@ goal
 - manipulate business table flexibly and dynamically 
 - abstract basic non-business entity bean 
 - research distributed architecture 
+- performance monitoring
 

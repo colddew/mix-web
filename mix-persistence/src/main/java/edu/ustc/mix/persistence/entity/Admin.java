@@ -1,6 +1,5 @@
 package edu.ustc.mix.persistence.entity;
 
-import java.math.BigDecimal;
 
 public class Admin {
 	
@@ -10,8 +9,8 @@ public class Admin {
 	private String realName;
 	private String adminEmail;
 	private String mobilePhone;
-	private BigDecimal adminType;
-	private BigDecimal adminStatus;
+	private Integer adminType;
+	private Integer adminStatus;
 	private Long orgId;
 	
 	public Long getAdminId() {
@@ -35,8 +34,7 @@ public class Admin {
 	}
 	
 	public void setAdminPassword(String adminPassword) {
-		this.adminPassword = adminPassword == null ? null : adminPassword
-				.trim();
+		this.adminPassword = adminPassword == null ? null : adminPassword.trim();
 	}
 	
 	public String getRealName() {
@@ -63,19 +61,19 @@ public class Admin {
 		this.mobilePhone = mobilePhone == null ? null : mobilePhone.trim();
 	}
 	
-	public BigDecimal getAdminType() {
+	public Integer getAdminType() {
 		return adminType;
 	}
 	
-	public void setAdminType(BigDecimal adminType) {
+	public void setAdminType(Integer adminType) {
 		this.adminType = adminType;
 	}
 	
-	public BigDecimal getAdminStatus() {
+	public Integer getAdminStatus() {
 		return adminStatus;
 	}
 	
-	public void setAdminStatus(BigDecimal adminStatus) {
+	public void setAdminStatus(Integer adminStatus) {
 		this.adminStatus = adminStatus;
 	}
 	
