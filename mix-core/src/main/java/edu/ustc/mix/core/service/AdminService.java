@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -18,6 +20,16 @@ public class AdminService {
 	private AdminMapper adminMapper;
 	
 	public List<Admin> list;
+	
+	@PostConstruct
+	public void init() throws Exception {
+		list = getAdminList();
+	}
+	
+	@PreDestroy
+	public void destory() throws Exception {
+		list = null;
+	}
 	
 	public List<Admin> getAdminList() throws Exception {
 		

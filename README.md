@@ -6,7 +6,7 @@ tech
 =======
 - front: bootstrap、jquery 
 - basic framework: springmvc、spring、mybatis 
-- templating engine: velocity、freemark 
+- templating engine: freemark、velocity 
 - security: shiro、oauth 
 - workflow: jbpm 
 - rules engine: drools 
@@ -17,6 +17,7 @@ tech
 - jms: rabbitmq 
 - deploy: maven、jetty、tengine 
 - open api: spring social 
+- monitor: druid
 
 goal 
 =======

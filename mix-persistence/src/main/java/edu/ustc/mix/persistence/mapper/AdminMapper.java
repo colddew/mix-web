@@ -8,6 +8,7 @@ import edu.ustc.mix.persistence.entity.Admin;
 public interface AdminMapper {
 	
 	List<Admin> list(Map<String, Object> params);
+	
 	Admin selectByUsername(String username);
 	
 	int deleteByPrimaryKey(Long adminId);
