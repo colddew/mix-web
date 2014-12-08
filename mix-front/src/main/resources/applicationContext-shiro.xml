@@ -14,12 +14,12 @@
 	http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 	
-	<!-- <bean id="myRealm" class="" /> -->
+	<bean id="mixRealm" class="edu.ustc.mix.security.service.MixRealm" />
 	
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
 	
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<!-- <property name="realm" ref="myRealm" /> -->
+		<property name="realm" ref="mixRealm" />
 		<property name="cacheManager" ref="cacheManager" />
 		<property name="sessionMode" value="native" />
 	</bean>
@@ -31,11 +31,10 @@
 		<property name="unauthorizedUrl" value="/login.html"/>
 		<property name="filterChainDefinitions">
 			<value>
-				# /admin/** = authc, roles[admin]
-				# /docs/** = authc, perms[document:read]
 				/login.html = anon
-				# /index.html = authc
-				# /** = authc
+				/index.html = authc
+				/druid/** = anon
+				/** = authc
 			</value>
 		</property>
 	</bean>
