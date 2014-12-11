@@ -19,7 +19,7 @@
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
 	
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="realm" ref="mixRealm" />
+		<!-- <property name="realm" ref="mixRealm" /> -->
 		<property name="cacheManager" ref="cacheManager" />
 		<property name="sessionMode" value="native" />
 	</bean>
@@ -31,13 +31,14 @@
 		<property name="unauthorizedUrl" value="/login.html"/>
 		<property name="filterChainDefinitions">
 			<value>
-				/login.html = anon
-				/index.html = authc
-				/druid/** = anon
-				/** = authc
+				# /login.html = authc
+				# /index.html = authc
+				# /druid/** = anon
+				# /** = authc
 			</value>
 		</property>
 	</bean>
 	
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	
 </beans>

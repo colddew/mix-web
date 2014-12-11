@@ -13,7 +13,7 @@ public class MixService {
 	private AdminService adminService;
 	
 	public void service() throws Exception {
-		
+//		System.out.println("################################");
 		adminService.service();
 	}
 }

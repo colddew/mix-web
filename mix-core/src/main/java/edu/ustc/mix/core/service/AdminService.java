@@ -56,6 +56,9 @@ public class AdminService {
 		
 		if(list == null || list.size() < 1) {
 			list = getAdminList();
+			System.out.println("没命中缓存");
+		} else {
+			System.out.println("命中缓存");
 		}
 		
 		Map<String, Admin> map = getAdminMapByUserName(list);
