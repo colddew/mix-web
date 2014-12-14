@@ -16,12 +16,25 @@
 	
 	<bean id="mixRealm" class="edu.ustc.mix.security.service.MixRealm" />
 	
+	<bean id="cookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<property name="httpOnly" value="true" />
+	</bean>
+	
+	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO" />
+	
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<property name="globalSessionTimeout" value="3600000" />
+		<property name="sessionIdCookieEnabled" value="true" />
+		<property name="sessionIdCookie" ref="cookie" />
+		<property name="sessionDAO" value="sessionDAO" />
+	</bean>
+	
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
 	
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!-- <property name="realm" ref="mixRealm" /> -->
+		<property name="sessionManager" ref="sessionManager" />
 		<property name="cacheManager" ref="cacheManager" />
-		<property name="sessionMode" value="native" />
 	</bean>
 	
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -31,9 +44,9 @@
 		<property name="unauthorizedUrl" value="/login.html"/>
 		<property name="filterChainDefinitions">
 			<value>
-				# /login.html = authc
-				# /index.html = authc
+				# /login.html = anon
 				# /druid/** = anon
+				# /index.html = authc
 				# /** = authc
 			</value>
 		</property>

@@ -3,13 +3,21 @@ package edu.ustc.mix.security.service;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.credential.PasswordService;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 public class MixRealm extends AuthorizingRealm {
+	
+	private PasswordService passwordService;
+	
+	public void setPasswordService(PasswordService passwordService) {
+		this.passwordService = passwordService;
+	}
 	
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -36,14 +44,14 @@ public class MixRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		
-//		UsernamePasswordToken upt = (UsernamePasswordToken) token;
-//		
+		UsernamePasswordToken upt = (UsernamePasswordToken) token;
+		
 //		String userName = upt.getUsername();
 //			
 //		User user = accountManager.findUserByUserName(token.getUsername());
 //
 //		if (null != user) {
-//			return new SimpleAuthenticationInfo(user.getLoginName(), user.getPassword(), getName());
+//			return new SimpleAuthenticationInfo(user.getLoginName(), passwordService.encryptPassword(user.getPassword()), getName());
 //		}
 		
 		return null;
