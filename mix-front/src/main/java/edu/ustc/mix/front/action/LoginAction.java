@@ -18,7 +18,7 @@ public class LoginAction {
 	@RequestMapping("/login")
 	public String login() throws Exception {
 		
-		mixService.service();
+//		mixService.service();
 		
 		return "/login";
 	}
