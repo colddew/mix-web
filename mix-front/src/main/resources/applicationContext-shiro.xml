@@ -28,7 +28,7 @@
 		<property name="globalSessionTimeout" value="3600000" />
 		<property name="sessionIdCookieEnabled" value="true" />
 		<property name="sessionIdCookie" ref="cookie" />
-		<property name="sessionDAO" value="sessionDAO" />
+		<property name="sessionDAO" ref="sessionDAO" />
 	</bean>
 	
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />

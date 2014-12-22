@@ -23,7 +23,7 @@ public class AdminService {
 	
 	@PostConstruct
 	public void init() throws Exception {
-		list = getAdminList();
+//		list = getAdminList();
 	}
 	
 	@PreDestroy

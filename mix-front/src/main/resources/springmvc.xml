@@ -51,7 +51,7 @@
 	</bean>
 	
 	<bean id="freemarkerConfig" class="edu.ustc.mix.front.util.ShiroTagFreeMarkerConfigurer">
-		<property name="templateLoaderPath" value="/html/template/" />
+		<property name="templateLoaderPath" value="/html/ftl/" />
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="freemarkerSettings">
 			<props>

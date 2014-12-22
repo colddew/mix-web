@@ -24,14 +24,14 @@ public class IndexAction {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/")
+	@RequestMapping("/index")
 	public String index(User user, Model model) throws Exception {
 		
-		Set<String> permissions = userService.findPermissions(user.getUserName());
+//		Set<String> permissions = userService.findPermissions(user.getUserName());
+//		
+//		List<Resource> menus = resourceService.findMenus(permissions);
+//		model.addAttribute("menus", menus);
 		
-		List<Resource> menus = resourceService.findMenus(permissions);
-		model.addAttribute("menus", menus);
-		
-		return "index";
+		return "/index";
 	}
 }
