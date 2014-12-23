@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ROLE">
+	
+	<resultMap id="BASE_RESULT" type="edu.ustc.mix.persistence.entity.permission.Role">
+		<id column="role_id" property="roleId" jdbcType="BIGINT" />
+		<result column="role_name" property="roleName" jdbcType="VARCHAR" />
+		<result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="COMPOSITE_RESULT" type="edu.ustc.mix.persistence.entity.permission.Role">
+		<id column="role_id" property="roleId" jdbcType="BIGINT" />
+		<result column="role_name" property="roleName" jdbcType="VARCHAR" />
+		<result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
+		<collection property="resources" resultMap="RESOURCE.BASE_RESULT" />
+	</resultMap>
+	
+	<sql id="BASE_COLUMN">
+		role_id, role_name, role_desc
+	</sql>
+	
+	<sql id="BASE_QUERY_CONDITION">
+		<where>
+			<if test="roleId != null">
+				role_id = #{roleId}
+			</if>
+			<if test="roleName != null">
+				AND role_name = #{roleName}
+			</if>
+			<if test="roleDesc != null">
+				AND role_desc = #{roleDesc}
+			</if>
+		</where>
+	</sql>
+	
+	<insert id="insert" parameterType="edu.ustc.mix.persistence.entity.permission.Role" useGeneratedKeys="true" keyProperty="roleId">
+		insert into sys_role 
+		(
+		role_name, 
+		role_desc
+		)
+		values 
+		(
+		#{roleName,jdbcType=VARCHAR},
+		#{roleDesc,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from sys_role
+		where role_id = #{roleId,jdbcType=BIGINT}
+	</delete>
+	
+	<update id="update" parameterType="edu.ustc.mix.persistence.entity.permission.Role">
+		update sys_role
+		<set>
+			<if test="roleName != null">
+				role_name = #{roleName,jdbcType=VARCHAR},
+			</if>
+			<if test="roleDesc != null">
+				role_desc = #{roleDesc,jdbcType=VARCHAR}
+			</if>
+		</set>
+		where role_id = #{roleId,jdbcType=BIGINT}
+	</update>
+	
+	<select id="getById" resultMap="COMPOSITE_RESULT" parameterType="java.lang.Long">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_role
+		where role_id = #{roleId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="getByMultiParams" resultMap="COMPOSITE_RESULT" parameterType="hashmap">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_role
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+	<select id="list" resultMap="COMPOSITE_RESULT" parameterType="hashmap">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_role
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+	<select id="count" resultType="long" parameterType="hashmap">
+		select count(1)
+		from sys_role
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+</mapper>

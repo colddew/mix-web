@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ustc.mix.persistence.mapper.permission.OrganizationMapper">
+	
+	<resultMap id="BASE_RESULT" type="edu.ustc.mix.persistence.entity.permission.Organization">
+		<id column="org_id" property="orgId" jdbcType="BIGINT" />
+		<result column="org_name" property="orgName" jdbcType="VARCHAR" />
+		<result column="org_desc" property="orgDesc" jdbcType="VARCHAR" />
+		<result column="org_level" property="orgLevel" jdbcType="TINYINT" />
+		<result column="parent_id" property="parentId" jdbcType="BIGINT" />
+		<result column="priority" property="priority" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="BASE_COLUMN">
+		org_id, org_name, org_desc, org_level, parent_id, priority
+	</sql>
+	
+	<sql id="BASE_QUERY_CONDITION">
+		<where>
+			<if test="orgId != null">
+				org_id = #{orgId}
+			</if>
+			<if test="orgName != null">
+				AND org_name = #{orgName}
+			</if>
+			<if test="orgDesc != null">
+				AND org_desc = #{orgDesc}
+			</if>
+			<if test="orgLevel != null">
+				AND org_level = #{orgLevel}
+			</if>
+			<if test="parentId != null">
+				AND parent_id = #{parentId}
+			</if>
+			<if test="priority != null">
+				AND priority = #{priority}
+			</if>
+		</where>
+	</sql>
+	
+	<insert id="add" parameterType="edu.ustc.mix.persistence.entity.permission.Organization" useGeneratedKeys="true" keyProperty="orgId">
+		insert into sys_org 
+		(
+		org_name, 
+		org_desc,
+		org_level, 
+		parent_id, 
+		priority
+		)
+		values 
+		(
+		#{orgName,jdbcType=VARCHAR},
+		#{orgDesc,jdbcType=VARCHAR},
+		#{orgLevel,jdbcType=TINYINT}, 
+		#{parentId,jdbcType=BIGINT}, 
+		#{priority,jdbcType=INTEGER}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from sys_org
+		where org_id = #{orgId,jdbcType=BIGINT}
+	</delete>
+	
+	<update id="update" parameterType="edu.ustc.mix.persistence.entity.permission.Organization">
+		update sys_org
+		<set>
+			<if test="orgName != null">
+				org_name = #{orgName,jdbcType=VARCHAR},
+			</if>
+			<if test="orgDesc != null">
+				org_desc = #{orgDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="orgLevel != null">
+				org_level = #{orgLevel,jdbcType=TINYINT},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId,jdbcType=BIGINT},
+			</if>
+			<if test="priority != null">
+				priority = #{priority,jdbcType=INTEGER}
+			</if>
+		</set>
+		where org_id = #{orgId,jdbcType=BIGINT}
+	</update>
+	
+	<select id="getById" resultMap="BASE_RESULT" parameterType="java.lang.Long">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_org
+		where org_id = #{orgId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="getByMultiParams" resultMap="BASE_RESULT" parameterType="hashmap">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_org
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+	<select id="list" resultMap="BASE_RESULT" parameterType="hashmap">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_org
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+	<select id="count" resultType="long" parameterType="hashmap">
+		select count(1)
+		from sys_org
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+</mapper>

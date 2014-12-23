@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="RESOURCE">
+	
+	<resultMap id="BASE_RESULT" type="edu.ustc.mix.persistence.entity.permission.Resource">
+		<id column="res_id" property="resId" jdbcType="BIGINT" />
+		<result column="res_name" property="resName" jdbcType="VARCHAR" />
+		<result column="res_desc" property="resDesc" jdbcType="VARCHAR" />
+		<result column="permission" property="permission" jdbcType="VARCHAR" />
+		<result column="res_type" property="resType" jdbcType="TINYINT" />
+		<result column="res_level" property="resLevel" jdbcType="TINYINT" />
+		<result column="parent_id" property="parentId" jdbcType="BIGINT" />
+		<result column="priority" property="priority" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="BASE_COLUMN">
+		res_id, res_name, res_desc, permission, res_type, res_level, parent_id, priority
+	</sql>
+	
+	<sql id="BASE_QUERY_CONDITION">
+		<where>
+			<if test="resId != null">
+				res_id = #{resId}
+			</if>
+			<if test="resName != null">
+				AND res_name = #{resName}
+			</if>
+			<if test="resDesc != null">
+				AND res_desc = #{resDesc}
+			</if>
+			<if test="permission != null">
+				AND permission = #{permission}
+			</if>
+			<if test="resType != null">
+				AND res_type = #{resType}
+			</if>
+			<if test="resLevel != null">
+				AND res_level = #{resLevel}
+			</if>
+			<if test="parentId != null">
+				AND parent_id = #{parentId}
+			</if>
+			<if test="priority != null">
+				AND priority = #{priority}
+			</if>
+		</where>
+	</sql>
+	
+	<insert id="add" parameterType="edu.ustc.mix.persistence.entity.permission.Resource" useGeneratedKeys="true" keyProperty="resId">
+		insert into sys_res 
+		(
+		res_name, 
+		res_desc,
+		permission, 
+		res_type, 
+		res_level,
+		parent_id, 
+		priority
+		)
+		values 
+		(
+		#{resName,jdbcType=VARCHAR},
+		#{resDesc,jdbcType=VARCHAR},
+		#{permission,jdbcType=VARCHAR}, 
+		#{resType,jdbcType=TINYINT}, 
+		#{resLevel,jdbcType=TINYINT},
+		#{parentId,jdbcType=BIGINT}, 
+		#{priority,jdbcType=INTEGER}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from sys_res
+		where res_id = #{resId,jdbcType=BIGINT}
+	</delete>
+	
+	<update id="update" parameterType="edu.ustc.mix.persistence.entity.permission.Resource">
+		update sys_res
+		<set>
+			<if test="resName != null">
+				res_name = #{resName,jdbcType=VARCHAR},
+			</if>
+			<if test="resDesc != null">
+				res_desc = #{resDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="permission != null">
+				permission = #{permission,jdbcType=VARCHAR},
+			</if>
+			<if test="resType != null">
+				res_type = #{resType,jdbcType=TINYINT},
+			</if>
+			<if test="resLevel != null">
+				res_level = #{resLevel,jdbcType=TINYINT},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId,jdbcType=BIGINT},
+			</if>
+			<if test="priority != null">
+				priority = #{priority,jdbcType=INTEGER}
+			</if>
+		</set>
+		where res_id = #{resId,jdbcType=BIGINT}
+	</update>
+	
+	<select id="getById" resultMap="BASE_RESULT" parameterType="java.lang.Long">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_res
+		where res_id = #{resId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="getByMultiParams" resultMap="BASE_RESULT" parameterType="hashmap">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_res
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+	<select id="list" resultMap="BASE_RESULT" parameterType="hashmap">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_res
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+	<select id="count" resultType="long" parameterType="hashmap">
+		select count(1)
+		from sys_res
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+</mapper>
