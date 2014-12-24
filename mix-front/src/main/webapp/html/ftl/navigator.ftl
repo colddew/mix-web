@@ -26,7 +26,7 @@
 						<li class="divider"></li>
 						<li><a href="#">角色管理</a></li>
 						<li class="divider"></li>
-						<li><a href="${request.contextPath}/resource/index.html">权限管理</a></li>
+						<li><a href="${request.contextPath}/resource/index.html">资源管理</a></li>
 					</ul>
 				</li>
 			</ul>

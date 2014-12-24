@@ -19,7 +19,7 @@
 			<#include "navigator.ftl">
 			
 			<div class="row">
-				<div class="org-list">
+				<div class="res-list">
 					<table class="table table-striped" id="resTree">
 						<thead>
 							<tr>
@@ -28,6 +28,7 @@
 								<th>URL</th>
 								<th>权限</th>
 								<th>等级</th>
+								<th>资源ID</th>
 								<th>父节点ID</th>
 								<th>操作</th>
 							</tr>
@@ -36,14 +37,20 @@
 							<#if allResources??>
 								<#list allResources as resource>
 									<tr data-tt-id='${resource.resId?default(0)}' <#if 0 != resource.parentId>data-tt-parent-id='${resource.parentId?default(0)}'</#if>>
-										<input type="hidden" value="${resource.resId?default(0)}" />
-										<td>${resource.resName!''}</td>
+										<td>${resource.resDesc!''}</td>
 										<td>${resource.resType!''}</td>
 										<td></td>
 										<td>${resource.permission!''}</td>
 										<td>${resource.resLevel!''}</td>
+										<td>${resource.resId?default(0)}</td>
 										<td>${resource.parentId?default(0)}</td>
-										<td></td>
+										<td>
+											<button class="btn btn-xs btn-primary" type="button"> 新增子节点  </button>
+											&nbsp;&nbsp;
+											<button class="btn btn-xs btn-success" type="button"> 修  改 </button>
+											&nbsp;&nbsp;
+											<button class="btn btn-xs btn-danger" type="button"> 删  除  </button>
+										</td>
 									</tr>
 								</#list>
 							</#if>	
@@ -61,8 +68,8 @@
 	<script src="${request.contextPath}/html/js/jquery.treetable.js"></script>
 	<script language="javascript">
 		$(function() {
-			//$("#resTree").treetable();
-			$("#resTree").treetable({expandable: true}).treetable("expandNode", 1);
+			//$("#resTree").treetable({expandable: true}).treetable("expandNode", 1);
+			$("#resTree").treetable({expandable: true}).treetable("expandAll");
 		});
 	</script>
 </body>

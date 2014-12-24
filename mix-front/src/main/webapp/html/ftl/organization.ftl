@@ -25,10 +25,10 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>#</th>
 								<th>机构名称</th>
 								<th>描述</th>
 								<th>等级</th>
+								<th>机构ID</th>
 								<th>父节点ID</th>
 							</tr>
 						</thead>
@@ -36,10 +36,10 @@
 							<#if allOrganizations??>
 								<#list allOrganizations as organization>
 									<tr>
-										<td>${organization.orgId!''}</td>
 										<td>${organization.orgName!''}</td>
 										<td>${organization.orgDesc!''}</td>
 										<td>${organization.orgLevel!''}</td>
+										<td>${organization.orgId!''}</td>
 										<td>${organization.parentId!''}</td>
 									</tr>
 								</#list>
@@ -69,7 +69,7 @@
 			callback: {
 	        	onClick: function(event, treeId, treeNode) {
 	                    //location.href = "${request.contextPath}/organization/"+treeNode.id+"/maintain";
-						alert(treeNode.tId + ", " + treeNode.name);;
+						//alert(treeNode.tId + ", " + treeNode.name);;
 	                }
 	            }
 		};
