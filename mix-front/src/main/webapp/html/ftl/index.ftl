@@ -6,6 +6,7 @@
 <title>mix</title>
 <link href="${request.contextPath}/html/css/bootstrap.css" rel="stylesheet" media="screen">
 <link href="${request.contextPath}/html/css/theme.css" rel="stylesheet" media="screen">
+<link href="${request.contextPath}/html/css/mix.css" rel="stylesheet" media="screen">
 </head>
 <body>
 	
@@ -13,42 +14,8 @@
 		
 		<div class="container">
 			
-			<div class="navbar navbar-inverse">
-				<div class="navbar-inner">
-					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="brand" href="#">XX管理系统</a>
-					<div class="nav-collapse collapse">
-						<ul class="nav">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">数据管理 <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">数据字典</a></li>
-									<li class="divider"></li>
-									<li><a href="#">数据库表</a></li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">系统管理 <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">用户管理</a></li>
-									<li class="divider"></li>
-									<li><a href="#">角色管理</a></li>
-									<li class="divider"></li>
-									<li><a href="#">权限管理</a></li>
-								</ul>
-							</li>
-						</ul>
-						<ul class="nav" style="float:right;">
-							<li><a href="#logout">退出</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
+			<#include "navigator.ftl">
+			
 			<div>
 				<table class="table table-striped">
 					<thead>
@@ -86,9 +53,9 @@
 						
 			<div style="text-align:center;">
 				<p>
-					<button class="btn btn-large btn-primary" type="button"> 确  定 </button>
+					<button class="btn btn-normal btn-primary" type="button"> 确  定 </button>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<button class="btn btn-large btn-primary" type="button"> 取  消 </button>
+					<button class="btn btn-normal btn-primary" type="button"> 取  消 </button>
 				</p>
 			</div>
 			

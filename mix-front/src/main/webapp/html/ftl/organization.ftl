@@ -15,43 +15,7 @@
 		
 		<div class="container">
 			
-			<div class="navbar navbar-inverse">
-				<div class="navbar-inner">
-					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="brand" href="#">XX管理系统</a>
-					<div class="nav-collapse collapse">
-						<ul class="nav">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">数据管理 <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">数据字典</a></li>
-									<li class="divider"></li>
-									<li><a href="#">数据库表</a></li>
-								</ul>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">系统管理 <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">组织管理</a></li>
-									<li class="divider"></li>
-									<li><a href="#">用户管理</a></li>
-									<li class="divider"></li>
-									<li><a href="#">角色管理</a></li>
-									<li class="divider"></li>
-									<li><a href="#">权限管理</a></li>
-								</ul>
-							</li>
-						</ul>
-						<ul class="nav" style="float:right;">
-							<li><a href="#logout">退出</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
+			<#include "navigator.ftl">
 			
 			<div class="row">
         		<div class="org-tree">
@@ -62,7 +26,7 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>名称</th>
+								<th>机构名称</th>
 								<th>描述</th>
 								<th>等级</th>
 								<th>父节点ID</th>
@@ -122,7 +86,7 @@
 			</#if>
 		];
 		
-		$(document).ready(function(){
+		$(function() {
 			$.fn.zTree.init($("#orgTree"), setting, zNodes);
 		});
 	</script>
