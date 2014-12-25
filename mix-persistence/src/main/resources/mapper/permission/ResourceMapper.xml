@@ -6,6 +6,7 @@
 		<id column="res_id" property="resId" jdbcType="BIGINT" />
 		<result column="res_name" property="resName" jdbcType="VARCHAR" />
 		<result column="res_desc" property="resDesc" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
 		<result column="permission" property="permission" jdbcType="VARCHAR" />
 		<result column="res_type" property="resType" jdbcType="TINYINT" />
 		<result column="res_level" property="resLevel" jdbcType="TINYINT" />
@@ -14,7 +15,7 @@
 	</resultMap>
 	
 	<sql id="BASE_COLUMN">
-		res_id, res_name, res_desc, permission, res_type, res_level, parent_id, priority
+		res_id, res_name, res_desc, url, permission, res_type, res_level, parent_id, priority
 	</sql>
 	
 	<sql id="BASE_QUERY_CONDITION">
@@ -30,6 +31,9 @@
 			</if>
 			<if test="permission != null">
 				AND permission = #{permission}
+			</if>
+			<if test="url != null">
+				AND url = #{url}
 			</if>
 			<if test="resType != null">
 				AND res_type = #{resType}
@@ -51,6 +55,7 @@
 		(
 		res_name, 
 		res_desc,
+		url,
 		permission, 
 		res_type, 
 		res_level,
@@ -61,10 +66,11 @@
 		(
 		#{resName,jdbcType=VARCHAR},
 		#{resDesc,jdbcType=VARCHAR},
-		#{permission,jdbcType=VARCHAR}, 
-		#{resType,jdbcType=TINYINT}, 
+		#{url,jdbcType=VARCHAR},
+		#{permission,jdbcType=VARCHAR},
+		#{resType,jdbcType=TINYINT},
 		#{resLevel,jdbcType=TINYINT},
-		#{parentId,jdbcType=BIGINT}, 
+		#{parentId,jdbcType=BIGINT},
 		#{priority,jdbcType=INTEGER}
 		)
 	</insert>
@@ -85,6 +91,9 @@
 			</if>
 			<if test="permission != null">
 				permission = #{permission,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
 			</if>
 			<if test="resType != null">
 				res_type = #{resType,jdbcType=TINYINT},

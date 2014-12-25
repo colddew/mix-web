@@ -65,6 +65,8 @@
 		</property>
 	</bean>
 	
+	<bean id="freemarkerStaticModels" class="edu.ustc.mix.front.util.StaticModels" />
+		
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="cache" value="true" />
 		<property name="prefix" value="" />
@@ -74,6 +76,7 @@
 		<property name="exposeRequestAttributes" value="true" />
 		<property name="exposeSessionAttributes" value="true" />
 		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="attributesMap" ref="freemarkerStaticModels" />
 	</bean>
 	
 	<!-- <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">

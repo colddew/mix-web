@@ -5,6 +5,7 @@ public class Resource {
 	private Long resId;
     private String resName;
     private String resDesc;
+    private String url;
     private String permission;
     private Integer resType;
     private Integer resLevel;
@@ -35,7 +36,15 @@ public class Resource {
         this.resDesc = resDesc;
     }
     
-    public String getPermission() {
+    public String getUrl() {
+		return url;
+	}
+    
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	public String getPermission() {
         return permission;
     }
     

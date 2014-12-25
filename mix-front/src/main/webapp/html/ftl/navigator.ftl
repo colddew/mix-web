@@ -22,9 +22,9 @@
 					<ul class="dropdown-menu">
 						<li><a href="${request.contextPath}/organization/index.html">机构管理</a></li>
 						<li class="divider"></li>
-						<li><a href="#">用户管理</a></li>
+						<li><a href="${request.contextPath}/user/index.html">用户管理</a></li>
 						<li class="divider"></li>
-						<li><a href="#">角色管理</a></li>
+						<li><a href="${request.contextPath}/role/index.html">角色管理</a></li>
 						<li class="divider"></li>
 						<li><a href="${request.contextPath}/resource/index.html">资源管理</a></li>
 					</ul>

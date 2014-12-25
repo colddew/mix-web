@@ -15,12 +15,28 @@
 	float: right;
 }
 
+.org-list th {
+	text-align: center;
+}
+
+.org-list td {
+	text-align: center;
+}
+
 .res-list {
 	position: relative;
 	padding-left: 10px;
-	padding-right: 60px;
-	width: 85%;
+	padding-right: 20px;
+	width: 95%;
 	float: right;
+}
+
+.res-list th {
+	text-align: center;
+}
+
+.res-list td {
+	text-align: center;
 }
 
 .btn-normal {

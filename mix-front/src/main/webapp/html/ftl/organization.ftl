@@ -77,7 +77,8 @@
 		var zNodes = [
 			<#if allOrganizations??>
 				<#list allOrganizations as organization>
-					{	id:${organization.orgId}, 
+					{	
+						id:${organization.orgId}, 
 						pId:${organization.parentId}, 
 						name:"${organization.orgName}", 
 						open:<#if 0 == organization.parentId>true<#else>false</#if>

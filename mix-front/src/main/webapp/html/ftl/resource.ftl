@@ -27,7 +27,6 @@
 								<th>类型</th>
 								<th>URL</th>
 								<th>权限</th>
-								<th>等级</th>
 								<th>资源ID</th>
 								<th>父节点ID</th>
 								<th>操作</th>
@@ -38,10 +37,19 @@
 								<#list allResources as resource>
 									<tr data-tt-id='${resource.resId?default(0)}' <#if 0 != resource.parentId>data-tt-parent-id='${resource.parentId?default(0)}'</#if>>
 										<td>${resource.resDesc!''}</td>
-										<td>${resource.resType!''}</td>
-										<td></td>
+										<td>
+											<#if (resource.resType)??>
+												<#if MixConstants.RES_TYPE_URL == resource.resType>
+													URL地址
+												<#elseif MixConstants.RES_TYPE_FORM == resource.resType>
+													表单元素
+												<#elseif MixConstants.RES_TYPE_DATA == resource.resType>
+													数据
+												</#if>
+											</#if>
+										</td>
+										<td>${resource.url!''}</td>
 										<td>${resource.permission!''}</td>
-										<td>${resource.resLevel!''}</td>
 										<td>${resource.resId?default(0)}</td>
 										<td>${resource.parentId?default(0)}</td>
 										<td>
