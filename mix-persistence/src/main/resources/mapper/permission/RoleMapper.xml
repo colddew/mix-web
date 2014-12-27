@@ -8,11 +8,8 @@
 		<result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
 	</resultMap>
 	
-	<resultMap id="COMPOSITE_RESULT" type="edu.ustc.mix.persistence.entity.permission.Role">
-		<id column="role_id" property="roleId" jdbcType="BIGINT" />
-		<result column="role_name" property="roleName" jdbcType="VARCHAR" />
-		<result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
-		<collection property="resources" resultMap="RESOURCE.BASE_RESULT" />
+	<resultMap id="COMPOSITE_RESULT" extends="BASE_RESULT" type="edu.ustc.mix.persistence.entity.permission.Role">
+		<collection property="resources" resultMap="edu.ustc.mix.persistence.mapper.permission.ResourceMapper.BASE_RESULT" />
 	</resultMap>
 	
 	<sql id="BASE_COLUMN">

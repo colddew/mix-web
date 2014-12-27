@@ -54,10 +54,8 @@
 										<td>${resource.parentId?default(0)}</td>
 										<td>
 											<button class="btn btn-xs btn-primary" type="button"> 新增子节点  </button>
-											&nbsp;&nbsp;
-											<button class="btn btn-xs btn-success" type="button"> 修  改 </button>
-											&nbsp;&nbsp;
-											<button class="btn btn-xs btn-danger" type="button"> 删  除  </button>
+											<button class="btn btn-xs btn-success btn-space" type="button"> 修  改 </button>
+											<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
 										</td>
 									</tr>
 								</#list>
