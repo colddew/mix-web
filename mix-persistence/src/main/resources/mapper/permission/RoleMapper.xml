@@ -72,6 +72,16 @@
 		where role_id = #{roleId,jdbcType=BIGINT}
 	</select>
 	
+	<select id="getRoleAndRelatedResources" resultMap="COMPOSITE_RESULT" parameterType="java.lang.Long">
+		select
+		<include refid="ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.permission.ResourceMapper.ALIAS_COLUMN" />
+		from sys_role role
+		left join sys_role_ref_res rr on role.role_id = rr.role_id
+		left join sys_res res on res.res_id = rr.res_id
+		where role.role_id = #{roleId}
+	</select>
+	
 	<select id="getByMultiParams" resultMap="BASE_RESULT" parameterType="hashmap">
 		select
 		<include refid="BASE_COLUMN" />
@@ -86,7 +96,7 @@
 		<include refid="BASE_QUERY_CONDITION" />
 	</select>
 	
-	<select id="listRolesAndRelatedResources" resultMap="COMPOSITE_RESULT" parameterType="hashmap">
+	<select id="getAllRolesAndRelatedResources" resultMap="COMPOSITE_RESULT" parameterType="hashmap">
 		select
 		<include refid="ALIAS_COLUMN" /> , 
 		<include refid="edu.ustc.mix.persistence.mapper.permission.ResourceMapper.ALIAS_COLUMN" />

@@ -18,11 +18,17 @@ public class RoleServiceImpl implements RoleService {
 	private RoleMapper roleMapper;
 	
 	@Override
-	public List<Role> getAllRoles() throws Exception {
+	public Role getRoleAndRelatedResources(Long roleId) throws Exception {
+		
+		return roleMapper.getRoleAndRelatedResources(roleId);
+	}
+	
+	@Override
+	public List<Role> getAllRolesAndRelatedResources() throws Exception {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
-		return roleMapper.listRolesAndRelatedResources(params);
+		return roleMapper.getAllRolesAndRelatedResources(params);
 	}
 	
 	@Override

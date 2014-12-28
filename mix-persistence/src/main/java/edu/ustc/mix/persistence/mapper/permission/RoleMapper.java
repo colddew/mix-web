@@ -15,11 +15,13 @@ public interface RoleMapper {
 	
 	Role getById(Long roleId);
 	
+	Role getRoleAndRelatedResources(Long roleId);
+	
 	Role getByMultiParams(Map<String, Object> params);
 	
 	List<Role> list(Map<String, Object> params);
 	
-	List<Role> listRolesAndRelatedResources(Map<String, Object> params);
+	List<Role> getAllRolesAndRelatedResources(Map<String, Object> params);
 	
 	long count(Map<String, Object> params);
 }

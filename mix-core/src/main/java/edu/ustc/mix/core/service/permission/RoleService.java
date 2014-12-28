@@ -7,7 +7,9 @@ import edu.ustc.mix.persistence.entity.permission.Role;
 
 public interface RoleService {
 	
-	public List<Role> getAllRoles() throws Exception;
+	public Role getRoleAndRelatedResources(Long roleId) throws Exception;
+	
+	public List<Role> getAllRolesAndRelatedResources() throws Exception;
 	
 	public Set<String> findRoles(Long... roleIds) throws Exception;
 	

@@ -73,7 +73,7 @@
         
         function edit(roleId) {
         	if(roleId) {
-				location.href = "${request.contextPath}/role/" + roleId + "/edit.html"
+				location.href = "${request.contextPath}/role/" + roleId + "/edit.html";
         	}
         }
 	</script>

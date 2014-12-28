@@ -21,18 +21,19 @@
 					
 					<div class="row-normal">
 						<label>角色名称：</label>
-						<input type="text" id="roleName" name="roleName" />
+						<input type="text" id="roleName" name="roleName" value="${role.roleName!''}" />
 					</div>
 					
 					<div class="row-normal">
 						<label>角色描述：</label>
-						<input type="text" id="roleDesc" name="roleDesc" />
+						<input type="text" id="roleDesc" name="roleDesc" value="${role.roleDesc!''}" />
 					</div>
 					
 					<div class="row-normal">
 						<label>拥有的资源列表：</label>
-						<hidden path="resourceIds"/>
-					    <input type="text" id="resourceName" name="resourceName" readonly />
+						<input type="hidden" id="resourceIds" />
+						<#include "macro.ftl">
+					    <input type="text" id="resourceName" name="resourceName" value="<@getResourceNames role=role />" readonly />
 					    <a id="menuBtn" href="#">选择</a>
 					</div>
 					
@@ -61,8 +62,8 @@
 		$(function () {
             var setting = {
                 check: {
-                    enable: true ,
-                    chkboxType: { "Y": "ps", "N": "ps" }
+                    enable: true,
+                    chkboxType: { "Y": "", "N": "" }
                 },
                 view: {
                     dblClickExpand: true
@@ -93,20 +94,33 @@
 			];
 			
             function onCheck(e, treeId, treeNode) {
-                var zTree = $.fn.zTree.getZTreeObj("tree"),
+            	
+            	//alert(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
+                
+                var zTree = $.fn.zTree.getZTreeObj("resTree"),
                         nodes = zTree.getCheckedNodes(true),
                         id = "",
                         name = "";
+               
                 nodes.sort(function compare(a,b){return a.id-b.id;});
+                
                 for (var i=0, l=nodes.length; i<l; i++) {
                     id += nodes[i].id + ",";
                     name += nodes[i].name + ",";
                 }
-                if (id.length > 0 ) id = id.substring(0, id.length-1);
-                if (name.length > 0 ) name = name.substring(0, name.length-1);
+                
+                if(id.length > 0 ) {
+                	id = id.substring(0, id.length-1);
+                }
+				
+                if(name.length > 0 ) {
+                	name = name.substring(0, name.length-1);
+                }
+                
                 $("#resourceIds").val(id);
                 $("#resourceName").val(name);
-//                hideMenu();
+                
+                //hideMenu();
             }
 			
             function hideMenu() {
