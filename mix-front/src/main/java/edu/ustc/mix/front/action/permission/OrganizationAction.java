@@ -1,4 +1,4 @@
-package edu.ustc.mix.front.action;
+package edu.ustc.mix.front.action.permission;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -6,21 +6,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import edu.ustc.mix.core.service.permission.ResourceService;
+import edu.ustc.mix.core.service.permission.OrganizationService;
 
 @Controller
 @Scope("prototype")
-@RequestMapping(value = "/resource")
-public class ResourceAction {
+@RequestMapping(value = "/organization")
+public class OrganizationAction {
 	
 	@Autowired
-	private ResourceService resourceService;
+	private OrganizationService organizationService;
 	
 	@RequestMapping("/index")
 	public String list(Model model) throws Exception {
 		
-		model.addAttribute("allResources", resourceService.getAllResources());
+		model.addAttribute("allOrganizations", organizationService.getAllOrganizations());
 		
-		return "/resource";
+		return "/organization";
 	}
 }

@@ -18,6 +18,10 @@
 		res_id, res_name, res_desc, url, permission, res_type, res_level, parent_id, priority
 	</sql>
 	
+	<sql id="ALIAS_COLUMN">
+		res.res_id, res.res_name, res.res_desc, res.url, res.permission, res.res_type, res.res_level, res.parent_id, res.priority
+	</sql>
+	
 	<sql id="BASE_QUERY_CONDITION">
 		<where>
 			<if test="resId != null">

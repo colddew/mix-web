@@ -12,75 +12,45 @@
 <body>
 	
 	<div class="navbar-wrapper">
-		
 		<div class="container">
 			
 			<#include "navigator.ftl">
 			
-			
-<div class="form-group">
-拥有的资源列表：
-    <hidden path="resourceIds"/>
-    <input type="text" id="resourceName" name="resourceName" readonly />
-    <a id="menuBtn" href="#">选择</a>
-</div>
-<div id="menuContent" class="menuContent" style="display:none; position:absolute;">
-    <ul id="roleTree" class="ztree" style="margin-top:0; width:160px;"></ul>
-</div>
-<#--			
 			<div class="row">
-				<div class="res-list">
-					<table class="table table-striped" id="resTree">
-						<thead>
-							<tr>
-								<th>资源名称</th>
-								<th>类型</th>
-								<th>URL</th>
-								<th>权限</th>
-								<th>资源ID</th>
-								<th>父节点ID</th>
-								<th>操作</th>
-							</tr>
-						</thead>
-						<tbody>
-
-							<#if allResources??>
-								<#list allResources as resource>
-									<tr data-tt-id='${resource.resId?default(0)}' <#if 0 != resource.parentId>data-tt-parent-id='${resource.parentId?default(0)}'</#if>>
-										<td>${resource.resDesc!''}</td>
-										<td>
-											<#if (resource.resType)??>
-												<#if MixConstants.RES_TYPE_URL == resource.resType>
-													URL地址
-												<#elseif MixConstants.RES_TYPE_FORM == resource.resType>
-													表单元素
-												<#elseif MixConstants.RES_TYPE_DATA == resource.resType>
-													数据
-												</#if>
-											</#if>
-										</td>
-										<td>${resource.url!''}</td>
-										<td>${resource.permission!''}</td>
-										<td>${resource.resId?default(0)}</td>
-										<td>${resource.parentId?default(0)}</td>
-										<td>
-											<button class="btn btn-xs btn-primary" type="button"> 新增子节点  </button>
-											&nbsp;&nbsp;
-											<button class="btn btn-xs btn-success" type="button"> 修  改 </button>
-											&nbsp;&nbsp;
-											<button class="btn btn-xs btn-danger" type="button"> 删  除  </button>
-										</td>
-									</tr>
-								</#list>
-							</#if>
-	
-						</tbody>
-					</table>
+				<div class="form-normal">
+					
+					<div class="row-normal">
+						<label>角色名称：</label>
+						<input type="text" id="roleName" name="roleName" />
+					</div>
+					
+					<div class="row-normal">
+						<label>角色描述：</label>
+						<input type="text" id="roleDesc" name="roleDesc" />
+					</div>
+					
+					<div class="row-normal">
+						<label>拥有的资源列表：</label>
+						<hidden path="resourceIds"/>
+					    <input type="text" id="resourceName" name="resourceName" readonly />
+					    <a id="menuBtn" href="#">选择</a>
+					</div>
+					
+					<div class="row-normal">
+						<label style="width:110px;">
+							<button class="btn btn-xs btn-primary" type="button"> 保  存 </button>
+						</label>
+					</div>
+					
+					<div id="menuContent" class="menuContent row-normal" style="display:none;position:absolute;">
+						<label></label>
+					    <ul id="resTree" class="ztree" style="margin-top:0;width:160px;"></ul>
+					</div>
+					
 				</div>
 			</div>
--->			
+			
 		</div>
-		
 	</div>
 	
 	<script src="${request.contextPath}/html/js/jquery-1.11.1.js"></script>
@@ -92,7 +62,7 @@
             var setting = {
                 check: {
                     enable: true ,
-                    chkboxType: { "Y": "", "N": "" }
+                    chkboxType: { "Y": "ps", "N": "ps" }
                 },
                 view: {
                     dblClickExpand: true
@@ -106,7 +76,7 @@
                     onCheck: onCheck
                 }
             };
-			 
+			
             var zNodes = [
 				<#if allResources??>
 					<#list allResources as resource>
@@ -139,17 +109,18 @@
 //                hideMenu();
             }
 			
-            function showMenu() {
-                var cityObj = $("#resourceName");
-                var cityOffset = $("#resourceName").offset();
-                $("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
-
-                $("body").bind("mousedown", onBodyDown);
-            }
-            
             function hideMenu() {
                 $("#menuContent").fadeOut("fast");
                 $("body").unbind("mousedown", onBodyDown);
+            }
+            
+            function showMenu() {
+                //var cityObj = $("#resourceName");
+                //var cityOffset = $("#resourceName").offset();
+                //$("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
+                $("#menuContent").css({left:"130px", top:"150px"}).slideDown("fast");
+				
+                $("body").bind("mousedown", onBodyDown);
             }
             
             function onBodyDown(event) {
@@ -158,7 +129,7 @@
                 }
             }
 			
-            $.fn.zTree.init($("#roleTree"), setting, zNodes);
+            $.fn.zTree.init($("#resTree"), setting, zNodes);
             $("#menuBtn").click(showMenu);
         });
 	</script>

@@ -15,6 +15,10 @@
 		org_id, org_name, org_desc, org_level, parent_id, priority
 	</sql>
 	
+	<sql id="ALIAS_COLUMN">
+		org.org_id, org.org_name, org.org_desc, org.org_level, org.parent_id, org.priority
+	</sql>
+	
 	<sql id="BASE_QUERY_CONDITION">
 		<where>
 			<if test="orgId != null">

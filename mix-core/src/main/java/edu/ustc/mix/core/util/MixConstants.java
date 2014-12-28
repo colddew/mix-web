@@ -11,4 +11,9 @@ public interface MixConstants {
 	public static final Integer RES_TYPE_URL = 0;		// URL地址
 	public static final Integer RES_TYPE_FORM = 1;		// 表单元素
 	public static final Integer RES_TYPE_DATA = 2;		// 数据
+	
+	// 用户类型
+	public static final Integer USER_TYPE_SUPER = 0;		// 超级管理员
+	public static final Integer USER_TYPE_COMMON = 1;		// 普通用户
+	
 }

@@ -16,6 +16,10 @@
 		role_id, role_name, role_desc
 	</sql>
 	
+	<sql id="ALIAS_COLUMN">
+		role.role_id, role.role_name, role.role_desc
+	</sql>
+	
 	<sql id="BASE_QUERY_CONDITION">
 		<where>
 			<if test="roleId != null">
@@ -61,24 +65,34 @@
 		where role_id = #{roleId,jdbcType=BIGINT}
 	</update>
 	
-	<select id="getById" resultMap="COMPOSITE_RESULT" parameterType="java.lang.Long">
+	<select id="getById" resultMap="BASE_RESULT" parameterType="java.lang.Long">
 		select
 		<include refid="BASE_COLUMN" />
 		from sys_role
 		where role_id = #{roleId,jdbcType=BIGINT}
 	</select>
 	
-	<select id="getByMultiParams" resultMap="COMPOSITE_RESULT" parameterType="hashmap">
+	<select id="getByMultiParams" resultMap="BASE_RESULT" parameterType="hashmap">
 		select
 		<include refid="BASE_COLUMN" />
 		from sys_role
 		<include refid="BASE_QUERY_CONDITION" />
 	</select>
 	
-	<select id="list" resultMap="COMPOSITE_RESULT" parameterType="hashmap">
+	<select id="list" resultMap="BASE_RESULT" parameterType="hashmap">
 		select
 		<include refid="BASE_COLUMN" />
 		from sys_role
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+	<select id="listRolesAndRelatedResources" resultMap="COMPOSITE_RESULT" parameterType="hashmap">
+		select
+		<include refid="ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.permission.ResourceMapper.ALIAS_COLUMN" />
+		from sys_role role
+		left join sys_role_ref_res rr on role.role_id = rr.role_id
+		left join sys_res res on res.res_id = rr.res_id
 		<include refid="BASE_QUERY_CONDITION" />
 	</select>
 	

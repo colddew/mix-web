@@ -19,5 +19,7 @@ public interface UserMapper {
 	
 	List<User> list(Map<String, Object> params);
 	
+	List<User> listUsersAndRelatedRoles(Map<String, Object> params);
+	
 	long count(Map<String, Object> params);
 }

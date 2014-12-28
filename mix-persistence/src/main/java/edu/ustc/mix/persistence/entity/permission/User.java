@@ -12,6 +12,7 @@ public class User {
     private Integer userStatus;
     private Long orgId;
     
+    private Organization org;
     private List<Role> roles;
     private List<Resource> resources;
     
@@ -71,7 +72,15 @@ public class User {
         this.orgId = orgId;
     }
     
-    public List<Role> getRoles() {
+    public Organization getOrg() {
+		return org;
+	}
+    
+	public void setOrg(Organization org) {
+		this.org = org;
+	}
+	
+	public List<Role> getRoles() {
 		return roles;
 	}
 	

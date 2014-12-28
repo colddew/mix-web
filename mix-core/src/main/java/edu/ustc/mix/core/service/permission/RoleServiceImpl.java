@@ -22,7 +22,7 @@ public class RoleServiceImpl implements RoleService {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
-		return roleMapper.list(params);
+		return roleMapper.listRolesAndRelatedResources(params);
 	}
 	
 	@Override

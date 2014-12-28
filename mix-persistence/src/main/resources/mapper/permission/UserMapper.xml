@@ -12,20 +12,17 @@
 		<result column="org_id" property="orgId" jdbcType="BIGINT" />
 	</resultMap>
 	
-	<resultMap id="COMPOSITE_RESULT" type="edu.ustc.mix.persistence.entity.permission.User">
-		<id column="user_id" property="userId" jdbcType="BIGINT" />
-		<result column="user_name" property="userName" jdbcType="VARCHAR" />
-		<result column="salt" property="salt" jdbcType="VARCHAR" />
-		<result column="password" property="password" jdbcType="VARCHAR" />
-		<result column="user_type" property="userType" jdbcType="TINYINT" />
-		<result column="user_status" property="userStatus" jdbcType="TINYINT" />
-		<result column="org_id" property="orgId" jdbcType="BIGINT" />
-		<collection property="roles" resultMap="ROLE.BASE_RESULT" />
-		<collection property="resources" resultMap="RESOURCE.BASE_RESULT" />
+	<resultMap id="COMPOSITE_RESULT" extends="BASE_RESULT" type="edu.ustc.mix.persistence.entity.permission.User">
+		<association property="org" resultMap="edu.ustc.mix.persistence.mapper.permission.OrganizationMapper.BASE_RESULT" />
+		<collection property="roles" resultMap="edu.ustc.mix.persistence.mapper.permission.RoleMapper.BASE_RESULT" />
 	</resultMap>
 	
 	<sql id="BASE_COLUMN">
 		user_id, user_name, salt, password, user_type, user_status, org_id
+	</sql>
+	
+	<sql id="ALIAS_COLUMN">
+		user.user_id, user.user_name, user.salt, user.password, user.user_type, user.user_status, user.org_id
 	</sql>
 	
 	<sql id="BASE_QUERY_CONDITION">
@@ -123,6 +120,18 @@
 		select
 		<include refid="BASE_COLUMN" />
 		from sys_user
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+	<select id="listUsersAndRelatedRoles" resultMap="COMPOSITE_RESULT" parameterType="hashmap">
+		select
+		<include refid="ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.permission.OrganizationMapper.ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.permission.RoleMapper.ALIAS_COLUMN" />
+		from sys_user user
+		left join sys_org org on user.org_id = org.org_id
+		left join sys_user_ref_role ur on user.user_id = ur.user_id
+		left join sys_role role on role.role_id = ur.role_id
 		<include refid="BASE_QUERY_CONDITION" />
 	</select>
 	

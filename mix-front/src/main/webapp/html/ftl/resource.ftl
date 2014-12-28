@@ -19,7 +19,7 @@
 			<#include "navigator.ftl">
 			
 			<div class="row">
-				<div class="res-list">
+				<div class="table-list">
 					<table class="table table-striped" id="resTree">
 						<thead>
 							<tr>
