@@ -14,6 +14,10 @@ public interface RoleService {
 	
 	public void updateRoleAndRelatedResources(RoleDto roleDto) throws Exception;
 	
+	public void add(Role role) throws Exception;
+	
+	public void createRoleAndRelatedResources(RoleDto roleDto) throws Exception;
+	
 	public List<Role> getAllRolesAndRelatedResources() throws Exception;
 	
 	public Set<String> findRoles(Long... roleIds) throws Exception;

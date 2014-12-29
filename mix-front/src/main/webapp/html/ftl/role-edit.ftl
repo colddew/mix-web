@@ -20,6 +20,7 @@
 			<div class="row">
 				<div class="form-normal">
 					<form id="roleForm" name="roleForm" method="post" action="#">
+						
 						<input type="hidden" id="roleId" name="roleId" value="${role.roleId!''}" />
 						
 						<div class="row-normal">
@@ -41,7 +42,7 @@
 						
 						<div class="row-normal">
 							<label style="width:110px;">
-								<button class="btn btn-xs btn-primary" type="button" onclick="update();"> 保  存 </button>
+								<button class="btn btn-xs btn-primary" type="button" onclick="save();"> 保  存 </button>
 							</label>
 						</div>
 						
@@ -150,22 +151,37 @@
             $("#menuBtn").click(showMenu);
         });
         
-        function update() {
+        function save() {
         	<#if (role.roleId)??>
         		$.ajax({
 					type: "POST",
-					url: "${request.contextPath}/role/" + ${role.roleId} + "/update.html";
+					url: "${request.contextPath}/role/${role.roleId}/update.html",
 					data: $("#roleForm").serialize(),
 					//dataType: "json",
 					async : false,
 					success: function(data,textStatus){
-						
+						alert("update success");
 					},
 					error : function(data,textstatus){
-						
+						alert("update fail");
+					}
+				});
+			<#else>
+				$.ajax({
+					type: "POST",
+					url: "${request.contextPath}/role/create.html",
+					data: $("#roleForm").serialize(),
+					//dataType: "json",
+					async : false,
+					success: function(data,textStatus){
+						alert("create success");
+					},
+					error : function(data,textstatus){
+						alert("create fail");
 					}
 				});
         	</#if>
+        	location.href = "${request.contextPath}/role/index.html";
         }
 	</script>
 </body>

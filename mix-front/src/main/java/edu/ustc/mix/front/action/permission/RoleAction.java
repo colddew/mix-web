@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.ustc.mix.core.dto.RoleDto;
 import edu.ustc.mix.core.service.permission.ResourceService;
 import edu.ustc.mix.core.service.permission.RoleService;
+import edu.ustc.mix.persistence.entity.permission.Role;
 
 @Controller
 @Scope("prototype")
@@ -31,6 +32,23 @@ public class RoleAction {
 		return "/role";
 	}
 	
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public String create(Model model) throws Exception {
+		
+		model.addAttribute("role", new Role());
+		model.addAttribute("allResources", resourceService.getAllResources());
+		
+		return "/role-edit";
+	}
+	
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String create(RoleDto roleDto, Model model) throws Exception {
+		
+		roleService.createRoleAndRelatedResources(roleDto);
+		
+		return "redirect:/role/index.html";
+	}
+	
 	@RequestMapping(value = "/{roleId}/update", method = RequestMethod.GET)
 	public String update(@PathVariable Long roleId, Model model) throws Exception {
 		
@@ -43,11 +61,11 @@ public class RoleAction {
 	}
 	
 	@RequestMapping(value = "/{roleId}/update", method = RequestMethod.POST)
-	public String update(RoleDto RoleDto, Model model) throws Exception {
+	public String update(RoleDto roleDto, Model model) throws Exception {
 		
-		validateRole(RoleDto);
+		validateRole(roleDto);
 		
-		roleService.updateRoleAndRelatedResources(RoleDto);
+		roleService.updateRoleAndRelatedResources(roleDto);
 		
 		return "redirect:/role/index.html";
 	}

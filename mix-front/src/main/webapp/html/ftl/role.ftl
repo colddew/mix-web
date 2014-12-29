@@ -26,7 +26,7 @@
 								<th>角色描述</th>
 								<th>拥有的资源</th>
 								<th>
-									操作<a href="#" class="a-space"> 新 增 </a>
+									操作<a href="${request.contextPath}/role/create.html" class="a-space"> 新 增 </a>
 								</th>
 							</tr>
 						</thead>

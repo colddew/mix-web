@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import edu.ustc.mix.core.dto.RoleDto;
 import edu.ustc.mix.persistence.entity.permission.Role;
+import edu.ustc.mix.persistence.entity.permission.RoleResource;
 import edu.ustc.mix.persistence.mapper.permission.RoleMapper;
 import edu.ustc.mix.persistence.mapper.permission.RoleResourceMapper;
 
@@ -46,6 +47,22 @@ public class RoleServiceImpl implements RoleService {
 		addResources(roleDto.getRoleId(), roleDto.getResourceIds());
 	}
 	
+	@Override
+	public void add(Role role) throws Exception {
+		
+		roleMapper.add(role);
+	}
+	
+	@Override
+	public void createRoleAndRelatedResources(RoleDto roleDto) throws Exception {
+		
+		Role role = new Role();
+		BeanUtils.copyProperties(roleDto, role);
+		add(role);
+		
+		addResources(role.getRoleId(), roleDto.getResourceIds());
+	}
+	
 	private void deleteResources(Long roleId) throws Exception {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -56,14 +73,20 @@ public class RoleServiceImpl implements RoleService {
 	
 	private void addResources(Long roleId, String resourceIds) throws Exception {
 		
-		if(null != resourceIds) {
+		if(null != resourceIds && !"".equals(resourceIds)) {
+			
 			String[] resIds = resourceIds.split(",");
 			for(String resId : resIds) {
-				roleResourceMapper.add(roleId, Long.valueOf(resId));
+				
+				RoleResource roleResource = new RoleResource();
+				roleResource.setRoleId(roleId);
+				roleResource.setResId(Long.valueOf(resId));
+				
+				roleResourceMapper.add(roleResource);
 			}
 		}
 	}
-
+	
 	@Override
 	public List<Role> getAllRolesAndRelatedResources() throws Exception {
 		

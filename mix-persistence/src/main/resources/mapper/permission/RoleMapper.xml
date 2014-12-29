@@ -34,7 +34,7 @@
 		</where>
 	</sql>
 	
-	<insert id="insert" parameterType="edu.ustc.mix.persistence.entity.permission.Role" useGeneratedKeys="true" keyProperty="roleId">
+	<insert id="add" parameterType="edu.ustc.mix.persistence.entity.permission.Role" useGeneratedKeys="true" keyProperty="roleId">
 		insert into sys_role 
 		(
 		role_name, 
@@ -104,6 +104,7 @@
 		left join sys_role_ref_res rr on role.role_id = rr.role_id
 		left join sys_res res on res.res_id = rr.res_id
 		<include refid="BASE_QUERY_CONDITION" />
+		order by role.role_id
 	</select>
 	
 	<select id="count" resultType="long" parameterType="hashmap">
