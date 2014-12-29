@@ -23,8 +23,8 @@
 		res_id
 		)
 		values (
-		#{role.roleId},
-		#{resource.resId}
+		#{roleId,jdbcType=BIGINT},
+		#{resId,jdbcType=BIGINT}
 		)
 	</insert>
 	

@@ -1,4 +1,5 @@
 <#escape x as x!"">
+<#include "utils.ftl">
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,36 +19,37 @@
 			
 			<div class="row">
 				<div class="form-normal">
-					
-					<div class="row-normal">
-						<label>角色名称：</label>
-						<input type="text" id="roleName" name="roleName" value="${role.roleName!''}" />
-					</div>
-					
-					<div class="row-normal">
-						<label>角色描述：</label>
-						<input type="text" id="roleDesc" name="roleDesc" value="${role.roleDesc!''}" />
-					</div>
-					
-					<div class="row-normal">
-						<label>拥有的资源列表：</label>
-						<input type="hidden" id="resourceIds" />
-						<#include "macro.ftl">
-					    <input type="text" id="resourceName" name="resourceName" value="<@getResourceNames role=role />" readonly />
-					    <a id="menuBtn" href="#">选择</a>
-					</div>
-					
-					<div class="row-normal">
-						<label style="width:110px;">
-							<button class="btn btn-xs btn-primary" type="button"> 保  存 </button>
-						</label>
-					</div>
-					
-					<div id="menuContent" class="menuContent row-normal" style="display:none;position:absolute;">
-						<label></label>
-					    <ul id="resTree" class="ztree" style="margin-top:0;width:160px;"></ul>
-					</div>
-					
+					<form id="roleForm" name="roleForm" method="post" action="#">
+						<input type="hidden" id="roleId" name="roleId" value="${role.roleId!''}" />
+						
+						<div class="row-normal">
+							<label>角色名称：</label>
+							<input type="text" id="roleName" name="roleName" value="${role.roleName!''}" />
+						</div>
+						
+						<div class="row-normal">
+							<label>角色描述：</label>
+							<input type="text" id="roleDesc" name="roleDesc" value="${role.roleDesc!''}" />
+						</div>
+						
+						<div class="row-normal">
+							<label>拥有的资源列表：</label>
+							<input type="hidden" id="resourceIds" name="resourceIds" />
+						    <input type="text" id="resourceName" name="resourceName" value="<@getResourceNames role=role />" readonly />
+						    <a id="menuBtn" href="#">选择</a>
+						</div>
+						
+						<div class="row-normal">
+							<label style="width:110px;">
+								<button class="btn btn-xs btn-primary" type="button" onclick="update();"> 保  存 </button>
+							</label>
+						</div>
+						
+						<div id="menuContent" class="menuContent row-normal" style="display:none;position:absolute;">
+							<label></label>
+						    <ul id="resTree" class="ztree" style="margin-top:0;width:160px;"></ul>
+						</div>
+					</form>
 				</div>
 			</div>
 			
@@ -59,6 +61,7 @@
 	<script src="${request.contextPath}/html/js/jquery.ztree.excheck-3.5.js"></script>
 	<script src="${request.contextPath}/html/js/bootstrap.js"></script>
 	<script language="javascript">
+		
 		$(function () {
             var setting = {
                 check: {
@@ -86,7 +89,7 @@
 								id:${resource.resId}, 
 								pId:${resource.parentId}, 
 								name:"${resource.resDesc}", 
-								checked:true
+								checked:${hadResourceIds?seq_contains('${resource.resId}')?string("true","false")}
 							},
 						</#if>
 					</#list>
@@ -146,6 +149,24 @@
             $.fn.zTree.init($("#resTree"), setting, zNodes);
             $("#menuBtn").click(showMenu);
         });
+        
+        function update() {
+        	<#if (role.roleId)??>
+        		$.ajax({
+					type: "POST",
+					url: "${request.contextPath}/role/" + ${role.roleId} + "/update.html";
+					data: $("#roleForm").serialize(),
+					//dataType: "json",
+					async : false,
+					success: function(data,textStatus){
+						
+					},
+					error : function(data,textstatus){
+						
+					}
+				});
+        	</#if>
+        }
 	</script>
 </body>
 </html>

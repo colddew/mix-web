@@ -24,8 +24,8 @@
 		)
 		values 
 		( 
-		#{user.userId},
-		#{resource.resId}
+		#{userId,jdbcType=BIGINT},
+		#{resId,jdbcType=BIGINT}
 		)
 	</insert>
 	

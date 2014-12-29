@@ -24,8 +24,8 @@
 		)
 		values 
 		(
-		#{user.userId},
-		#{role.roleId}
+		#{userId,jdbcType=BIGINT},
+		#{roleId,jdbcType=BIGINT}
 		)
 	</insert>
 	

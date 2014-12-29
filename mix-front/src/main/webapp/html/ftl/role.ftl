@@ -47,7 +47,7 @@
 											</#if>
 										</td>
 										<td>
-											<button class="btn btn-xs btn-success" type="button" onclick="edit(${role.roleId!''});"> 修  改 </button>
+											<button class="btn btn-xs btn-success" type="button" onclick="update(${role.roleId!''});"> 修  改 </button>
 											<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
 										</td>
 									</tr>
@@ -71,9 +71,9 @@
             
         });
         
-        function edit(roleId) {
+        function update(roleId) {
         	if(roleId) {
-				location.href = "${request.contextPath}/role/" + roleId + "/edit.html";
+				location.href = "${request.contextPath}/role/" + roleId + "/update.html";
         	}
         }
 	</script>
