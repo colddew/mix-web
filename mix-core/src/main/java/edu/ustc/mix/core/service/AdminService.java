@@ -23,7 +23,12 @@ public class AdminService {
 	
 	@PostConstruct
 	public void init() throws Exception {
-//		list = getAdminList();
+		
+		if(null != list) {
+			list.clear();
+		}
+		
+		list = getAdminList();
 	}
 	
 	@PreDestroy
@@ -42,7 +47,7 @@ public class AdminService {
 		
 		if(list != null && list.size() > 0) {
 			for(Admin admin : list) {
-				String userName = admin.getUserName();
+				String userName = admin.getName();
 				map.put(userName, admin);
 			}
 		}
@@ -64,7 +69,7 @@ public class AdminService {
 		Map<String, Admin> map = getAdminMapByUserName(list);
 		
 		for(Admin admin : list) {
-			String userName = admin.getUserName();
+			String userName = admin.getName();
 			System.out.println(userName);
 			System.out.println(map.get(userName));
 		}

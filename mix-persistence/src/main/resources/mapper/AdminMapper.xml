@@ -3,21 +3,13 @@
 <mapper namespace="edu.ustc.mix.persistence.mapper.AdminMapper">
 	
 	<resultMap id="BaseResultMap" type="edu.ustc.mix.persistence.entity.Admin">
-		<id column="admin_id" property="adminId" jdbcType="BIGINT" />
-		<result column="user_name" property="userName" jdbcType="VARCHAR" />
-		<result column="admin_password" property="adminPassword" jdbcType="VARCHAR" />
-		<result column="real_name" property="realName" jdbcType="VARCHAR" />
-		<result column="admin_email" property="adminEmail" jdbcType="VARCHAR" />
-		<result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
-		<result column="admin_type" property="adminType" jdbcType="TINYINT" />
-		<result column="admin_status" property="adminStatus" jdbcType="TINYINT" />
-		<result column="org_id" property="orgId" jdbcType="BIGINT" />
+		<id column="aid" property="aid" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	<sql id="Base_Column_List">
-		admin_id, user_name, admin_password, real_name, admin_email, mobile_phone,
-		admin_type,
-		admin_status, org_id
+		aid, name, password
 	</sql>
 	
 	<select id="list" resultMap="BaseResultMap" parameterType="hashmap">
@@ -26,144 +18,4 @@
 		from sys_admin
 	</select>
 	
-	<select id="selectByUsername" resultMap="BaseResultMap"
-		parameterType="string">
-		select
-		<include refid="Base_Column_List" />
-		from sys_admin
-		where user_name = #{userName}
-	</select>
-	
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from sys_admin
-		where admin_id = #{adminId,jdbcType=BIGINT}
-	</select>
-	
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from sys_admin
-		where admin_id = #{adminId,jdbcType=BIGINT}
-	</delete>
-	
-	<insert id="insert" parameterType="edu.ustc.mix.persistence.entity.Admin">
-		insert into sys_admin (admin_id, user_name, admin_password,
-		real_name, admin_email, mobile_phone,
-		admin_type, admin_status, org_id
-		)
-		values (#{adminId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR},
-		#{adminPassword,jdbcType=VARCHAR},
-		#{realName,jdbcType=VARCHAR}, #{adminEmail,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR},
-		#{adminType,jdbcType=DECIMAL}, #{adminStatus,jdbcType=DECIMAL},
-		#{orgId,jdbcType=BIGINT}
-		)
-	</insert>
-	
-	<insert id="insertSelective" parameterType="edu.ustc.mix.persistence.entity.Admin">
-		insert into sys_admin
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="adminId != null">
-				admin_id,
-			</if>
-			<if test="userName != null">
-				user_name,
-			</if>
-			<if test="adminPassword != null">
-				admin_password,
-			</if>
-			<if test="realName != null">
-				real_name,
-			</if>
-			<if test="adminEmail != null">
-				admin_email,
-			</if>
-			<if test="mobilePhone != null">
-				mobile_phone,
-			</if>
-			<if test="adminType != null">
-				admin_type,
-			</if>
-			<if test="adminStatus != null">
-				admin_status,
-			</if>
-			<if test="orgId != null">
-				org_id,
-			</if>
-		</trim>
-		
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="adminId != null">
-				#{adminId,jdbcType=BIGINT},
-			</if>
-			<if test="userName != null">
-				#{userName,jdbcType=VARCHAR},
-			</if>
-			<if test="adminPassword != null">
-				#{adminPassword,jdbcType=VARCHAR},
-			</if>
-			<if test="realName != null">
-				#{realName,jdbcType=VARCHAR},
-			</if>
-			<if test="adminEmail != null">
-				#{adminEmail,jdbcType=VARCHAR},
-			</if>
-			<if test="mobilePhone != null">
-				#{mobilePhone,jdbcType=VARCHAR},
-			</if>
-			<if test="adminType != null">
-				#{adminType,jdbcType=DECIMAL},
-			</if>
-			<if test="adminStatus != null">
-				#{adminStatus,jdbcType=DECIMAL},
-			</if>
-			<if test="orgId != null">
-				#{orgId,jdbcType=BIGINT},
-			</if>
-		</trim>
-	</insert>
-	
-	<update id="updateByPrimaryKeySelective" parameterType="edu.ustc.mix.persistence.entity.Admin">
-		update sys_admin
-		<set>
-			<if test="userName != null">
-				user_name = #{userName,jdbcType=VARCHAR},
-			</if>
-			<if test="adminPassword != null">
-				admin_password = #{adminPassword,jdbcType=VARCHAR},
-			</if>
-			<if test="realName != null">
-				real_name = #{realName,jdbcType=VARCHAR},
-			</if>
-			<if test="adminEmail != null">
-				admin_email = #{adminEmail,jdbcType=VARCHAR},
-			</if>
-			<if test="mobilePhone != null">
-				mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
-			</if>
-			<if test="adminType != null">
-				admin_type = #{adminType,jdbcType=DECIMAL},
-			</if>
-			<if test="adminStatus != null">
-				admin_status = #{adminStatus,jdbcType=DECIMAL},
-			</if>
-			<if test="orgId != null">
-				org_id = #{orgId,jdbcType=BIGINT},
-			</if>
-		</set>
-		where admin_id = #{adminId,jdbcType=BIGINT}
-	</update>
-	
-	<update id="updateByPrimaryKey" parameterType="edu.ustc.mix.persistence.entity.Admin">
-		update sys_admin
-		set user_name = #{userName,jdbcType=VARCHAR},
-		admin_password = #{adminPassword,jdbcType=VARCHAR},
-		real_name = #{realName,jdbcType=VARCHAR},
-		admin_email = #{adminEmail,jdbcType=VARCHAR},
-		mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
-		admin_type = #{adminType,jdbcType=DECIMAL},
-		admin_status = #{adminStatus,jdbcType=DECIMAL},
-		org_id = #{orgId,jdbcType=BIGINT}
-		where admin_id = #{adminId,jdbcType=BIGINT}
-	</update>
 </mapper>

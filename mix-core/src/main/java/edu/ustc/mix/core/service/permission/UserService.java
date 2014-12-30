@@ -8,7 +8,9 @@ import edu.ustc.mix.persistence.entity.permission.User;
 
 public interface UserService {
 	
-	public User getUserAndRelatedRoles(Long userId) throws Exception;
+	public List<User> getAllUsersAndRelatedInfo() throws Exception;
+	
+	public User getUserAndRelatedInfo(Long userId) throws Exception;
 	
 	public void update(User user) throws Exception;
 	
@@ -17,8 +19,6 @@ public interface UserService {
 	public void add(User user) throws Exception;
 	
 	public void createUserAndRelatedRoles(UserDto userDto) throws Exception;
-	
-	public List<User> getAllUsers() throws Exception;
 	
 	public User findUserByUserName(String userName) throws Exception;
 	

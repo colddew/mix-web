@@ -27,7 +27,6 @@
 							<tr>
 								<th>机构名称</th>
 								<th>描述</th>
-								<th>等级</th>
 								<th>机构ID</th>
 								<th>父节点ID</th>
 							</tr>
@@ -38,7 +37,6 @@
 									<tr>
 										<td>${organization.orgName!''}</td>
 										<td>${organization.orgDesc!''}</td>
-										<td>${organization.orgLevel!''}</td>
 										<td>${organization.orgId!''}</td>
 										<td>${organization.parentId!''}</td>
 									</tr>

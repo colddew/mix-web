@@ -45,8 +45,8 @@
 						
 						<div class="row-normal">
 							<label>所属组织：</label>
-							<input type="hidden" id="orgId" name="orgId" <#if organization??>value="${organization.orgId!''}"</#if> />
-							<input type="text" id="orgDesc" name="orgDesc" <#if organization??>value="${organization.orgDesc!''}"</#if> />
+							<input type="hidden" id="orgId" name="orgId" value="${(user.org.orgId)!''}" />
+							<input type="text" id="orgDesc" name="orgDesc" value="${(user.org.orgDesc)!''}" />
 							<a id="menuBtn" href="#">选择</a>
 						</div>
 						

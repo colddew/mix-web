@@ -16,4 +16,7 @@ public interface MixConstants {
 	public static final Integer USER_TYPE_SUPER = 0;		// 超级管理员
 	public static final Integer USER_TYPE_COMMON = 1;		// 普通用户
 	
+	// 是否为叶子节点
+	public static final Integer IS_LEAF_NO = 0;			// 否
+	public static final Integer IS_LEAF_YES = 1;		// 是
 }

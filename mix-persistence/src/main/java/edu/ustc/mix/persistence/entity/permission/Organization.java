@@ -5,7 +5,6 @@ public class Organization {
 	private Long orgId;
 	private String orgName;
 	private String orgDesc;
-	private Integer orgLevel;
 	private Long parentId;
 	private Integer priority;
 	
@@ -31,14 +30,6 @@ public class Organization {
 	
 	public void setOrgDesc(String orgDesc) {
 		this.orgDesc = orgDesc;
-	}
-	
-	public Integer getOrgLevel() {
-		return orgLevel;
-	}
-	
-	public void setOrgLevel(Integer orgLevel) {
-		this.orgLevel = orgLevel;
 	}
 	
 	public Long getParentId() {

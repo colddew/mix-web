@@ -25,17 +25,17 @@ public class UserServiceImpl implements UserService {
 	private UserRoleMapper userRoleMapper;
 	
 	@Override
-	public List<User> getAllUsers() throws Exception {
+	public List<User> getAllUsersAndRelatedInfo() throws Exception {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
-		return userMapper.listUsersAndRelatedRoles(params);
+		return userMapper.getAllUsersAndRelatedInfo(params);
 	}
 	
 	@Override
-	public User getUserAndRelatedRoles(Long userId) throws Exception {
+	public User getUserAndRelatedInfo(Long userId) throws Exception {
 		
-		return userMapper.getUserAndRelatedRoles(userId);
+		return userMapper.getUserAndRelatedInfo(userId);
 	}
 	
 	@Override

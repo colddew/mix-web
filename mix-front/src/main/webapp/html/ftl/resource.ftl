@@ -23,43 +23,61 @@
 					<table class="table table-striped" id="resTree">
 						<thead>
 							<tr>
-								<th>资源名称</th>
+								<th>资源</th>
 								<th>类型</th>
 								<th>URL</th>
 								<th>权限</th>
 								<th>资源ID</th>
 								<th>父节点ID</th>
+								<#--
+								<th>叶子节点</th>
+								-->
 								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody>
 							<#if allResources??>
 								<#list allResources as resource>
-									<tr data-tt-id='${resource.resId?default(0)}' <#if 0 != resource.parentId>data-tt-parent-id='${resource.parentId?default(0)}'</#if>>
-										<td>${resource.resDesc!''}</td>
-										<td>
-											<#if (resource.resType)??>
-												<#if MixConstants.RES_TYPE_URL == resource.resType>
-													URL地址
-												<#elseif MixConstants.RES_TYPE_FORM == resource.resType>
-													表单元素
-												<#elseif MixConstants.RES_TYPE_DATA == resource.resType>
-													数据
+									<#if 0 != resource.parentId>
+										<tr data-tt-id='${resource.resId?default(0)}' data-tt-parent-id='${resource.parentId?default(0)}'>
+											<td>${resource.resDesc!''}</td>
+											<td>
+												<#if (resource.resType)??>
+													<#if MixConstants.RES_TYPE_URL == resource.resType>
+														URL地址
+													<#elseif MixConstants.RES_TYPE_FORM == resource.resType>
+														表单元素
+													<#elseif MixConstants.RES_TYPE_DATA == resource.resType>
+														数据
+													</#if>
 												</#if>
-											</#if>
-										</td>
-										<td>${resource.url!''}</td>
-										<td>${resource.permission!''}</td>
-										<td>${resource.resId?default(0)}</td>
-										<td>${resource.parentId?default(0)}</td>
-										<td>
-											<button class="btn btn-xs btn-primary" type="button"> 新增子节点  </button>
-											<button class="btn btn-xs btn-success btn-space" type="button"> 修  改 </button>
-											<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
-										</td>
-									</tr>
+											</td>
+											<td>${resource.url!''}</td>
+											<td>${resource.permission!''}</td>
+											<td>${resource.resId?default(0)}</td>
+											<td>${resource.parentId?default(0)}</td>
+											<#--
+											<td>
+												<#if (resource.isLeaf)??>
+													<#if MixConstants.IS_LEAF_NO == resource.isLeaf>
+														否
+													<#elseif MixConstants.IS_LEAF_YES == resource.isLeaf>
+														是
+													</#if>
+												</#if>
+											</td>
+											-->
+											<td style="text-align:left;">
+												<button class="btn btn-xs btn-primary" type="button"> 新增子节点  </button>
+												<button class="btn btn-xs btn-success btn-space" type="button"> 修  改 </button>
+												<#if (resource.isLeaf)?? && MixConstants.IS_LEAF_NO == resource.isLeaf>
+													<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
+												</#if>
+											</td>
+										</tr>
+									</#if>
 								</#list>
-							</#if>	
+							</#if>
 						</tbody>
 					</table>
 				</div>

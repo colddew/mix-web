@@ -9,17 +9,17 @@
 		<result column="url" property="url" jdbcType="VARCHAR" />
 		<result column="permission" property="permission" jdbcType="VARCHAR" />
 		<result column="res_type" property="resType" jdbcType="TINYINT" />
-		<result column="res_level" property="resLevel" jdbcType="TINYINT" />
+		<result column="is_leaf" property="isLeaf" jdbcType="TINYINT" />
 		<result column="parent_id" property="parentId" jdbcType="BIGINT" />
 		<result column="priority" property="priority" jdbcType="INTEGER" />
 	</resultMap>
 	
 	<sql id="BASE_COLUMN">
-		res_id, res_name, res_desc, url, permission, res_type, res_level, parent_id, priority
+		res_id, res_name, res_desc, url, permission, res_type, is_leaf, parent_id, priority
 	</sql>
 	
 	<sql id="ALIAS_COLUMN">
-		res.res_id, res.res_name, res.res_desc, res.url, res.permission, res.res_type, res.res_level, res.parent_id, res.priority
+		res.res_id, res.res_name, res.res_desc, res.url, res.permission, res.res_type, res.is_leaf, res.parent_id, res.priority
 	</sql>
 	
 	<sql id="BASE_QUERY_CONDITION">
@@ -42,8 +42,8 @@
 			<if test="resType != null">
 				AND res_type = #{resType}
 			</if>
-			<if test="resLevel != null">
-				AND res_level = #{resLevel}
+			<if test="isLeaf != null">
+				AND is_leaf = #{isLeaf}
 			</if>
 			<if test="parentId != null">
 				AND parent_id = #{parentId}
@@ -62,7 +62,7 @@
 		url,
 		permission, 
 		res_type, 
-		res_level,
+		is_leaf,
 		parent_id, 
 		priority
 		)
@@ -73,7 +73,7 @@
 		#{url,jdbcType=VARCHAR},
 		#{permission,jdbcType=VARCHAR},
 		#{resType,jdbcType=TINYINT},
-		#{resLevel,jdbcType=TINYINT},
+		#{isLeaf,jdbcType=TINYINT},
 		#{parentId,jdbcType=BIGINT},
 		#{priority,jdbcType=INTEGER}
 		)
@@ -102,8 +102,8 @@
 			<if test="resType != null">
 				res_type = #{resType,jdbcType=TINYINT},
 			</if>
-			<if test="resLevel != null">
-				res_level = #{resLevel,jdbcType=TINYINT},
+			<if test="isLeaf != null">
+				is_leaf = #{isLeaf,jdbcType=TINYINT},
 			</if>
 			<if test="parentId != null">
 				parent_id = #{parentId,jdbcType=BIGINT},

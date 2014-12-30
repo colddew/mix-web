@@ -31,7 +31,7 @@ public class UserAction {
 	@RequestMapping("/index")
 	public String list(Model model) throws Exception {
 		
-		model.addAttribute("allUsers", userService.getAllUsers());
+		model.addAttribute("allUsers", userService.getAllUsersAndRelatedInfo());
 		
 		return "/user";
 	}
@@ -59,10 +59,7 @@ public class UserAction {
 		
 		validateUserId(userId);
 		
-		User user = userService.getUserAndRelatedRoles(userId);
-		model.addAttribute("user", user);
-		
-		model.addAttribute("organization", organizationService.getOrganization(user.getOrgId()));
+		model.addAttribute("user", userService.getUserAndRelatedInfo(userId));
 		model.addAttribute("allOrganizations", organizationService.getAllOrganizations());
 		model.addAttribute("allRoles", roleService.getAllRoles());
 		

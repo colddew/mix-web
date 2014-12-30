@@ -8,7 +8,7 @@ public class Resource {
     private String url;
     private String permission;
     private Integer resType;
-    private Integer resLevel;
+    private Integer isLeaf;
     private Long parentId;
     private Integer priority;
     
@@ -60,12 +60,12 @@ public class Resource {
         this.resType = resType;
     }
     
-    public Integer getResLevel() {
-        return resLevel;
+    public Integer getIsLeaf() {
+        return isLeaf;
     }
     
-    public void setResLevel(Integer resLevel) {
-        this.resLevel = resLevel;
+    public void setIsLeaf(Integer isLeaf) {
+        this.isLeaf = isLeaf;
     }
     
     public Long getParentId() {
