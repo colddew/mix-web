@@ -19,25 +19,54 @@
 			
 			<div class="row">
 				<div class="form-normal">
-					<form id="roleForm" name="roleForm" method="post" action="#">
+					<form id="userForm" name="userForm" method="post" action="#">
 						
-						<input type="hidden" id="roleId" name="roleId" value="${role.roleId!''}" />
+						<input type="hidden" id="userId" name="userId" value="${user.userId!''}" />
 						
 						<div class="row-normal">
-							<label>角色名称：</label>
-							<input type="text" id="roleName" name="roleName" value="${role.roleName!''}" />
+							<label>用户名：</label>
+							<input type="text" id="userName" name="userName" value="${user.userName!''}" />
 						</div>
 						
 						<div class="row-normal">
-							<label>角色描述：</label>
-							<input type="text" id="roleDesc" name="roleDesc" value="${role.roleDesc!''}" />
+							<label>用户类型：</label>
+							<select id="userType" name="userType">
+								<option value="${MixConstants.USER_TYPE_COMMON}" <#if (user.userType)?? && MixConstants.USER_TYPE_COMMON == user.userType>selected</#if>>普通用户</option>
+								<option value="${MixConstants.USER_TYPE_SUPER}" <#if (user.userType)?? && MixConstants.USER_TYPE_SUPER == user.userType>selected</#if>>超级管理员</option>
+							</select>
+						</div>
+						
+						<#if (user.userId)??>
+							<div class="row-normal">
+								<label>密码：</label>
+								<input type="password" id="password" name="password" value="${user.password!''}" />
+							</div>
+						</#if>
+						
+						<div class="row-normal">
+							<label>所属组织：</label>
+							<input type="hidden" id="orgId" name="orgId" value="${organization.orgId!''}" />
+							<input type="text" id="orgName" name="orgName" value="${organization.orgName!''}" />
+							<a id="menuBtn" href="#">选择</a>
 						</div>
 						
 						<div class="row-normal">
-							<label>拥有的资源列表：</label>
-							<input type="hidden" id="resourceIds" name="resourceIds" />
-						    <input type="text" id="resourceName" name="resourceName" value="<@getResourceNames role=role />" readonly />
-						    <a id="menuBtn" href="#">选择</a>
+							<label>角色列表：</label>
+							<input type="hidden" id="roleIds" name="roleIds" />
+							<#if allRoles?? && allRoles?size gt 0>
+								<select id="roleNames" name="roleNames"  multiple="multiple" size="${allRoles?size}" onchange="setRoleIds();">
+									<#list allRoles as role>
+										<option value="${role.roleId!''}" <#if (role.roleId)?? && hadRoleIds?seq_contains('${role.roleId}')>selected</#if>>${role.roleDesc!''}</option>
+									</#list>
+								</select>
+							</#if>
+						</div>
+						
+						<div class="row-normal">
+							<label>状态：</label>
+							<input type="radio" name="userStatus" value="${MixConstants.USER_STATUS_UNAVAILABLE}" <#if (user.userStatus)?? && MixConstants.USER_STATUS_UNAVAILABLE == user.userStatus>checked</#if>>不可用</input>
+							<input type="radio" name="userStatus" value="${MixConstants.USER_STATUS_AVAILABLE}" <#if (user.userStatus)?? && MixConstants.USER_STATUS_AVAILABLE == user.userStatus>checked</#if>>可用</input>
+							<input type="radio" name="userStatus" value="${MixConstants.USER_STATUS_LOCKED}" <#if (user.userStatus)?? && MixConstants.USER_STATUS_LOCKED == user.userStatus>checked</#if>>锁定</input>
 						</div>
 						
 						<div class="row-normal">
@@ -48,7 +77,7 @@
 						
 						<div id="menuContent" class="menuContent row-normal" style="display:none;position:absolute;">
 							<label></label>
-						    <ul id="resTree" class="ztree" style="margin-top:0;width:160px;"></ul>
+						    <ul id="orgTree" class="ztree" style="margin-top:0;width:160px;"></ul>
 						</div>
 					</form>
 				</div>
@@ -64,12 +93,8 @@
 	<script language="javascript">
 		$(function () {
             var setting = {
-                check: {
-                    enable: true,
-                    chkboxType: { "Y": "", "N": "" }
-                },
                 view: {
-                    dblClickExpand: true
+                    dblClickExpand: false
                 },
                 data: {
                     simpleData: {
@@ -77,31 +102,29 @@
                     }
                 },
                 callback: {
-                    onCheck: onCheck
+                    onClick: onClick
                 }
             };
 			
             var zNodes = [
-				<#if allResources??>
-					<#list allResources as resource>
-						<#if 0 != resource.parentId>
-							{	
-								id:${resource.resId}, 
-								pId:${resource.parentId}, 
-								name:"${resource.resDesc}", 
-								checked:${hadResourceIds?seq_contains('${resource.resId}')?string("true","false")}
-							},
-						</#if>
+				<#if allOrganizations??>
+					<#list allOrganizations as organization>
+						{
+							id:${organization.orgId}, 
+							pId:${organization.parentId}, 
+							name:"${organization.orgName}", 
+							open:<#if 0 == organization.parentId>true<#else>false</#if>
+						},
 					</#list>
 				</#if>
 			];
 			
-            function onCheck(e, treeId, treeNode) {
+            function onClick(e, treeId, treeNode) {
             	
             	//alert(treeNode.tId + ", " + treeNode.name + "," + treeNode.checked);
                 
-                var zTree = $.fn.zTree.getZTreeObj("resTree"),
-                        nodes = zTree.getCheckedNodes(true),
+                var zTree = $.fn.zTree.getZTreeObj("orgTree"),
+                        nodes = zTree.getSelectedNodes(),
                         id = "",
                         name = "";
                
@@ -120,10 +143,10 @@
                 	name = name.substring(0, name.length-1);
                 }
                 
-                $("#resourceIds").val(id);
-                $("#resourceName").val(name);
+                $("#orgId").val(id);
+                $("#orgName").val(name);
                 
-                //hideMenu();
+                hideMenu();
             }
 			
             function hideMenu() {
@@ -132,8 +155,8 @@
             }
             
             function showMenu() {
-                //var cityObj = $("#resourceName");
-                //var cityOffset = $("#resourceName").offset();
+                //var cityObj = $("#orgName");
+                //var cityOffset = $("#orgName").offset();
                 //$("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
                 $("#menuContent").css({left:"130px", top:"150px"}).slideDown("fast");
 				
@@ -146,16 +169,16 @@
                 }
             }
 			
-            $.fn.zTree.init($("#resTree"), setting, zNodes);
+            $.fn.zTree.init($("#orgTree"), setting, zNodes);
             $("#menuBtn").click(showMenu);
         });
         
         function save() {
-        	<#if (role.roleId)??>
+        	<#if (user.userId)??>
         		$.ajax({
 					type: "POST",
-					url: "${request.contextPath}/role/${role.roleId}/update.html",
-					data: $("#roleForm").serialize(),
+					url: "${request.contextPath}/user/${user.userId}/update.html",
+					data: $("#userForm").serialize(),
 					//dataType: "json",
 					async : false,
 					success: function(data,textStatus){
@@ -168,8 +191,8 @@
 			<#else>
 				$.ajax({
 					type: "POST",
-					url: "${request.contextPath}/role/create.html",
-					data: $("#roleForm").serialize(),
+					url: "${request.contextPath}/user/create.html",
+					data: $("#userForm").serialize(),
 					//dataType: "json",
 					async : false,
 					success: function(data,textStatus){
@@ -180,7 +203,11 @@
 					}
 				});
         	</#if>
-        	location.href = "${request.contextPath}/role/index.html";
+        	location.href = "${request.contextPath}/user/index.html";
+        }
+        
+        funcgion setRoleIds() {
+        	alert(111);
         }
 	</script>
 </body>

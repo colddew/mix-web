@@ -5,6 +5,7 @@ public class RoleDto {
 	private Long roleId;
 	private String roleName;
 	private String roleDesc;
+	
 	private String resourceIds;
 	
 	public Long getRoleId() {

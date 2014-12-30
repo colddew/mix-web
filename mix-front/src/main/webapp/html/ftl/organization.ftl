@@ -32,7 +32,7 @@
 								<th>父节点ID</th>
 							</tr>
 						</thead>
-						<tbody>	
+						<tbody>
 							<#if allOrganizations??>
 								<#list allOrganizations as organization>
 									<tr>
@@ -43,7 +43,7 @@
 										<td>${organization.parentId!''}</td>
 									</tr>
 								</#list>
-							</#if>	
+							</#if>
 						</tbody>
 					</table>
 				</div>

@@ -14,3 +14,15 @@
 		<#assign hadResourceIds = hadResourceIds + ['${resource.resId}'] />
 	</#list>
 </#if>
+
+<#assign hadRoleIds=[] />
+<#if (user.roles)?? && user.roles?size gt 0>
+	<#list user.roles as role>
+		<#assign hadRoleIds = hadRoleIds + ['${role.roleId}'] />
+	</#list>
+</#if>
+
+
+
+
+

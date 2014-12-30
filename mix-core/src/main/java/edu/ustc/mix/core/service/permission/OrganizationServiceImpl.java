@@ -23,4 +23,10 @@ public class OrganizationServiceImpl implements OrganizationService {
 		
 		return organizationMapper.list(params);
 	}
+	
+	@Override
+	public Organization getOrganization(Long orgId) throws Exception {
+		
+		return organizationMapper.getById(orgId);
+	}
 }

@@ -66,7 +66,6 @@
 	<script src="${request.contextPath}/html/js/jquery-1.11.1.js"></script>
 	<script src="${request.contextPath}/html/js/bootstrap.js"></script>
 	<script language="javascript">
-		
 		$(function () {
             
         });

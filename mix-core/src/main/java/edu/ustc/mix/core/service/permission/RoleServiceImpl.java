@@ -25,6 +25,22 @@ public class RoleServiceImpl implements RoleService {
 	private RoleResourceMapper roleResourceMapper;
 	
 	@Override
+	public List<Role> getAllRoles() throws Exception {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		return roleMapper.list(params);
+	}
+	
+	@Override
+	public List<Role> getAllRolesAndRelatedResources() throws Exception {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		return roleMapper.getAllRolesAndRelatedResources(params);
+	}
+	
+	@Override
 	public Role getRoleAndRelatedResources(Long roleId) throws Exception {
 		
 		return roleMapper.getRoleAndRelatedResources(roleId);
@@ -43,7 +59,7 @@ public class RoleServiceImpl implements RoleService {
 		BeanUtils.copyProperties(roleDto, role);
 		update(role);
 		
-		deleteResources(roleDto.getRoleId());
+		deleteResourcesByRoleId(roleDto.getRoleId());
 		addResources(roleDto.getRoleId(), roleDto.getResourceIds());
 	}
 	
@@ -63,7 +79,7 @@ public class RoleServiceImpl implements RoleService {
 		addResources(role.getRoleId(), roleDto.getResourceIds());
 	}
 	
-	private void deleteResources(Long roleId) throws Exception {
+	private void deleteResourcesByRoleId(Long roleId) throws Exception {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("roleId", roleId);
@@ -85,14 +101,6 @@ public class RoleServiceImpl implements RoleService {
 				roleResourceMapper.add(roleResource);
 			}
 		}
-	}
-	
-	@Override
-	public List<Role> getAllRolesAndRelatedResources() throws Exception {
-		
-		Map<String, Object> params = new HashMap<String, Object>();
-		
-		return roleMapper.getAllRolesAndRelatedResources(params);
 	}
 	
 	@Override
