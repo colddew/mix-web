@@ -36,7 +36,7 @@
 							</select>
 						</div>
 						
-						<#if (user.userId)??>
+						<#if !(user.userId)??>
 							<div class="row-normal">
 								<label>密码：</label>
 								<input type="password" id="password" name="password" value="${user.password!''}" />
@@ -45,14 +45,14 @@
 						
 						<div class="row-normal">
 							<label>所属组织：</label>
-							<input type="hidden" id="orgId" name="orgId" value="${organization.orgId!''}" />
-							<input type="text" id="orgName" name="orgName" value="${organization.orgName!''}" />
+							<input type="hidden" id="orgId" name="orgId" <#if organization??>value="${organization.orgId!''}"</#if> />
+							<input type="text" id="orgDesc" name="orgDesc" <#if organization??>value="${organization.orgDesc!''}"</#if> />
 							<a id="menuBtn" href="#">选择</a>
 						</div>
 						
 						<div class="row-normal">
 							<label>角色列表：</label>
-							<input type="hidden" id="roleIds" name="roleIds" />
+							<input type="hidden" id="roleIds" name="roleIds" value="${selectedRoleIds}" />
 							<#if allRoles?? && allRoles?size gt 0>
 								<select id="roleNames" name="roleNames"  multiple="multiple" size="${allRoles?size}" onchange="setRoleIds();">
 									<#list allRoles as role>
@@ -64,7 +64,7 @@
 						
 						<div class="row-normal">
 							<label>状态：</label>
-							<input type="radio" name="userStatus" value="${MixConstants.USER_STATUS_UNAVAILABLE}" <#if (user.userStatus)?? && MixConstants.USER_STATUS_UNAVAILABLE == user.userStatus>checked</#if>>不可用</input>
+							<input type="radio" name="userStatus" value="${MixConstants.USER_STATUS_UNAVAILABLE}" checked>不可用</input>
 							<input type="radio" name="userStatus" value="${MixConstants.USER_STATUS_AVAILABLE}" <#if (user.userStatus)?? && MixConstants.USER_STATUS_AVAILABLE == user.userStatus>checked</#if>>可用</input>
 							<input type="radio" name="userStatus" value="${MixConstants.USER_STATUS_LOCKED}" <#if (user.userStatus)?? && MixConstants.USER_STATUS_LOCKED == user.userStatus>checked</#if>>锁定</input>
 						</div>
@@ -112,7 +112,7 @@
 						{
 							id:${organization.orgId}, 
 							pId:${organization.parentId}, 
-							name:"${organization.orgName}", 
+							name:"${organization.orgDesc}", 
 							open:<#if 0 == organization.parentId>true<#else>false</#if>
 						},
 					</#list>
@@ -144,7 +144,7 @@
                 }
                 
                 $("#orgId").val(id);
-                $("#orgName").val(name);
+                $("#orgDesc").val(name);
                 
                 hideMenu();
             }
@@ -158,7 +158,7 @@
                 //var cityObj = $("#orgName");
                 //var cityOffset = $("#orgName").offset();
                 //$("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
-                $("#menuContent").css({left:"130px", top:"150px"}).slideDown("fast");
+                $("#menuContent").css({left:"380px", top:"110px"}).slideDown("fast");
 				
                 $("body").bind("mousedown", onBodyDown);
             }
@@ -206,8 +206,19 @@
         	location.href = "${request.contextPath}/user/index.html";
         }
         
-        funcgion setRoleIds() {
-        	alert(111);
+        function setRoleIds() {
+        	
+        	var selectedRoleIds = "";
+        	
+        	$("#roleNames option:selected").each(function() {
+        		selectedRoleIds = selectedRoleIds + $(this).val() + ",";
+        	});
+        	
+        	if(selectedRoleIds.length > 0 ) {
+            	selectedRoleIds = selectedRoleIds.substring(0, selectedRoleIds.length - 1);
+            }
+        	
+        	$("#roleIds").val(selectedRoleIds);
         }
 	</script>
 </body>

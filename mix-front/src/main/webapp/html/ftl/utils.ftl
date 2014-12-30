@@ -16,13 +16,13 @@
 </#if>
 
 <#assign hadRoleIds=[] />
+<#assign selectedRoleIds='' />
 <#if (user.roles)?? && user.roles?size gt 0>
 	<#list user.roles as role>
 		<#assign hadRoleIds = hadRoleIds + ['${role.roleId}'] />
+		<#assign selectedRoleIds = selectedRoleIds + '${role.roleId}' />
+		<#if role_has_next>
+			<#assign selectedRoleIds = selectedRoleIds + ',' />
+		</#if>
 	</#list>
 </#if>
-
-
-
-
-

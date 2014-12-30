@@ -89,7 +89,7 @@ public class RoleServiceImpl implements RoleService {
 	
 	private void addResources(Long roleId, String resourceIds) throws Exception {
 		
-		if(null != resourceIds && !"".equals(resourceIds)) {
+		if(null != roleId && null != resourceIds && !"".equals(resourceIds)) {
 			
 			String[] resIds = resourceIds.split(",");
 			for(String resId : resIds) {

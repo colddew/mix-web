@@ -140,6 +140,7 @@
 		left join sys_user_ref_role ur on user.user_id = ur.user_id
 		left join sys_role role on role.role_id = ur.role_id
 		<include refid="BASE_QUERY_CONDITION" />
+		order by user.user_id
 	</select>
 	
 	<select id="count" resultType="long" parameterType="hashmap">

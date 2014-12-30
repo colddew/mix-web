@@ -28,7 +28,7 @@
 								<th>角色列表</th>
 								<th>状态</th>
 								<th>
-									操作<a href="#" class="a-space"> 新 增 </a>
+									操作<a href="${request.contextPath}/user/create.html" class="a-space"> 新 增 </a>
 								</th>
 							</tr>
 						</thead>
@@ -69,7 +69,7 @@
 											</#if>
 										</td>
 										<td>
-											<button class="btn btn-xs btn-success" type="button"> 修  改 </button>
+											<button class="btn btn-xs btn-success" type="button" onclick="update(${user.userId!''});"> 修  改 </button>
 											<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
 										</td>
 									</tr>
@@ -88,9 +88,11 @@
 	<script src="${request.contextPath}/html/js/jquery-1.11.1.js"></script>
 	<script src="${request.contextPath}/html/js/bootstrap.js"></script>
 	<script language="javascript">
-		$(function () {
-            
-        });
+		function update(userId) {
+        	if(userId) {
+				location.href = "${request.contextPath}/user/" + userId + "/update.html";
+        	}
+        }
 	</script>
 </body>
 </html>

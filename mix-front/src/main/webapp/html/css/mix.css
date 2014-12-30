@@ -74,4 +74,10 @@
 	width: 180px;
 }
 
-.
+.row-normal input[type="radio"] {
+	width: 30px;
+}
+
+.row-normal select {
+	width: 194px;
+}

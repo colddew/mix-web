@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
 		
 		User user = new User();
 		BeanUtils.copyProperties(userDto, user);
-		update(user);
+		add(user);
 		
 		addRoles(user.getUserId(), userDto.getRoleIds());
 	}
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
 	
 	private void addRoles(Long userId, String roleIds) throws Exception {
 		
-		if(null != roleIds && !"".equals(roleIds)) {
+		if(null != userId && null != roleIds && !"".equals(roleIds)) {
 			
 			String[] rids = roleIds.split(",");
 			for(String roleId : rids) {
