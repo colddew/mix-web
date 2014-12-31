@@ -74,6 +74,11 @@
 	width: 180px;
 }
 
+.row-normal span {
+	width: 180px;
+	
+}
+
 .row-normal input[type="radio"] {
 	width: 30px;
 }

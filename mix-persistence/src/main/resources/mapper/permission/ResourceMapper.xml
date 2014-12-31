@@ -11,15 +11,16 @@
 		<result column="res_type" property="resType" jdbcType="TINYINT" />
 		<result column="is_leaf" property="isLeaf" jdbcType="TINYINT" />
 		<result column="parent_id" property="parentId" jdbcType="BIGINT" />
+		<result column="parent_path" property="parentPath" jdbcType="VARCHAR" />
 		<result column="priority" property="priority" jdbcType="INTEGER" />
 	</resultMap>
 	
 	<sql id="BASE_COLUMN">
-		res_id, res_name, res_desc, url, permission, res_type, is_leaf, parent_id, priority
+		res_id, res_name, res_desc, url, permission, res_type, is_leaf, parent_id, parent_path, priority
 	</sql>
 	
 	<sql id="ALIAS_COLUMN">
-		res.res_id, res.res_name, res.res_desc, res.url, res.permission, res.res_type, res.is_leaf, res.parent_id, res.priority
+		res.res_id, res.res_name, res.res_desc, res.url, res.permission, res.res_type, res.is_leaf, res.parent_id, res.parent_path, res.priority
 	</sql>
 	
 	<sql id="BASE_QUERY_CONDITION">
@@ -48,6 +49,9 @@
 			<if test="parentId != null">
 				AND parent_id = #{parentId}
 			</if>
+			<if test="parentPath != null">
+				AND parent_path = #{parentPath}
+			</if>
 			<if test="priority != null">
 				AND priority = #{priority}
 			</if>
@@ -64,6 +68,7 @@
 		res_type, 
 		is_leaf,
 		parent_id, 
+		parent_path, 
 		priority
 		)
 		values 
@@ -75,6 +80,7 @@
 		#{resType,jdbcType=TINYINT},
 		#{isLeaf,jdbcType=TINYINT},
 		#{parentId,jdbcType=BIGINT},
+		#{parentPath,jdbcType=VARCHAR},
 		#{priority,jdbcType=INTEGER}
 		)
 	</insert>
@@ -108,6 +114,9 @@
 			<if test="parentId != null">
 				parent_id = #{parentId,jdbcType=BIGINT},
 			</if>
+			<if test="parentPath != null">
+				parent_path = #{parentPath,jdbcType=VARCHAR},
+			</if>
 			<if test="priority != null">
 				priority = #{priority,jdbcType=INTEGER}
 			</if>
@@ -134,6 +143,7 @@
 		<include refid="BASE_COLUMN" />
 		from sys_res
 		<include refid="BASE_QUERY_CONDITION" />
+		order by concat(parent_path, res_id) asc
 	</select>
 	
 	<select id="count" resultType="long" parameterType="hashmap">

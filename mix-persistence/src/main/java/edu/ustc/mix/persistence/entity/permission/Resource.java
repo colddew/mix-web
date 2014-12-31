@@ -10,6 +10,7 @@ public class Resource {
     private Integer resType;
     private Integer isLeaf;
     private Long parentId;
+    private String parentPath;
     private Integer priority;
     
     public Long getResId() {
@@ -76,7 +77,15 @@ public class Resource {
         this.parentId = parentId;
     }
     
-    public Integer getPriority() {
+    public String getParentPath() {
+		return parentPath;
+	}
+    
+	public void setParentPath(String parentPath) {
+		this.parentPath = parentPath;
+	}
+	
+	public Integer getPriority() {
         return priority;
     }
     
