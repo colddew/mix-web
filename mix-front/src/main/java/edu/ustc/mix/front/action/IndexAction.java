@@ -1,8 +1,5 @@
 package edu.ustc.mix.front.action;
 
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -11,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.ustc.mix.core.service.permission.ResourceService;
 import edu.ustc.mix.core.service.permission.UserService;
-import edu.ustc.mix.persistence.entity.permission.Resource;
 import edu.ustc.mix.persistence.entity.permission.User;
 
 @Controller

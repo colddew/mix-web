@@ -8,7 +8,7 @@
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:applicationContext*.xml</param-value>
+		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 	
 	<listener>
@@ -29,10 +29,10 @@
     <filter-mapping>
         <filter-name>shiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
+        <!-- <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
-        <dispatcher>ERROR</dispatcher>
+        <dispatcher>ERROR</dispatcher> -->
     </filter-mapping>
 	<filter>
 		<filter-name>encodingFilter</filter-name>

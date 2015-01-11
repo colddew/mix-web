@@ -95,4 +95,8 @@ public class User {
 	public void setResources(List<Resource> resources) {
 		this.resources = resources;
 	}
+	
+	public String getCredentialsSalt() {
+        return this.userName + this.salt;
+    }
 }

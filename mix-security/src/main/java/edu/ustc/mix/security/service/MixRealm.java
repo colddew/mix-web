@@ -43,9 +43,9 @@ public class MixRealm extends AuthorizingRealm {
 		
 		try {
 			String userName = (String) token.getPrincipal();
-				
+			
 			User user = userService.findUserByUserName(userName);
-
+			
 			if (null == user) {
 				throw new UnknownAccountException();
 			}
@@ -54,7 +54,8 @@ public class MixRealm extends AuthorizingRealm {
 				throw new LockedAccountException();
 			}
 			
-			return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
+			return new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), 
+					ByteSource.Util.bytes(user.getCredentialsSalt()), getName());
 		} catch (Exception e) {
 			 throw null;
 		}

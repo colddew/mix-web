@@ -86,4 +86,7 @@
 			</props>
 		</property>
 	</bean> -->
+	
+	<import resource="springmvc-shiro.xml"/>
+	
 </beans>

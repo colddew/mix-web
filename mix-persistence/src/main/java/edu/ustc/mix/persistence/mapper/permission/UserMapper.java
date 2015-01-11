@@ -15,6 +15,8 @@ public interface UserMapper {
 	
 	User getById(Long userId);
 	
+	User getByUserName(String userName);
+	
 	User getUserAndRelatedInfo(Long userId);
 	
 	User getByMultiParams(Map<String, Object> params);

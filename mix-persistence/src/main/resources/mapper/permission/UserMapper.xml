@@ -109,6 +109,13 @@
 		where user_id = #{userId,jdbcType=BIGINT}
 	</select>
 	
+	<select id="getByUserName" resultMap="BASE_RESULT" parameterType="string">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_user
+		where user_name = #{userName,jdbcType=VARCHAR}
+	</select>
+	
 	<select id="getUserAndRelatedInfo" resultMap="COMPOSITE_RESULT" parameterType="java.lang.Long">
 		select
 		<include refid="ALIAS_COLUMN" /> , 

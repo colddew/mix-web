@@ -97,8 +97,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User findUserByUserName(String userName) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userMapper.getByUserName(userName);
 	}
 	
 	@Override

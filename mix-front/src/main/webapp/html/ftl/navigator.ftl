@@ -31,7 +31,7 @@
 				</li>
 			</ul>
 			<ul class="nav" style="float:right;">
-				<li><a href="#logout">退出</a></li>
+				<li><a href="${request.contextPath}/logout.html">退出</a></li>
 			</ul>
 		</div>
 	</div>

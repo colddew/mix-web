@@ -16,7 +16,7 @@
 		<property name="ignoreResourceNotFound" value="true" />
 		<property name="locations">
 			<list>
-				<value>classpath*:/application.properties</value>
+				<value>classpath:application.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -58,8 +58,13 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	<aop:aspectj-autoproxy expose-proxy="true"/>
+	
     <bean id="druidStatInterceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor" />
 	<aop:config>
 		<aop:advisor id="druidAdvisor" advice-ref="druidStatInterceptor" pointcut="execution(* edu.ustc.mix.core.service..*.*(..))" />
 	</aop:config>
+	
+	<import resource="applicationContext-shiro.xml"/>
+	
 </beans>
