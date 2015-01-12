@@ -1,4 +1,4 @@
-package edu.ustc.mix.security.service;
+package edu.ustc.mix.core.security;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

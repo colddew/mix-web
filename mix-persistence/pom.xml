@@ -37,6 +37,12 @@
 	
 	<build>
 		<finalName>mix-persistence</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 	
 </project>

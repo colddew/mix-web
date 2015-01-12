@@ -33,11 +33,6 @@
 		<dependencies>
 			<dependency>
 				<groupId>edu.ustc.mix</groupId>
-				<artifactId>mix-security</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>edu.ustc.mix</groupId>
 				<artifactId>mix-persistence</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -256,7 +251,6 @@
 	</build>
 	
 	<modules>
-    	<module>mix-security</module>
     	<module>mix-persistence</module>
     	<module>mix-core</module>
 		<module>mix-front</module>

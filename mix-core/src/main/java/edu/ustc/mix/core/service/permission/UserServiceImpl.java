@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ustc.mix.core.dto.UserDto;
+import edu.ustc.mix.core.util.PasswordUtils;
 import edu.ustc.mix.persistence.entity.permission.User;
 import edu.ustc.mix.persistence.entity.permission.UserRole;
 import edu.ustc.mix.persistence.mapper.permission.UserMapper;
@@ -23,6 +24,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRoleMapper userRoleMapper;
+	
+	@Autowired
+	private PasswordUtils passwordUtils;
 	
 	@Override
 	public List<User> getAllUsersAndRelatedInfo() throws Exception {
@@ -66,6 +70,7 @@ public class UserServiceImpl implements UserService {
 		
 		User user = new User();
 		BeanUtils.copyProperties(userDto, user);
+		passwordUtils.encryptPassword(user);
 		add(user);
 		
 		addRoles(user.getUserId(), userDto.getRoleIds());

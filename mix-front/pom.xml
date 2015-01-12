@@ -17,10 +17,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>edu.ustc.mix</groupId>
-			<artifactId>mix-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>edu.ustc.mix</groupId>
 			<artifactId>mix-core</artifactId>
 		</dependency>
 		

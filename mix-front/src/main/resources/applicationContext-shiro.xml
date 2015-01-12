@@ -18,7 +18,7 @@
 		<property name="storedCredentialsHexEncoded" value="true" />
 	</bean>
     
-	<bean id="mixRealm" class="edu.ustc.mix.security.service.MixRealm">
+	<bean id="mixRealm" class="edu.ustc.mix.core.security.MixRealm">
 		<property name="credentialsMatcher" ref="credentialsMatcher"/>
 		<!-- <property name="cachingEnabled" value="false"/> -->
 	</bean>
@@ -49,7 +49,6 @@
 	<bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
         <property name="usernameParam" value="userName"/>
         <property name="passwordParam" value="password"/>
-        <!-- <property name="rememberMeParam" value="rememberMe"/> -->
         <property name="loginUrl" value="/login.html"/>
     </bean>
     

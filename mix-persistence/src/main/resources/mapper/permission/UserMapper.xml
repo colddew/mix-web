@@ -54,10 +54,10 @@
 	<insert id="add" parameterType="edu.ustc.mix.persistence.entity.permission.User" useGeneratedKeys="true" keyProperty="userId">
 		insert into sys_user 
 		(
-		user_name, 
+		user_name,
 		salt,
-		password, 
-		user_type, 
+		password,
+		user_type,
 		user_status,
 		org_id
 		)
