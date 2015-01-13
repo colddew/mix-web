@@ -21,7 +21,7 @@ public interface RoleMapper {
 	
 	List<Role> list(Map<String, Object> params);
 	
-	List<Role> getAllRolesAndRelatedResources(Map<String, Object> params);
+	List<Role> getAllRolesAndRelatedResources();
 	
 	long count(Map<String, Object> params);
 }

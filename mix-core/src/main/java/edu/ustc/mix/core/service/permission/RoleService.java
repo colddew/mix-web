@@ -22,7 +22,5 @@ public interface RoleService {
 	
 	public List<Role> getAllRolesAndRelatedResources() throws Exception;
 	
-	public Set<String> findRoles(Long... roleIds) throws Exception;
-	
-	public Set<String> findPermissions(Long... roleIds) throws Exception;
+    public Set<String> findPermissions(Set<Long> roleIds) throws Exception;
 }

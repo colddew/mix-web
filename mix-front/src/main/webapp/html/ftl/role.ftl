@@ -25,9 +25,11 @@
 								<th>角色名称</th>
 								<th>角色描述</th>
 								<th>拥有的资源</th>
-								<th>
-									操作<a href="${request.contextPath}/role/create.html" class="a-space"> 新 增 </a>
-								</th>
+								<@shiro.hasRole name="admin">
+									<th>
+										操作<a href="${request.contextPath}/role/create.html" class="a-space"> 新 增 </a>
+									</th>
+								</@shiro.hasRole>
 							</tr>
 						</thead>
 						<tbody>
@@ -46,10 +48,12 @@
 												</#list>
 											</#if>
 										</td>
-										<td>
-											<button class="btn btn-xs btn-success" type="button" onclick="update(${role.roleId!''});"> 修  改 </button>
-											<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
-										</td>
+										<@shiro.hasRole name="admin">
+											<td>
+												<button class="btn btn-xs btn-success" type="button" onclick="update(${role.roleId!''});"> 修  改 </button>
+												<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
+											</td>
+										</@shiro.hasRole>
 									</tr>
 								</#list>
 							</#if>

@@ -116,7 +116,7 @@
 		where user_name = #{userName,jdbcType=VARCHAR}
 	</select>
 	
-	<select id="getUserAndRelatedInfo" resultMap="COMPOSITE_RESULT" parameterType="java.lang.Long">
+	<select id="getUserAndRelatedInfoById" resultMap="COMPOSITE_RESULT" parameterType="java.lang.Long">
 		select
 		<include refid="ALIAS_COLUMN" /> , 
 		<include refid="edu.ustc.mix.persistence.mapper.permission.OrganizationMapper.ALIAS_COLUMN" /> , 
@@ -126,6 +126,18 @@
 		left join sys_user_ref_role ur on user.user_id = ur.user_id
 		left join sys_role role on role.role_id = ur.role_id
 		where user.user_id = #{userId}
+	</select>
+	
+	<select id="getUserAndRelatedInfoByUserName" resultMap="COMPOSITE_RESULT" parameterType="string">
+		select
+		<include refid="ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.permission.OrganizationMapper.ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.permission.RoleMapper.ALIAS_COLUMN" />
+		from sys_user user
+		left join sys_org org on user.org_id = org.org_id
+		left join sys_user_ref_role ur on user.user_id = ur.user_id
+		left join sys_role role on role.role_id = ur.role_id
+		where user.user_name = #{userName,jdbcType=VARCHAR}
 	</select>
 	
 	<select id="getByMultiParams" resultMap="BASE_RESULT" parameterType="hashmap">
@@ -142,7 +154,7 @@
 		<include refid="BASE_QUERY_CONDITION" />
 	</select>
 	
-	<select id="getAllUsersAndRelatedInfo" resultMap="COMPOSITE_RESULT" parameterType="hashmap">
+	<select id="getAllUsersAndRelatedInfo" resultMap="COMPOSITE_RESULT">
 		select
 		<include refid="ALIAS_COLUMN" /> , 
 		<include refid="edu.ustc.mix.persistence.mapper.permission.OrganizationMapper.ALIAS_COLUMN" /> , 
@@ -151,7 +163,6 @@
 		left join sys_org org on user.org_id = org.org_id
 		left join sys_user_ref_role ur on user.user_id = ur.user_id
 		left join sys_role role on role.role_id = ur.role_id
-		<include refid="BASE_QUERY_CONDITION" />
 		order by user.user_id
 	</select>
 	

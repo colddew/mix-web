@@ -44,7 +44,7 @@ public class MixRealm extends AuthorizingRealm {
 		try {
 			String userName = (String) token.getPrincipal();
 			
-			User user = userService.findUserByUserName(userName);
+			User user = userService.getUserByUserName(userName);
 			
 			if (null == user) {
 				throw new UnknownAccountException();

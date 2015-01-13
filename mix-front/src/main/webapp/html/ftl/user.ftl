@@ -27,9 +27,14 @@
 								<th>所属组织</th>
 								<th>角色列表</th>
 								<th>状态</th>
-								<th>
-									操作<a href="${request.contextPath}/user/create.html" class="a-space"> 新 增 </a>
-								</th>
+								<@shiro.hasRole name="admin">
+									<th>
+										操作
+										<@shiro.hasPermission name="user:add">
+											<a href="${request.contextPath}/user/create.html" class="a-space"> 新 增 </a>
+										</@shiro.hasPermission>
+									</th>
+								</@shiro.hasRole>
 							</tr>
 						</thead>
 						<tbody>
@@ -68,10 +73,16 @@
 												</#if>
 											</#if>
 										</td>
-										<td>
-											<button class="btn btn-xs btn-success" type="button" onclick="update(${user.userId!''});"> 修  改 </button>
-											<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
-										</td>
+										<@shiro.hasRole name="admin">
+											<td>
+												<@shiro.hasPermission name="user:modify">
+												<button class="btn btn-xs btn-success" type="button" onclick="update(${user.userId!''});"> 修  改 </button>
+												</@shiro.hasPermission>
+												<@shiro.hasPermission name="user:delete">
+													<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
+												</@shiro.hasPermission>
+											</td>
+										</@shiro.hasRole>
 									</tr>
 								</#list>
 							</#if>

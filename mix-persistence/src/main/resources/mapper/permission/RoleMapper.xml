@@ -96,14 +96,13 @@
 		<include refid="BASE_QUERY_CONDITION" />
 	</select>
 	
-	<select id="getAllRolesAndRelatedResources" resultMap="COMPOSITE_RESULT" parameterType="hashmap">
+	<select id="getAllRolesAndRelatedResources" resultMap="COMPOSITE_RESULT">
 		select
 		<include refid="ALIAS_COLUMN" /> , 
 		<include refid="edu.ustc.mix.persistence.mapper.permission.ResourceMapper.ALIAS_COLUMN" />
 		from sys_role role
 		left join sys_role_ref_res rr on role.role_id = rr.role_id
 		left join sys_res res on res.res_id = rr.res_id
-		<include refid="BASE_QUERY_CONDITION" />
 		order by role.role_id
 	</select>
 	

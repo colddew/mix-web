@@ -17,13 +17,15 @@ public interface UserMapper {
 	
 	User getByUserName(String userName);
 	
-	User getUserAndRelatedInfo(Long userId);
+	User getUserAndRelatedInfoById(Long userId);
+	
+	User getUserAndRelatedInfoByUserName(String userName);
 	
 	User getByMultiParams(Map<String, Object> params);
 	
 	List<User> list(Map<String, Object> params);
 	
-	List<User> getAllUsersAndRelatedInfo(Map<String, Object> params);
+	List<User> getAllUsersAndRelatedInfo();
 	
 	long count(Map<String, Object> params);
 }

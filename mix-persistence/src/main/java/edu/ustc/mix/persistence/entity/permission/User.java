@@ -14,7 +14,6 @@ public class User {
     
     private Organization org;
     private List<Role> roles;
-    private List<Resource> resources;
     
     public Long getUserId() {
         return userId;
@@ -86,14 +85,6 @@ public class User {
 	
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
-	}
-	
-    public List<Resource> getResources() {
-		return resources;
-	}
-    
-	public void setResources(List<Resource> resources) {
-		this.resources = resources;
 	}
 	
 	public String getCredentialsSalt() {

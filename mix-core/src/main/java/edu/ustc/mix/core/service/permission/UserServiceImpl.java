@@ -1,16 +1,19 @@
 package edu.ustc.mix.core.service.permission;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ustc.mix.core.dto.UserDto;
 import edu.ustc.mix.core.util.PasswordUtils;
+import edu.ustc.mix.persistence.entity.permission.Role;
 import edu.ustc.mix.persistence.entity.permission.User;
 import edu.ustc.mix.persistence.entity.permission.UserRole;
 import edu.ustc.mix.persistence.mapper.permission.UserMapper;
@@ -28,18 +31,31 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private PasswordUtils passwordUtils;
 	
+	@Autowired
+	private RoleService roleService;
+	
 	@Override
 	public List<User> getAllUsersAndRelatedInfo() throws Exception {
 		
-		Map<String, Object> params = new HashMap<String, Object>();
+		return userMapper.getAllUsersAndRelatedInfo();
+	}
+	
+	@Override
+	public User getUserByUserName(String userName) throws Exception {
 		
-		return userMapper.getAllUsersAndRelatedInfo(params);
+		return userMapper.getByUserName(userName);
 	}
 	
 	@Override
 	public User getUserAndRelatedInfo(Long userId) throws Exception {
 		
-		return userMapper.getUserAndRelatedInfo(userId);
+		return userMapper.getUserAndRelatedInfoById(userId);
+	}
+	
+	@Override
+	public User getUserAndRelatedInfo(String userName) throws Exception {
+		
+		return userMapper.getUserAndRelatedInfoByUserName(userName);
 	}
 	
 	@Override
@@ -101,26 +117,54 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User findUserByUserName(String userName) throws Exception {
-		
-		return userMapper.getByUserName(userName);
-	}
-	
-	@Override
 	public void changePassword(Long userId, String password) throws Exception {
 		// TODO Auto-generated method stub
-
 	}
 	
 	@Override
 	public Set<String> findRoles(String userName) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Set<String> set = new HashSet<String>();
+		
+		User user = getUserAndRelatedInfo(userName);
+		
+		List<Role> roles = user.getRoles();
+		if(null != roles && !roles.isEmpty()) {
+			
+			for(Role role : roles) {
+				
+				if(StringUtils.isNoneBlank(role.getRoleName())) {
+					set.add(role.getRoleName());
+				}
+			}
+		}
+		
+		return set;
 	}
 	
 	@Override
 	public Set<String> findPermissions(String userName) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Set<Long> roleIds = findRoleIds(userName);
+		
+		return roleService.findPermissions(roleIds);
+	}
+	
+	private Set<Long> findRoleIds(String userName) throws Exception {
+		
+		Set<Long> set = new HashSet<Long>();
+		
+		User user = getUserAndRelatedInfo(userName);
+		
+		List<Role> roles = user.getRoles();
+		if(null != roles && !roles.isEmpty()) {
+			
+			for(Role role : roles) {
+				
+				set.add(role.getRoleId());
+			}
+		}
+		
+		return set;
 	}
 }

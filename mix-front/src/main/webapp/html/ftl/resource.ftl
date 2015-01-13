@@ -29,7 +29,7 @@
 								<th>权限字符串</th>
 								<th>资源ID</th>
 								<th>父节点ID</th>
-								<th>操作</th>
+								<@shiro.hasRole name="admin"><th>操作</th></@shiro.hasRole>
 							</tr>
 						</thead>
 						<tbody>
@@ -53,13 +53,15 @@
 											<td>${resource.permission!''}</td>
 											<td>${resource.resId?default(0)}</td>
 											<td>${resource.parentId?default(0)}</td>
-											<td style="text-align:left;">
-												<button class="btn btn-xs btn-primary" type="button" onclick="create(${resource.resId!''});"> 新增子节点  </button>
-												<button class="btn btn-xs btn-success btn-space" type="button" onclick="update(${resource.resId!''});"> 修  改 </button>
-												<#if (resource.isLeaf)?? && MixConstants.IS_LEAF_YES == resource.isLeaf>
-													<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
-												</#if>
-											</td>
+											<@shiro.hasRole name="admin">
+												<td style="text-align:left;">
+													<button class="btn btn-xs btn-primary" type="button" onclick="create(${resource.resId!''});"> 新增子节点  </button>
+													<button class="btn btn-xs btn-success btn-space" type="button" onclick="update(${resource.resId!''});"> 修  改 </button>
+													<#if (resource.isLeaf)?? && MixConstants.IS_LEAF_YES == resource.isLeaf>
+														<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
+													</#if>
+												</td>
+											</@shiro.hasRole>
 										</tr>
 									</#if>
 								</#list>
