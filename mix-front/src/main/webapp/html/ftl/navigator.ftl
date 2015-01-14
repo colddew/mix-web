@@ -20,13 +20,16 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">系统管理 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="${request.contextPath}/organization/index.html">机构管理</a></li>
-						<li class="divider"></li>
-						<li><a href="${request.contextPath}/user/index.html">用户管理</a></li>
-						<li class="divider"></li>
-						<li><a href="${request.contextPath}/role/index.html">角色管理</a></li>
-						<li class="divider"></li>
-						<li><a href="${request.contextPath}/resource/index.html">资源管理</a></li>
+						<#if systemManagementMenus??>
+							<#list systemManagementMenus as systemManagementMenu>
+								<#if (systemManagementMenu.url)?? && (systemManagementMenu.resDesc)??>
+									<li><a href="${request.contextPath}${systemManagementMenu.url}">${systemManagementMenu.resDesc}</a></li>
+								</#if>
+								<#if systemManagementMenu_index + 1 != systemManagementMenus?size>
+									<li class="divider"></li>
+								</#if>
+							</#list>
+						</#if>
 					</ul>
 				</li>
 			</ul>

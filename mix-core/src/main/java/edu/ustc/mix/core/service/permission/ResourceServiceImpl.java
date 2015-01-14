@@ -1,5 +1,6 @@
 package edu.ustc.mix.core.service.permission;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,12 +73,30 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 	
 	@Override
-	public List<Resource> findMenus(Set<String> userPermissions) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Resource> findSystemManagementMenus(Set<String> userPermissions) throws Exception {
+		
+		List<Resource> systemManagementMenus = new ArrayList<Resource>();
+		
+		List<Resource> allResources = getAllResources();
+		if(CollectionUtils.isNotEmpty(allResources)) {
+			
+			for(Resource resource : allResources) {
+				
+				if(null != resource && isSystemManagementMenu(resource) && hasPermission(userPermissions, resource.getPermission())) {
+					
+					systemManagementMenus.add(resource);
+				}
+			}
+		}
+		
+		return systemManagementMenus;
+	}
+
+	private boolean isSystemManagementMenu(Resource resource) throws Exception {
+		
+		return MixConstants.RES_TYPE_URL.equals(resource.getResType());
 	}
 	
-	@SuppressWarnings("unused")
 	private boolean hasPermission(Set<String> userPermissions, String systemPermission) throws Exception {
 		
 		if(StringUtils.isBlank(systemPermission)) {

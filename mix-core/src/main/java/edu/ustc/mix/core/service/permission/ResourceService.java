@@ -20,5 +20,5 @@ public interface ResourceService {
 	
 	public List<Resource> getAllResources() throws Exception;
 	
-	public List<Resource> findMenus(Set<String> permissions) throws Exception;
+	public List<Resource> findSystemManagementMenus(Set<String> permissions) throws Exception;
 }
