@@ -12,16 +12,16 @@
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 		<!-- entity class path -->
-		<javaModelGenerator targetPackage="edu.ustc.mix.persistence.entity.permission" targetProject="../src/main/java">
+		<javaModelGenerator targetPackage="edu.ustc.mix.persistence.entity.system" targetProject="../src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- mapper config path -->
-		<sqlMapGenerator targetPackage="mapper.permission" targetProject="../src/main/resources">
+		<sqlMapGenerator targetPackage="mapper.system" targetProject="../src/main/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		<!-- mapper class path -->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="edu.ustc.mix.persistence.mapper.permission" targetProject="../src/main/java">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="edu.ustc.mix.persistence.mapper.system" targetProject="../src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!-- database table -->

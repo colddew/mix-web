@@ -3,7 +3,7 @@ package edu.ustc.mix.core.util;
 public interface MixConstants {
 	
 	// 当前用户信息在Request中的名称
-	public static final String CURRENT_USER = "user";
+	public static final String CURRENT_USER = "currentUser";
 	
 	// 用户状态
 	public static final Integer USER_STATUS_UNAVAILABLE = 0;		// 不可用

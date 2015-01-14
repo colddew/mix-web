@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.ustc.mix.core.security.SystemUser;
-import edu.ustc.mix.persistence.entity.permission.User;
+import edu.ustc.mix.persistence.entity.system.User;
 
 @Controller
 @Scope("prototype")

@@ -13,9 +13,9 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import edu.ustc.mix.core.service.permission.UserService;
+import edu.ustc.mix.core.service.system.UserService;
 import edu.ustc.mix.core.util.MixConstants;
-import edu.ustc.mix.persistence.entity.permission.User;
+import edu.ustc.mix.persistence.entity.system.User;
 
 public class MixRealm extends AuthorizingRealm {
 	

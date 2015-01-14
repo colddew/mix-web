@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ustc.mix.persistence.mapper.system.RoleResourceMapper">
+	
+	<sql id="BASE_QUERY_CONDITION">
+		<where>
+			<if test="refId != null">
+				ref_id = #{refId}
+			</if>
+			<if test="roleId != null">
+				AND role_id = #{roleId}
+			</if>
+			<if test="resId != null">
+				AND res_id = #{resId}
+			</if>
+		</where>
+	</sql>
+	
+	<insert id="add" parameterType="edu.ustc.mix.persistence.entity.system.RoleResource" useGeneratedKeys="true" keyProperty="refId">
+		insert into sys_role_ref_res 
+		(
+		role_id, 
+		res_id
+		)
+		values (
+		#{roleId,jdbcType=BIGINT},
+		#{resId,jdbcType=BIGINT}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="hashmap">
+		delete from sys_role_ref_res
+		<include refid="BASE_QUERY_CONDITION" />
+	</delete>
+	
+</mapper>

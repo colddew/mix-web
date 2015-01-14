@@ -7,7 +7,7 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import edu.ustc.mix.persistence.entity.permission.User;
+import edu.ustc.mix.persistence.entity.system.User;
 
 @Service
 public class PasswordUtils {

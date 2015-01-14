@@ -12,9 +12,9 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">数据管理 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">数据字典</a></li>
+						<li><a href="${request.contextPath}/dictionary/index.html">数据字典</a></li>
 						<li class="divider"></li>
-						<li><a href="#">数据库表</a></li>
+						<li><a href="${request.contextPath}/table/index.html">数据库表</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">

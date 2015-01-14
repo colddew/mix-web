@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ustc.mix.persistence.mapper.system.UserMapper">
+	
+	<resultMap id="BASE_RESULT" type="edu.ustc.mix.persistence.entity.system.User">
+		<id column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="salt" property="salt" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="user_type" property="userType" jdbcType="TINYINT" />
+		<result column="user_status" property="userStatus" jdbcType="TINYINT" />
+		<result column="org_id" property="orgId" jdbcType="BIGINT" />
+	</resultMap>
+	
+	<resultMap id="COMPOSITE_RESULT" extends="BASE_RESULT" type="edu.ustc.mix.persistence.entity.system.User">
+		<collection property="org" resultMap="edu.ustc.mix.persistence.mapper.system.OrganizationMapper.BASE_RESULT" />
+		<collection property="roles" resultMap="edu.ustc.mix.persistence.mapper.system.RoleMapper.BASE_RESULT" />
+	</resultMap>
+	
+	<sql id="BASE_COLUMN">
+		user_id, user_name, salt, password, user_type, user_status, org_id
+	</sql>
+	
+	<sql id="ALIAS_COLUMN">
+		user.user_id, user.user_name, user.salt, user.password, user.user_type, user.user_status, user.org_id
+	</sql>
+	
+	<sql id="BASE_QUERY_CONDITION">
+		<where>
+			<if test="userId != null">
+				user_id = #{userId}
+			</if>
+			<if test="userName != null">
+				AND user_name = #{userName}
+			</if>
+			<if test="salt != null">
+				AND salt = #{salt}
+			</if>
+			<if test="password != null">
+				AND password = #{password}
+			</if>
+			<if test="userType != null">
+				AND user_type = #{userType}
+			</if>
+			<if test="userStatus != null">
+				AND user_status = #{userStatus}
+			</if>
+			<if test="orgId != null">
+				AND org_id = #{orgId}
+			</if>
+		</where>
+	</sql>
+	
+	<insert id="add" parameterType="edu.ustc.mix.persistence.entity.system.User" useGeneratedKeys="true" keyProperty="userId">
+		insert into sys_user 
+		(
+		user_name,
+		salt,
+		password,
+		user_type,
+		user_status,
+		org_id
+		)
+		values 
+		(
+		#{userName,jdbcType=VARCHAR},
+		#{salt,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, 
+		#{userType,jdbcType=TINYINT}, 
+		#{userStatus,jdbcType=TINYINT},
+		#{orgId,jdbcType=BIGINT}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from sys_user
+		where user_id = #{userId,jdbcType=BIGINT}
+	</delete>
+	
+	<update id="update" parameterType="edu.ustc.mix.persistence.entity.system.User">
+		update sys_user
+		<set>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				salt = #{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				user_type = #{userType,jdbcType=TINYINT},
+			</if>
+			<if test="userStatus != null">
+				user_status = #{userStatus,jdbcType=TINYINT},
+			</if>
+			<if test="orgId != null">
+				org_id = #{orgId,jdbcType=BIGINT},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=BIGINT}
+	</update>
+	
+	<select id="getById" resultMap="BASE_RESULT" parameterType="java.lang.Long">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_user
+		where user_id = #{userId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="getByUserName" resultMap="BASE_RESULT" parameterType="string">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_user
+		where user_name = #{userName,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getUserAndRelatedInfoById" resultMap="COMPOSITE_RESULT" parameterType="java.lang.Long">
+		select
+		<include refid="ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.system.OrganizationMapper.ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.system.RoleMapper.ALIAS_COLUMN" />
+		from sys_user user
+		left join sys_org org on user.org_id = org.org_id
+		left join sys_user_ref_role ur on user.user_id = ur.user_id
+		left join sys_role role on role.role_id = ur.role_id
+		where user.user_id = #{userId}
+	</select>
+	
+	<select id="getUserAndRelatedInfoByUserName" resultMap="COMPOSITE_RESULT" parameterType="string">
+		select
+		<include refid="ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.system.OrganizationMapper.ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.system.RoleMapper.ALIAS_COLUMN" />
+		from sys_user user
+		left join sys_org org on user.org_id = org.org_id
+		left join sys_user_ref_role ur on user.user_id = ur.user_id
+		left join sys_role role on role.role_id = ur.role_id
+		where user.user_name = #{userName,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getByMultiParams" resultMap="BASE_RESULT" parameterType="hashmap">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_user
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+	<select id="list" resultMap="BASE_RESULT" parameterType="hashmap">
+		select
+		<include refid="BASE_COLUMN" />
+		from sys_user
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+	<select id="getAllUsersAndRelatedInfo" resultMap="COMPOSITE_RESULT">
+		select
+		<include refid="ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.system.OrganizationMapper.ALIAS_COLUMN" /> , 
+		<include refid="edu.ustc.mix.persistence.mapper.system.RoleMapper.ALIAS_COLUMN" />
+		from sys_user user
+		left join sys_org org on user.org_id = org.org_id
+		left join sys_user_ref_role ur on user.user_id = ur.user_id
+		left join sys_role role on role.role_id = ur.role_id
+		order by user.user_id
+	</select>
+	
+	<select id="count" resultType="long" parameterType="hashmap">
+		select count(1)
+		from sys_user
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+</mapper>
