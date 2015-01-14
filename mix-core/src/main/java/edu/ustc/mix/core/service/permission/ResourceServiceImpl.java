@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.permission.WildcardPermission;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ustc.mix.core.dto.ResourceDto;
+import edu.ustc.mix.core.util.CollectionUtils;
 import edu.ustc.mix.core.util.MixConstants;
 import edu.ustc.mix.persistence.entity.permission.Resource;
 import edu.ustc.mix.persistence.mapper.permission.ResourceMapper;
@@ -69,8 +72,35 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 	
 	@Override
-	public List<Resource> findMenus(Set<String> permissions) throws Exception {
+	public List<Resource> findMenus(Set<String> userPermissions) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@SuppressWarnings("unused")
+	private boolean hasPermission(Set<String> userPermissions, String systemPermission) throws Exception {
+		
+		if(StringUtils.isBlank(systemPermission)) {
+			return true;
+		}
+		
+		if(CollectionUtils.isNotEmpty(userPermissions)) {
+			
+			WildcardPermission swp = new WildcardPermission(systemPermission);
+			
+			for(String permission : userPermissions) {
+				
+				if(StringUtils.isNotBlank(permission)) {
+					
+					WildcardPermission uwp = new WildcardPermission(permission);
+					
+					if(uwp.implies(swp) || swp.implies(uwp)) {
+						return true;
+					}
+				}
+			}
+		}
+		
+		return false;
 	}
 }

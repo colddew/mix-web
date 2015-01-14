@@ -10,6 +10,10 @@ public interface UserService {
 	
 	public List<User> getAllUsersAndRelatedInfo() throws Exception;
 	
+	public User getUserById(Long userId) throws Exception;
+	
+	public User getUserByUserName(String userName) throws Exception;
+	
 	public User getUserAndRelatedInfo(Long userId) throws Exception;
 	
 	public User getUserAndRelatedInfo(String userName) throws Exception;
@@ -21,8 +25,6 @@ public interface UserService {
 	public void add(User user) throws Exception;
 	
 	public void createUserAndRelatedRoles(UserDto userDto) throws Exception;
-	
-	public User getUserByUserName(String userName) throws Exception;
 	
 	public void changePassword(Long userId, String password) throws Exception;
 	

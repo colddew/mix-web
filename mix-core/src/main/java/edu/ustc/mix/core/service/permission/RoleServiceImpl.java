@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ustc.mix.core.dto.RoleDto;
+import edu.ustc.mix.core.util.CollectionUtils;
 import edu.ustc.mix.persistence.entity.permission.Resource;
 import edu.ustc.mix.persistence.entity.permission.Role;
 import edu.ustc.mix.persistence.entity.permission.RoleResource;
@@ -90,7 +91,7 @@ public class RoleServiceImpl implements RoleService {
 	
 	private void addResources(Long roleId, String resourceIds) throws Exception {
 		
-		if(null != roleId && null != resourceIds && !"".equals(resourceIds)) {
+		if(null != roleId && StringUtils.isNotBlank(resourceIds)) {
 			
 			String[] resIds = resourceIds.split(",");
 			for(String resId : resIds) {
@@ -109,7 +110,7 @@ public class RoleServiceImpl implements RoleService {
 		
 		Set<String> set = new HashSet<String>();
 		
-		if(null != roleIds && !roleIds.isEmpty()) {
+		if(CollectionUtils.isNotEmpty(roleIds)) {
 			
 			for(Long roleId : roleIds) {
 				
@@ -118,7 +119,7 @@ public class RoleServiceImpl implements RoleService {
 				
 				for(Resource resource : resources) {
 					
-					if(null != resources && StringUtils.isNotBlank(resource.getPermission())) {
+					if(CollectionUtils.isNotEmpty(resources) && StringUtils.isNotBlank(resource.getPermission())) {
 						set.add(resource.getPermission());
 					}
 				}

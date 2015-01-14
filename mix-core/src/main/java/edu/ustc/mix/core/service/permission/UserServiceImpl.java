@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.ustc.mix.core.dto.UserDto;
+import edu.ustc.mix.core.util.CollectionUtils;
 import edu.ustc.mix.core.util.PasswordUtils;
 import edu.ustc.mix.persistence.entity.permission.Role;
 import edu.ustc.mix.persistence.entity.permission.User;
@@ -38,6 +39,12 @@ public class UserServiceImpl implements UserService {
 	public List<User> getAllUsersAndRelatedInfo() throws Exception {
 		
 		return userMapper.getAllUsersAndRelatedInfo();
+	}
+	
+	@Override
+	public User getUserById(Long userId) throws Exception {
+		
+		return userMapper.getById(userId);
 	}
 	
 	@Override
@@ -102,7 +109,7 @@ public class UserServiceImpl implements UserService {
 	
 	private void addRoles(Long userId, String roleIds) throws Exception {
 		
-		if(null != userId && null != roleIds && !"".equals(roleIds)) {
+		if(null != userId && StringUtils.isNotBlank(roleIds)) {
 			
 			String[] rids = roleIds.split(",");
 			for(String roleId : rids) {
@@ -118,7 +125,11 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public void changePassword(Long userId, String password) throws Exception {
-		// TODO Auto-generated method stub
+		
+		User user = getUserById(userId);
+		user.setPassword(password);
+		passwordUtils.encryptPassword(user);
+		update(user);
 	}
 	
 	@Override
@@ -129,7 +140,7 @@ public class UserServiceImpl implements UserService {
 		User user = getUserAndRelatedInfo(userName);
 		
 		List<Role> roles = user.getRoles();
-		if(null != roles && !roles.isEmpty()) {
+		if(CollectionUtils.isNotEmpty(roles)) {
 			
 			for(Role role : roles) {
 				
@@ -157,7 +168,7 @@ public class UserServiceImpl implements UserService {
 		User user = getUserAndRelatedInfo(userName);
 		
 		List<Role> roles = user.getRoles();
-		if(null != roles && !roles.isEmpty()) {
+		if(CollectionUtils.isNotEmpty(roles)) {
 			
 			for(Role role : roles) {
 				
