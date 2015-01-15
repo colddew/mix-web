@@ -94,7 +94,7 @@ public class ResourceServiceImpl implements ResourceService {
 			
 			for(Resource resource : allResources) {
 				
-				if(null != resource && isSystemManagementMenu(resource) && hasPermission(userPermissions, resource.getPermission())) {
+				if(null != resource && isSystemManagementMenu(resource) && hasSystemManagementMenuPermission(userPermissions, resource.getPermission())) {
 					
 					systemManagementMenus.add(resource);
 				}
@@ -109,7 +109,9 @@ public class ResourceServiceImpl implements ResourceService {
 		return MixConstants.RES_TYPE_URL.equals(resource.getResType());
 	}
 	
-	private boolean hasPermission(Set<String> userPermissions, String systemPermission) throws Exception {
+	// wildcard permission String has three tokens
+	// the first is the domain, the second is the action, and the third is the instance you are acting on
+	private boolean hasSystemManagementMenuPermission(Set<String> userPermissions, String systemPermission) throws Exception {
 		
 		if(StringUtils.isBlank(systemPermission)) {
 			return true;
@@ -125,6 +127,7 @@ public class ResourceServiceImpl implements ResourceService {
 					
 					WildcardPermission uwp = new WildcardPermission(permission);
 					
+					// use uwp.implies(swp) only for more strict inspection
 					if(uwp.implies(swp) || swp.implies(uwp)) {
 						return true;
 					}

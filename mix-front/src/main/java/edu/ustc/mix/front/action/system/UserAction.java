@@ -76,7 +76,7 @@ public class UserAction {
 		return "redirect:/user/index.html";
 	}
 	
-	@RequestMapping(value = "/{userId}/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/{userId}/delete", method = RequestMethod.GET)
 	public String delete(@PathVariable Long userId, Model model) throws Exception {
 		
 		userService.deleteUserAndRelatedRoles(userId);

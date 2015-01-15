@@ -51,7 +51,7 @@
 										<@shiro.hasRole name="admin">
 											<td>
 												<button class="btn btn-xs btn-success" type="button" onclick="update(${role.roleId!''});"> 修  改 </button>
-												<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
+												<button class="btn btn-xs btn-danger btn-space" type="button" onclick="delete(${role.roleId!''});"> 删  除  </button>
 											</td>
 										</@shiro.hasRole>
 									</tr>
@@ -73,6 +73,12 @@
         function update(roleId) {
         	if(roleId) {
 				location.href = "${request.contextPath}/role/" + roleId + "/update.html";
+        	}
+        }
+        
+        function delete(roleId) {
+        	if(roleId) {
+				location.href = "${request.contextPath}/role/" + roleId + "/delete.html";
         	}
         }
 	</script>

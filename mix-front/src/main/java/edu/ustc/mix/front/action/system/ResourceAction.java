@@ -67,7 +67,7 @@ public class ResourceAction {
 		return "redirect:/resource/index.html";
 	}
 	
-	@RequestMapping(value = "/{resId}/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/{resId}/delete", method = RequestMethod.GET)
 	public String delete(@PathVariable Long resId, Model model) throws Exception {
 		
 		resourceService.deleteResourceAndRelatedRoles(resId);

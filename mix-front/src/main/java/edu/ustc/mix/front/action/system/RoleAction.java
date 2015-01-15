@@ -70,7 +70,7 @@ public class RoleAction {
 		return "redirect:/role/index.html";
 	}
 	
-	@RequestMapping(value = "/{roleId}/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/{roleId}/delete", method = RequestMethod.GET)
 	public String delete(@PathVariable Long roleId, Model model) throws Exception {
 		
 		roleService.deleteRoleAndRelatedUsersAndResources(roleId);

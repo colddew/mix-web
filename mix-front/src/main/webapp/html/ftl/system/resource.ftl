@@ -58,7 +58,7 @@
 													<button class="btn btn-xs btn-primary" type="button" onclick="create(${resource.resId!''});"> 新增子节点  </button>
 													<button class="btn btn-xs btn-success btn-space" type="button" onclick="update(${resource.resId!''});"> 修  改 </button>
 													<#if (resource.isLeaf)?? && MixConstants.IS_LEAF_YES == resource.isLeaf>
-														<button class="btn btn-xs btn-danger btn-space" type="button"> 删  除  </button>
+														<button class="btn btn-xs btn-danger btn-space" type="button" onclick="delete(${resource.resId!''});"> 删  除  </button>
 													</#if>
 												</td>
 											</@shiro.hasRole>
@@ -93,6 +93,12 @@
 		function update(resId) {
         	if(resId) {
 				location.href = "${request.contextPath}/resource/" + resId + "/update.html";
+        	}
+        }
+        
+		function delete(resId) {
+        	if(resId) {
+				location.href = "${request.contextPath}/resource/" + resId + "/delete.html";
         	}
         }
 	</script>
