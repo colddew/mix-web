@@ -23,4 +23,8 @@ public interface RoleService {
 	public List<Role> getAllRolesAndRelatedResources() throws Exception;
 	
     public Set<String> findPermissions(Set<Long> roleIds) throws Exception;
+    
+    public void delete(Long roleId) throws Exception;
+	
+	public void deleteRoleAndRelatedUsersAndResources(Long roleId) throws Exception;
 }

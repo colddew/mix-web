@@ -1,6 +1,7 @@
 package edu.ustc.mix.core.service.system;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import edu.ustc.mix.core.dto.ResourceDto;
@@ -20,5 +21,11 @@ public interface ResourceService {
 	
 	public List<Resource> getAllResources() throws Exception;
 	
+	public List<Resource> findResourcesByParams(Map<String, Object> params) throws Exception; 
+	
 	public List<Resource> findSystemManagementMenus(Set<String> permissions) throws Exception;
+	
+	public void delete(Long resId) throws Exception;
+	
+	public void deleteResourceAndRelatedRoles(Long resId) throws Exception;
 }

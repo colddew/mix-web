@@ -31,4 +31,8 @@ public interface UserService {
 	public Set<String> findRoles(String userName) throws Exception;
 	
 	public Set<String> findPermissions(String userName) throws Exception;
+	
+	public void delete(Long userId) throws Exception;
+	
+	public void deleteUserAndRelatedRoles(Long userId) throws Exception;
 }

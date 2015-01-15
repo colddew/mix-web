@@ -78,8 +78,8 @@ public class UserServiceImpl implements UserService {
 		BeanUtils.copyProperties(userDto, user, new String[] {"salt", "password"});
 		update(user);
 		
-		deleteRolesByUserId(userDto.getUserId());
-		addRoles(userDto.getUserId(), userDto.getRoleIds());
+		deleteRelatedRolesByUserId(userDto.getUserId());
+		addRelatedRoles(userDto.getUserId(), userDto.getRoleIds());
 	}
 	
 	@Override
@@ -96,10 +96,10 @@ public class UserServiceImpl implements UserService {
 		passwordUtils.encryptPassword(user);
 		add(user);
 		
-		addRoles(user.getUserId(), userDto.getRoleIds());
+		addRelatedRoles(user.getUserId(), userDto.getRoleIds());
 	}
 	
-	private void deleteRolesByUserId(Long userId) throws Exception {
+	private void deleteRelatedRolesByUserId(Long userId) throws Exception {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("userId", userId);
@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
 		userRoleMapper.delete(params);
 	}
 	
-	private void addRoles(Long userId, String roleIds) throws Exception {
+	private void addRelatedRoles(Long userId, String roleIds) throws Exception {
 		
 		if(null != userId && StringUtils.isNotBlank(roleIds)) {
 			
@@ -177,5 +177,19 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return set;
+	}
+	
+	@Override
+	public void delete(Long userId) throws Exception {
+		
+		userMapper.delete(userId);
+	}
+	
+	@Override
+	public void deleteUserAndRelatedRoles(Long userId) throws Exception {
+		
+		deleteRelatedRolesByUserId(userId);
+		
+		delete(userId);
 	}
 }

@@ -18,6 +18,7 @@ import edu.ustc.mix.persistence.entity.system.Role;
 import edu.ustc.mix.persistence.entity.system.RoleResource;
 import edu.ustc.mix.persistence.mapper.system.RoleMapper;
 import edu.ustc.mix.persistence.mapper.system.RoleResourceMapper;
+import edu.ustc.mix.persistence.mapper.system.UserRoleMapper;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -27,6 +28,9 @@ public class RoleServiceImpl implements RoleService {
 	
 	@Autowired
 	private RoleResourceMapper roleResourceMapper;
+	
+	@Autowired
+	private UserRoleMapper userRoleMapper;
 	
 	@Override
 	public List<Role> getAllRoles() throws Exception {
@@ -61,8 +65,8 @@ public class RoleServiceImpl implements RoleService {
 		BeanUtils.copyProperties(roleDto, role);
 		update(role);
 		
-		deleteResourcesByRoleId(roleDto.getRoleId());
-		addResources(roleDto.getRoleId(), roleDto.getResourceIds());
+		deleteRelatedResourcesByRoleId(roleDto.getRoleId());
+		addRelatedResources(roleDto.getRoleId(), roleDto.getResourceIds());
 	}
 	
 	@Override
@@ -78,10 +82,10 @@ public class RoleServiceImpl implements RoleService {
 		BeanUtils.copyProperties(roleDto, role);
 		add(role);
 		
-		addResources(role.getRoleId(), roleDto.getResourceIds());
+		addRelatedResources(role.getRoleId(), roleDto.getResourceIds());
 	}
 	
-	private void deleteResourcesByRoleId(Long roleId) throws Exception {
+	private void deleteRelatedResourcesByRoleId(Long roleId) throws Exception {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("roleId", roleId);
@@ -89,7 +93,7 @@ public class RoleServiceImpl implements RoleService {
 		roleResourceMapper.delete(params);
 	}
 	
-	private void addResources(Long roleId, String resourceIds) throws Exception {
+	private void addRelatedResources(Long roleId, String resourceIds) throws Exception {
 		
 		if(null != roleId && StringUtils.isNotBlank(resourceIds)) {
 			
@@ -127,5 +131,29 @@ public class RoleServiceImpl implements RoleService {
 		}
 		
 		return set;
+	}
+	
+	@Override
+	public void delete(Long roleId) throws Exception {
+		
+		roleMapper.delete(roleId);
+	}
+	
+	@Override
+	public void deleteRoleAndRelatedUsersAndResources(Long roleId) throws Exception {
+		
+		deleteRelatedResourcesByRoleId(roleId);
+		
+		deleteRelatedUsersByRoleId(roleId);
+		
+		delete(roleId);
+	}
+	
+	private void deleteRelatedUsersByRoleId(Long roleId) throws Exception {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("roleId", roleId);
+		
+		userRoleMapper.delete(params);
 	}
 }
