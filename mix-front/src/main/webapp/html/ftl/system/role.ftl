@@ -50,8 +50,8 @@
 										</td>
 										<@shiro.hasRole name="admin">
 											<td>
-												<button class="btn btn-xs btn-success" type="button" onclick="update(${role.roleId!''});"> 修  改 </button>
-												<button class="btn btn-xs btn-danger btn-space" type="button" onclick="delete(${role.roleId!''});"> 删  除  </button>
+												<button class="btn btn-xs btn-success" type="button" onclick="updateRole(${role.roleId!''});"> 修  改 </button>
+												<button class="btn btn-xs btn-danger btn-space" type="button" onclick="deleteRole(${role.roleId!''});"> 删  除  </button>
 											</td>
 										</@shiro.hasRole>
 									</tr>
@@ -70,13 +70,13 @@
 	<script src="${request.contextPath}/html/js/jquery-1.11.1.js"></script>
 	<script src="${request.contextPath}/html/js/bootstrap.js"></script>
 	<script language="javascript">
-        function update(roleId) {
+        function updateRole(roleId) {
         	if(roleId) {
 				location.href = "${request.contextPath}/role/" + roleId + "/update.html";
         	}
         }
         
-        function delete(roleId) {
+        function deleteRole(roleId) {
         	if(roleId) {
 				location.href = "${request.contextPath}/role/" + roleId + "/delete.html";
         	}

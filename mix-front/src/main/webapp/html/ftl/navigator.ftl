@@ -17,10 +17,10 @@
 						<li><a href="${request.contextPath}/table/index.html">数据库表</a></li>
 					</ul>
 				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">系统管理 <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<#if systemManagementMenus??>
+				<#if systemManagementMenus?? && systemManagementMenus?size gt 0>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">系统管理 <b class="caret"></b></a>
+						<ul class="dropdown-menu">
 							<#list systemManagementMenus as systemManagementMenu>
 								<#if (systemManagementMenu.url)?? && (systemManagementMenu.resDesc)??>
 									<li><a href="${request.contextPath}${systemManagementMenu.url}">${systemManagementMenu.resDesc}</a></li>
@@ -29,9 +29,9 @@
 									<li class="divider"></li>
 								</#if>
 							</#list>
-						</#if>
-					</ul>
-				</li>
+						</ul>
+					</li>
+				</#if>
 			</ul>
 			<ul class="nav" style="float:right;">
 				<li><a href="${request.contextPath}/logout.html"><@shiro.principal/> 退出</a></li>

@@ -4,6 +4,7 @@
 <head>
 <meta charset="utf-8">
 <title>mix</title>
+<link rel="icon" href="${request.contextPath}/html/img/mix.ico">
 <link href="${request.contextPath}/html/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="${request.contextPath}/html/css/signin.css" rel="stylesheet">
 </head>

@@ -76,10 +76,10 @@
 										<@shiro.hasRole name="admin">
 											<td>
 												<@shiro.hasPermission name="user:modify">
-													<button class="btn btn-xs btn-success" type="button" onclick="update(${user.userId!''});"> 修  改 </button>
+													<button class="btn btn-xs btn-success" type="button" onclick="updateUser(${user.userId!''});"> 修  改 </button>
 												</@shiro.hasPermission>
 												<@shiro.hasPermission name="user:delete">
-													<button class="btn btn-xs btn-danger btn-space" type="button" onclick="delete(${user.userId!''});"> 删  除  </button>
+													<button class="btn btn-xs btn-danger btn-space" type="button" onclick="deleteUser(${user.userId!''});"> 删  除  </button>
 												</@shiro.hasPermission>
 											</td>
 										</@shiro.hasRole>
@@ -99,13 +99,13 @@
 	<script src="${request.contextPath}/html/js/jquery-1.11.1.js"></script>
 	<script src="${request.contextPath}/html/js/bootstrap.js"></script>
 	<script language="javascript">
-		function update(userId) {
+		function updateUser(userId) {
         	if(userId) {
 				location.href = "${request.contextPath}/user/" + userId + "/update.html";
         	}
         }
         
-		function delete(userId) {
+		function deleteUser(userId) {
         	if(userId) {
 				location.href = "${request.contextPath}/user/" + userId + "/delete.html";
         	}
