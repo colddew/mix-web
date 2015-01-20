@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query name="查询自己创建的数据库表记录" ds="app" isRawSQL="false" type="sql">
+    <select isDistinct="false" mappingClass="edu.ustc.mix.persistence.entity.metadata.MetadataTable">
+        <column name="table_id" tableAlias="t0" order="ASC"
+            sqlType="INT(11)" javaType="java.lang.Integer" property="tableId"/>
+        <column name="table_name" tableAlias="t0" order="ASC"
+            sqlType="VARCHAR(50)" javaType="java.lang.String" property="tableName"/>
+        <column name="table_desc" tableAlias="t0" order="ASC"
+            sqlType="VARCHAR(100)" javaType="java.lang.String" property="tableDesc"/>
+        <column name="table_type" tableAlias="t0" order="ASC"
+            sqlType="TINYINT(4)" javaType="java.lang.Integer" property="tableType"/>
+        <column name="operator" tableAlias="t0" order="ASC"
+            sqlType="VARCHAR(50)" javaType="java.lang.String" property="operator"/>
+    </select>
+    <from>
+        <table schema="" name="metadata_table" alias="t0"/>
+    </from>
+    <where>
+        <expressionGroup linker="AND">
+            <binaryExpression>
+                <operand1>
+                    <column name="operator" tableAlias="t0" order="ASC"/>
+                </operand1>
+                <simpleOperator>=</simpleOperator>
+                <operand2>
+                    <userValue key="name"/>
+                </operand2>
+            </binaryExpression>
+        </expressionGroup>
+    </where>
+    <groupBy/>
+    <orderBy/>
+    <rawSQL>
+        <content xml:space="preserve"><![CDATA[]]></content>
+        <select isDistinct="false"/>
+    </rawSQL>
+    <storedProcedure>
+        <content></content>
+        <select isDistinct="false"/>
+    </storedProcedure>
+</query>

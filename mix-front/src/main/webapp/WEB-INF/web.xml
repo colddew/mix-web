@@ -65,6 +65,23 @@
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
     <servlet>
+		<servlet-name>ralasafe</servlet-name>
+		<servlet-class>org.ralasafe.servlet.RalasafeController</servlet-class>
+		<init-param>
+			<param-name>repositoryDir</param-name>
+			<param-value>D:/workspace-luna/mix-web/mix-front/src/main/webapp/xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>secured</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>4</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ralasafe</servlet-name>
+		<url-pattern>*.rls</url-pattern>
+	</servlet-mapping>
+    <servlet>
 		<servlet-name>DruidStatView</servlet-name>
 		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
 	</servlet>

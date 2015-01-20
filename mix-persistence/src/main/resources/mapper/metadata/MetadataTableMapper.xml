@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ustc.mix.persistence.mapper.metadata.MetadataTableMapper">
+	
+	<resultMap id="BASE_RESULT" type="edu.ustc.mix.persistence.entity.metadata.MetadataTable">
+		<id column="table_id" property="tableId" jdbcType="INTEGER" />
+		<result column="table_name" property="tableName" jdbcType="VARCHAR" />
+		<result column="table_desc" property="tableDesc" jdbcType="VARCHAR" />
+		<result column="table_type" property="tableType" jdbcType="TINYINT" />
+		<result column="operator" property="operator" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="BASE_COLUMN">
+		table_id, table_name, table_desc, table_type, operator
+	</sql>
+	
+	<sql id="BASE_QUERY_CONDITION">
+		<where>
+			<if test="orgId != null">
+				org_id = #{orgId}
+			</if>
+			<if test="orgName != null">
+				AND org_name = #{orgName}
+			</if>
+			<if test="orgDesc != null">
+				AND org_desc = #{orgDesc}
+			</if>
+			<if test="parentId != null">
+				AND parent_id = #{parentId}
+			</if>
+			<if test="priority != null">
+				AND priority = #{priority}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="list" resultMap="BASE_RESULT" parameterType="hashmap">
+		select
+		<include refid="BASE_COLUMN" />
+		from metadata_table
+		<include refid="BASE_QUERY_CONDITION" />
+	</select>
+	
+</mapper>

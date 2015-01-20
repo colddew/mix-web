@@ -78,8 +78,9 @@
 				/html/css/** = anon
 				/html/js/** = anon
 				/html/img/** = anon
-				/table/index.html = roles[admin]
-				/dictionary/index.html = perms[dictionary:query]
+				/ralasafe/** = roles[admin]
+				# /table/index.html = perms[table:query]
+				# /dictionary/index.html = perms[dictionary:query]
 				/** = authc,systemUser
 			</value>
 		</property>

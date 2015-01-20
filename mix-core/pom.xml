@@ -43,6 +43,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.ralasafe</groupId>
+			<artifactId>ralasafe-engine</artifactId>
+		</dependency>
 	</dependencies>
 	
 	<build>

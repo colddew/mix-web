@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<user>
+    <table ds="app" name="mainTable" sqlName="sys_user" uniqueFields="name">
+		<field name="id" columnName="user_id" sqlType="bigint" javaType="java.lang.Long" />
+		<field name="name" columnName="user_name" sqlType="varchar(255)" javaType="java.lang.String" displayName="Name" show="true" />
+		<field name="salt" columnName="salt" sqlType="varchar(50)" javaType="java.lang.String" />
+		<field name="password" columnName="password" sqlType="varchar(100)" javaType="java.lang.String" />
+		<field name="userType" columnName="user_type" sqlType="tinyint" javaType="java.lang.Integer" />
+		<field name="userStatus" columnName="user_status" sqlType="tinyint" javaType="java.lang.Integer" />
+		<field name="orgId" columnName="org_id" sqlType="bigint" javaType="java.lang.Long" displayName="OrgId" show="true" />
+	</table>
+</user>

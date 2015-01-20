@@ -22,4 +22,8 @@ public interface MixConstants {
 	// 是否为叶子节点
 	public static final Integer IS_LEAF_NO = 0;			// 否
 	public static final Integer IS_LEAF_YES = 1;		// 是
+	
+	// 数据库表类型
+	public static final Integer TABLE_TYPE_SYSTEM = 0;			// 系统表
+	public static final Integer TABLE_TYPE_BUSINESS = 1;		// 业务表
 }
