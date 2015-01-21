@@ -48,6 +48,11 @@
 			<groupId>org.ralasafe</groupId>
 			<artifactId>ralasafe-engine</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>alisoft</groupId>
+			<artifactId>alisoft-memcache</artifactId>
+		</dependency>
 	</dependencies>
 	
 	<build>

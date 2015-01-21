@@ -28,6 +28,7 @@
 		<commons.lang3.version>3.3.2</commons.lang3.version>
 		<druid.version>1.0.11</druid.version>
 		<ralasafe.version>2.0</ralasafe.version>
+		<alisoft.memcache.version>2.5.1</alisoft.memcache.version>
 		<junit.version>4.11</junit.version>
 	</properties>
 	
@@ -177,6 +178,12 @@
 				<groupId>org.ralasafe</groupId>
 				<artifactId>ralasafe-engine</artifactId>
 				<version>${ralasafe.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>alisoft</groupId>
+				<artifactId>alisoft-memcache</artifactId>
+				<version>${alisoft.memcache.version}</version>
 			</dependency>
 			
 			<dependency>
