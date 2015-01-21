@@ -30,3 +30,9 @@ goal
 - manipulate business table flexibly and dynamically
 - abstract basic non-business entity bean
 
+privilege
+=======
+- support function level and data level privilege control
+- support menu, page elements, database row and column, code level privilege control
+- support visual configuration, xml configuration, page tags, annotation privilege control
+- support coding privilege control and extensions
