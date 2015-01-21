@@ -9,7 +9,7 @@ import org.ralasafe.entitle.QueryResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.ustc.mix.core.util.CommonUtils;
+import edu.ustc.mix.core.util.PrivilegeUtils;
 import edu.ustc.mix.core.util.PrivilegeConstants;
 import edu.ustc.mix.persistence.entity.metadata.MetadataTable;
 import edu.ustc.mix.persistence.entity.system.User;
@@ -34,7 +34,7 @@ public class MetadataTableServiceImpl implements MetadataTableService {
 	public List<MetadataTable> getAllMetadataTables(User user) throws Exception {
 		
 		QueryResult queryResult = Ralasafe.query(PrivilegeConstants.QUERY_METADATA_TABLE, 
-				CommonUtils.convertMixUserToRalasafeUser(user), null);
+				PrivilegeUtils.convertMixUserToRalasafeUser(user), null);
 		
 		List<MetadataTable> allMetadataTables = (List<MetadataTable>) queryResult.getData();
 		

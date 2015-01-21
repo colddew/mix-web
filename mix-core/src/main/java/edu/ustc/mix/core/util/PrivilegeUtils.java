@@ -2,7 +2,7 @@ package edu.ustc.mix.core.util;
 
 import org.ralasafe.user.User;
 
-public class CommonUtils {
+public class PrivilegeUtils {
 	
 	public static User convertMixUserToRalasafeUser(edu.ustc.mix.persistence.entity.system.User user) throws Exception {
 		
