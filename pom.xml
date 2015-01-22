@@ -21,6 +21,7 @@
 		<mybatis.version>3.2.8</mybatis.version>
 		<mybatis.spring.version>1.2.1</mybatis.spring.version>
 		<shiro.version>1.2.3</shiro.version>
+		<shiro.freemarker.tags.version>0.1-SNAPSHOT</shiro.freemarker.tags.version>
 		<jetty.version>9.2.5.v20141112</jetty.version>
 		<slf4j.log4j.version>1.7.7</slf4j.log4j.version>
 		<mysql.version>5.1.34</mysql.version>
@@ -143,6 +144,11 @@
 				<groupId>org.apache.shiro</groupId>
 				<artifactId>shiro-spring</artifactId>
 				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<artifactId>shiro-freemarker-tags</artifactId>
+				<groupId>com.jagregory</groupId>
+				<version>${shiro.freemarker.tags.version}</version>
 			</dependency>
 			
 			<dependency>

@@ -20,7 +20,7 @@
     
 	<bean id="mixRealm" class="edu.ustc.mix.core.security.MixRealm">
 		<property name="credentialsMatcher" ref="credentialsMatcher"/>
-		<!-- <property name="cachingEnabled" value="false"/> -->
+		<property name="cachingEnabled" value="false"/>
 	</bean>
 	
 	<bean id="cookie" class="org.apache.shiro.web.servlet.SimpleCookie">
@@ -40,10 +40,15 @@
 	
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
 	
+	<bean id="memcacheShiroCacheManager" class="edu.ustc.mix.core.security.cache.MemcacheShiroCacheManager" />
+	<bean id="mixShiroCacheManager" class="edu.ustc.mix.core.security.cache.MixShiroCacheManager">
+		<property name="shiroCacheManager" ref="memcacheShiroCacheManager" />
+	</bean>
+		
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="mixRealm" />
 		<property name="sessionManager" ref="sessionManager" />
-		<property name="cacheManager" ref="cacheManager" />
+		<property name="cacheManager" ref="mixShiroCacheManager" />
 	</bean>
 	
 	<bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
