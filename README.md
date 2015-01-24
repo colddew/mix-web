@@ -6,18 +6,19 @@ tech
 =======
 - front: bootstrap、jquery
 - basic framework: springmvc、spring、mybatis
-- templating engine: freemark、velocity
-- security: shiro、oauth
-- workflow: jbpm
-- rules engine: drools
+- templating engine: freemark、*velocity*
+- security: shiro、*oauth*
+- workflow: *jbpm*
+- rules engine: *drools*
 - rdbms: mysql
 - nosql: mongodb
 - cache: memcached
-- rpc: dubbo
-- jms: rabbitmq
-- deploy: maven、jetty、tengine
-- open api: spring social
+- rpc: *dubbo*
+- jms: *rabbitmq*
+- deploy: maven、jetty、*tengine*
+- open api: *spring social*
 - monitor: druid
+- search: *lucene、solr*
 
 goal
 =======
