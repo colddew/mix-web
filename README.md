@@ -9,7 +9,6 @@ tech
 - templating engine: freemark、*velocity*
 - security: shiro、*oauth*
 - workflow: *jbpm*
-- rules engine: *drools*
 - rdbms: mysql
 - nosql: mongodb
 - cache: memcached
@@ -18,7 +17,7 @@ tech
 - deploy: maven、jetty、*tengine*
 - open api: *spring social*
 - monitor: druid
-- search: *lucene、solr*
+- search: *lucene、solr、nutch*
 
 goal
 =======
