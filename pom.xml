@@ -36,6 +36,7 @@
 	
 	<dependencyManagement>
 		<dependencies>
+			<!-- module -->
 			<dependency>
 				<groupId>edu.ustc.mix</groupId>
 				<artifactId>mix-persistence</artifactId>
@@ -52,6 +53,7 @@
 				<version>${project.version}</version>
 			</dependency>
 			
+			<!-- central repository -->
 			<dependency>
 	            <groupId>javax.servlet</groupId>
 	            <artifactId>servlet-api</artifactId>
@@ -182,6 +184,13 @@
 			</dependency>
 			
 			<dependency>
+				<groupId>org.mongodb</groupId>
+				<artifactId>mongo-java-driver</artifactId>
+				<version>${mongodb.version}</version>
+			</dependency>
+			
+			<!-- third party repository -->
+			<dependency>
 				<groupId>org.ralasafe</groupId>
 				<artifactId>ralasafe-engine</artifactId>
 				<version>${ralasafe.version}</version>
@@ -193,12 +202,7 @@
 				<version>${alisoft.memcache.version}</version>
 			</dependency>
 			
-			<dependency>
-				<groupId>org.mongodb</groupId>
-				<artifactId>mongo-java-driver</artifactId>
-				<version>${mongodb.version}</version>
-			</dependency>
-			
+			<!-- test -->
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
