@@ -50,7 +50,16 @@
 			</div>
 			
 			<br/>
-						
+			
+			<select id="refundStatus" name="refundStatus">
+				<option value="-1">请选择</option>
+				<#list enums["edu.ustc.mix.core.util.RefundOrderStatus"]?values as status>
+					<option value="${status.value?c}">${status.display}</option>
+				</#list>
+			</select>
+			
+			<br/>
+			
 			<div style="text-align:center;">
 				<p>
 					<button class="btn btn-normal btn-primary" type="button"> 确  定 </button>
