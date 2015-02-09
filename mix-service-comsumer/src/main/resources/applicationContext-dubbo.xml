@@ -14,6 +14,11 @@
 	<!-- 使用zookeeper暴露服务地址 -->
 	<dubbo:registry protocol="zookeeper" address="192.168.199.199:2181"/>
 	
+	<!-- 使用dubbo的@Service注解配置 -->
+	<dubbo:annotation />
+	
 	<!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
-	<dubbo:reference id="dubboService" interface="edu.ustc.mix.service.DubboService" />
+	<!-- 服务分组，当一个接口有多个实现，可以用分组区分，必需和服务提供方一致 -->
+	<dubbo:reference id="dubboService" interface="edu.ustc.mix.service.DubboService" group="mix" />
+	<dubbo:reference id="dubboAnnotationService" interface="edu.ustc.mix.service.DubboAnnotationService" group="mix" />
 </beans>
