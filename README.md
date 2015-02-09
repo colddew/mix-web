@@ -12,7 +12,7 @@ tech
 - rdbms: mysql
 - nosql: mongodb
 - cache: memcached
-- rpc: *dubbo*
+- rpc: dubbo
 - jms: *rabbitmq*
 - deploy: maven、jetty、*tengine*
 - open api: *spring social*
@@ -36,3 +36,9 @@ privilege
 - support menu, page elements, database row and column, code level privilege control
 - support visual configuration, xml configuration, page tags, annotation privilege control
 - support coding privilege control and extensions
+
+usage
+=======
+- build and start mysql database
+- configure and start memcache
+- execute mvn jetty:run command at the root of the project
