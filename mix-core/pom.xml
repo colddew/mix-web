@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>edu.ustc.mix</groupId>
 		<artifactId>mix-parent</artifactId>
-		<version>0.0.1</version>
+		<version>${mix.project.version}</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	
@@ -19,6 +19,7 @@
 		<dependency>
 			<groupId>edu.ustc.mix</groupId>
 			<artifactId>mix-persistence</artifactId>
+			<version>${mix.project.version}</version>
 		</dependency>
 		
 		<dependency>

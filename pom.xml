@@ -5,11 +5,12 @@
 	
 	<groupId>edu.ustc.mix</groupId>
 	<artifactId>mix-parent</artifactId>
-	<version>0.0.1</version>
+	<version>${mix.project.version}</version>
 	<packaging>pom</packaging>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<mix.project.version>1.0.0</mix.project.version>
 		<java.version>1.7</java.version>
 		<servlet.version>2.5</servlet.version>
 		<jsp.version>2.2</jsp.version>
@@ -31,28 +32,13 @@
 		<ralasafe.version>2.0</ralasafe.version>
 		<alisoft.memcache.version>2.5.1</alisoft.memcache.version>
 		<mongodb.version>2.12.5</mongodb.version>
+		<dubbo.version>2.5.3</dubbo.version>
+		<zkclient.version>0.1</zkclient.version>
 		<junit.version>4.11</junit.version>
 	</properties>
 	
 	<dependencyManagement>
 		<dependencies>
-			<!-- module -->
-			<dependency>
-				<groupId>edu.ustc.mix</groupId>
-				<artifactId>mix-persistence</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>edu.ustc.mix</groupId>
-				<artifactId>mix-core</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>edu.ustc.mix</groupId>
-				<artifactId>mix-front</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			
 			<!-- central repository -->
 			<dependency>
 	            <groupId>javax.servlet</groupId>
@@ -184,6 +170,17 @@
 			</dependency>
 			
 			<dependency>
+			    <groupId>com.alibaba</groupId>
+			    <artifactId>dubbo</artifactId>
+			    <version>${dubbo.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.sgroschupf</groupId>
+				<artifactId>zkclient</artifactId>
+				<version>${zkclient.version}</version>
+			</dependency>
+			
+			<dependency>
 				<groupId>org.mongodb</groupId>
 				<artifactId>mongo-java-driver</artifactId>
 				<version>${mongodb.version}</version>
@@ -291,5 +288,8 @@
     	<module>mix-persistence</module>
     	<module>mix-core</module>
 		<module>mix-front</module>
+		<module>mix-service-provider</module>
+		<module>mix-service-comsumer</module>
+		<module>mix-service-public</module>
 	</modules>
 </project>
