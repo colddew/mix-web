@@ -280,7 +280,6 @@
     	<module>mix-core</module>
 		<module>mix-front</module>
 		<module>mix-service-provider</module>
-		<module>mix-service-comsumer</module>
 		<module>mix-service-public</module>
 	</modules>
 </project>
