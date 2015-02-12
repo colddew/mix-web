@@ -42,4 +42,4 @@ usage
 - build and start mysql database
 - configure and start memcache
 - start zookeeper
-- execute mvn jetty:run command at the root of the project
+- execute mvn jetty:run command under mix-front project
