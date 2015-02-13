@@ -21,6 +21,6 @@
 		</property>
 	</bean>
 	
-	<context:component-scan base-package="edu.ustc.mix" />
+	<context:component-scan base-package="edu.ustc.mix.openapi" />
 	
 </beans>

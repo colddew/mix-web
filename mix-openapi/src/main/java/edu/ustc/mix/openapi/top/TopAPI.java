@@ -48,9 +48,12 @@ public class TopAPI {
 	
 	public static void main(String[] args) {
 		
-//		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-//		ctx.start();
-		new TopAPI().getSellerInfo();
-//		ctx.stop();
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ctx.start();
+		
+		TopAPI topAPI = (TopAPI) ctx.getBean("topAPI");
+		topAPI.getSellerInfo();
+		
+		ctx.close();
 	}
 }
