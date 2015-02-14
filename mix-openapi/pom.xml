@@ -37,7 +37,7 @@
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<httpConnector>
-						<port>6666</port>
+						<port>9998</port>
 					</httpConnector>
 					<webApp>
 						<contextPath>/</contextPath>

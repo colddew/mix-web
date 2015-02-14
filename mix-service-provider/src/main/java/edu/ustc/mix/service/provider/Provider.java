@@ -10,6 +10,8 @@ public class Provider {
 				new String[] {"applicationContext-dubbo.xml"});
 		context.start();
 		
+		System.out.println("dubbo provider start");
+		
 		// 按任意键退出
 		System.in.read();
 	}

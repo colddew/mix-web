@@ -7,7 +7,7 @@ tech
 - front: bootstrap、jquery
 - basic framework: springmvc、spring、mybatis
 - templating engine: freemark、*velocity*
-- security: shiro、*oauth*
+- security: shiro、oauth
 - workflow: *jbpm*
 - rdbms: mysql
 - nosql: mongodb
