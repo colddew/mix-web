@@ -2,28 +2,35 @@
 
 set MIX_HOME=D:\workspace-luna\mix-web
 
-echo press to start mix-service-provider
-pause>nul
+:start
+set /p cmd="please select command to execute: [1]exit [2]start provider [3]start consumer [4]start front "
 
+if errorlevel 1 goto end
+
+if %cmd% == 2 goto provider
+if %cmd% == 3 goto consumer
+if %cmd% == 4 goto front
+goto end
+
+:provider
 rem start mix-service-provider
 cd %MIX_HOME%\mix-service-provider
 start startup.bat
+goto start
 
-echo press to start mix-service-consumer
-pause>nul
-
+:consumer
 rem start mix-service-consumer
 cd %MIX_HOME%\mix-service-consumer
 start startup.bat
+goto start
 
-echo press to start mix-front
-pause>nul
-
+:front
 rem start mix-front
 cd %MIX_HOME%\mix-front
-rem mvndebug jetty:run
+rem mvnDebug jetty:run
 call mvn jetty:run
+goto start
 
-pause>nul
-echo press to exit
+:end
+rem pause>nul
 exit
