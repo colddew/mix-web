@@ -16,12 +16,14 @@ goto end
 rem start mix-service-provider
 cd %MIX_HOME%\mix-service-provider
 start startup.bat
+cls
 goto start
 
 :consumer
 rem start mix-service-consumer
 cd %MIX_HOME%\mix-service-consumer
 start startup.bat
+cls
 goto start
 
 :front
@@ -29,6 +31,7 @@ rem start mix-front
 cd %MIX_HOME%\mix-front
 rem mvnDebug jetty:run
 call mvn jetty:run
+cls
 goto start
 
 :end
