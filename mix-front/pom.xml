@@ -20,6 +20,11 @@
 			<artifactId>mix-core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>edu.ustc.mix</groupId>
+			<artifactId>mix-openapi</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>javax.servlet</groupId>

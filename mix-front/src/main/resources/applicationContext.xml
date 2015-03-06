@@ -16,7 +16,7 @@
 		<property name="ignoreResourceNotFound" value="true" />
 		<property name="locations">
 			<list>
-				<value>classpath:application.properties</value>
+				<value>classpath*:application.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -66,5 +66,6 @@
 	</aop:config>
 	
 	<import resource="applicationContext-shiro.xml"/>
+	<import resource="applicationContext-openapi.xml"/>
 	
 </beans>

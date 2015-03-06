@@ -10,6 +10,14 @@
 		<div class="nav-collapse collapse">
 			<ul class="nav">
 				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">开放平台 <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="${request.contextPath}/openapi/authorize/top.html">淘宝TOP</a></li>
+						<li class="divider"></li>
+						<li><a href="${request.contextPath}/openapi/authorize/sina.html">新浪微博</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">数据管理 <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="${request.contextPath}/dictionary/index.html">数据字典</a></li>

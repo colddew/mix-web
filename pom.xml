@@ -36,6 +36,7 @@
 		<mongodb.version>2.12.5</mongodb.version>
 		<dubbo.version>2.5.3</dubbo.version>
 		<zkclient.version>0.1</zkclient.version>
+		<oltu.oauth2.version>1.0.0</oltu.oauth2.version>
 		<junit.version>4.11</junit.version>
 		<taobao.sdk.version>20150210</taobao.sdk.version>
 	</properties>
@@ -197,6 +198,17 @@
 				<groupId>org.mongodb</groupId>
 				<artifactId>mongo-java-driver</artifactId>
 				<version>${mongodb.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.oltu.oauth2</groupId>
+				<artifactId>org.apache.oltu.oauth2.common</artifactId>
+				<version>${oltu.oauth2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.oltu.oauth2</groupId>
+				<artifactId>org.apache.oltu.oauth2.client</artifactId>
+				<version>${oltu.oauth2.version}</version>
 			</dependency>
 			
 			<!-- third party repository -->

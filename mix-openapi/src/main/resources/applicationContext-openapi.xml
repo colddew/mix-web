@@ -21,6 +21,37 @@
 		</property>
 	</bean>
 	
+	<!-- top -->
+	<bean id="topOpenAPIConfig" class="edu.ustc.mix.openapi.service.OpenAPIConfig">
+		<property name="appId">
+			<value>${oauth.top.appId}</value>
+		</property>
+		<property name="appkey">
+			<value>${oauth.top.appkey}</value>
+		</property>
+		<property name="appSecret">
+			<value>${oauth.top.appSecret}</value>
+		</property>
+		<property name="codeUrl">
+			<value>${oauth.top.codeUrl}</value>
+		</property>
+		<property name="tokenUrl">
+			<value>${oauth.top.tokenUrl}</value>
+		</property>
+		<property name="redirectUri">
+			<value>${oauth.top.redirectUri}</value>
+		</property>
+		<property name="resourceUri">
+			<value>${oauth.top.resourceUri}</value>
+		</property>
+		<property name="scope">
+			<value>${oauth.top.scope}</value>
+		</property>
+		<property name="state">
+			<value>${oauth.top.state}</value>
+		</property>
+	</bean>
+	
 	<context:component-scan base-package="edu.ustc.mix.openapi" />
 	
 </beans>
