@@ -157,11 +157,11 @@
 					url: "${request.contextPath}/role/${role.roleId}/update.html",
 					data: $("#roleForm").serialize(),
 					//dataType: "json",
-					async : false,
+					async: false,
 					success: function(data,textStatus){
 						alert("update success");
 					},
-					error : function(data,textstatus){
+					error: function(data,textstatus){
 						alert("update fail");
 					}
 				});
@@ -171,11 +171,11 @@
 					url: "${request.contextPath}/role/create.html",
 					data: $("#roleForm").serialize(),
 					//dataType: "json",
-					async : false,
+					async: false,
 					success: function(data,textStatus){
 						alert("create success");
 					},
-					error : function(data,textstatus){
+					error: function(data,textstatus){
 						alert("create fail");
 					}
 				});
