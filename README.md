@@ -10,7 +10,7 @@ tech
 - security: shiro、oauth
 - workflow: *jbpm*
 - rdbms: mysql
-- nosql: mongodb
+- nosql: mongodb、redis、*hbase*
 - cache: memcached
 - rpc: dubbo
 - jms: *rabbitmq*

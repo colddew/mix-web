@@ -34,6 +34,7 @@
 		<ralasafe.version>2.0</ralasafe.version>
 		<alisoft.memcache.version>2.5.1</alisoft.memcache.version>
 		<mongodb.version>2.12.5</mongodb.version>
+		<jedis.version>2.6.2</jedis.version>
 		<dubbo.version>2.5.3</dubbo.version>
 		<zkclient.version>0.1</zkclient.version>
 		<oltu.oauth2.version>1.0.0</oltu.oauth2.version>
@@ -198,6 +199,12 @@
 				<groupId>org.mongodb</groupId>
 				<artifactId>mongo-java-driver</artifactId>
 				<version>${mongodb.version}</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>redis.clients</groupId>
+			    <artifactId>jedis</artifactId>
+			    <version>${jedis.version}</version>
 			</dependency>
 			
 			<dependency>
