@@ -11,7 +11,7 @@ tech
 - workflow: *jbpm*
 - rdbms: mysql
 - nosql: mongodb、redis、*hbase*
-- cache: memcached
+- cache: memcache
 - rpc: dubbo
 - jms: *rabbitmq、activemq、kafka*
 - deploy: maven、jetty、*tengine*
