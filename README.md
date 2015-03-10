@@ -7,15 +7,15 @@ tech
 - front: bootstrap、jquery
 - basic framework: springmvc、spring、mybatis
 - templating engine: freemark、*velocity*
-- security: shiro、oauth
+- security: shiro
 - workflow: *jbpm*
 - rdbms: mysql
 - nosql: mongodb、redis、*hbase*
 - cache: memcached
 - rpc: dubbo
-- jms: *rabbitmq*
+- jms: *rabbitmq、activemq、kafka*
 - deploy: maven、jetty、*tengine*
-- open api: *spring social*
+- open api: oauth、*spring social*
 - monitor: druid
 - search: *lucene、solr、nutch*
 
