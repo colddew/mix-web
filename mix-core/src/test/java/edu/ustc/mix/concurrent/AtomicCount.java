@@ -12,6 +12,7 @@ public class AtomicCount {
 	static class Job implements Runnable {
 		
 		private AtomicCount count;
+		// CountDownLatch用于在保持给定数目的信号、事件或条件前阻塞执行
 		private CountDownLatch latch;
 		
 		public Job(AtomicCount count, CountDownLatch latch) {
