@@ -5,8 +5,14 @@ import org.junit.Test;
 public class BlockingQueueServiceTest {
 	
 	@Test
-	public void testWork() throws Exception {
+	public void testWorkWithLinkedBlockingQueue() throws Exception {
 		BlockingQueueService service = new BlockingQueueService();
-		service.work();
+		service.workWithLinkedBlockingQueue();
+	}
+	
+	@Test
+	public void testWorkWithArrayBlockingQueue() throws Exception {
+		BlockingQueueService service = new BlockingQueueService();
+		service.workWithLinkedBlockingQueue();
 	}
 }

@@ -1,5 +1,6 @@
 package edu.ustc.mix.concurrent;
 
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -8,13 +9,21 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class BlockingQueueService {
 	
-	public void work() {
+	public void workWithLinkedBlockingQueue() {
+		BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
+		work(queue);
+	}
+	
+	public void workWithArrayBlockingQueue() {
+		BlockingQueue<String> queue = new ArrayBlockingQueue<String>(100);
+		work(queue);
+	}
+	
+	private void work(BlockingQueue<String> queue) {
 		
-		BlockingQueue<String> q = new LinkedBlockingQueue<String>();
-		
-		Producer p = new Producer(q);
-		Consumer c1 = new Consumer(q);
-		Consumer c2 = new Consumer(q);
+		Producer p = new Producer(queue);
+		Consumer c1 = new Consumer(queue);
+		Consumer c2 = new Consumer(queue);
 		
 		new Thread(p).start();
 		new Thread(c1).start();
