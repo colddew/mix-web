@@ -11,7 +11,6 @@
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<mix.project.version>1.0.0</mix.project.version>
 		<java.version>1.7</java.version>
 		<servlet.version>2.5</servlet.version>
 		<jsp.version>2.2</jsp.version>
