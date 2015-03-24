@@ -22,15 +22,14 @@ public class LockService {
 	private Lock wlock = rwlock.writeLock();
 	
 	// ReentrantLock允许对共享资源并发访问
-	public void mutexGetLock(Integer key) throws Exception {
+	public String mutexGetLock(Integer key) throws Exception {
 		
 		lock.lock();
 		
 		try {
-			map.get(key);
+			return map.get(key);
+		} finally {
 			lock.unlock();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -40,9 +39,8 @@ public class LockService {
 		
 		try {
 			map.put(key, value);
+		} finally {
 			lock.unlock();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -50,15 +48,14 @@ public class LockService {
 	// 使用读-写锁能否提升性能则取决于读写操作期间读取数据相对于修改数据的频率，以及数据的争用（即在同一时间试图对该数据执行读取或写入操作的线程数）
 	// 已经持有写锁会阻塞希望获取读锁或写锁的线程，已经持有读锁会阻塞希望获取写锁的线程，但不会阻塞希望获取写锁的线程
 	// 读锁不能升级为写锁，写锁可以降级为读锁
-	public void readLock(Integer key) throws Exception {
+	public String readLock(Integer key) throws Exception {
 		
 		rlock.lock();
 		
 		try {
-			rwmap.get(key);
+			return rwmap.get(key);
+		} finally {
 			rlock.unlock();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -68,53 +65,8 @@ public class LockService {
 		
 		try {
 			rwmap.put(key, value);
+		} finally {
 			wlock.unlock();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	class MutexGetLock implements Runnable {
-		@Override
-		public void run() {
-			try {
-				new LockService().mutexGetLock(1);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	class MutexSetLock implements Runnable {
-		@Override
-		public void run() {
-			try {
-				new LockService().mutexSetLock(2, "2");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	class ReadLock implements Runnable {
-		@Override
-		public void run() {
-			try {
-				new LockService().readLock(1);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	class WriteLock implements Runnable {
-		@Override
-		public void run() {
-			try {
-				new LockService().writeLock(2, "2");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 	}
 }

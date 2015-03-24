@@ -3,7 +3,7 @@ package edu.ustc.mix.concurrent;
 import java.util.concurrent.Semaphore;
 
 /**
- * Semaphore 通常用于限制可以访问某些资源（物理或逻辑的）的线程数目。例如，下面的类使用信号量控制对内容池的访问：
+ * Semaphore通常用于限制可以访问某些资源（物理或逻辑的）的线程数目，下面的类使用信号量控制对内容池的访问
  */
 class Pool {
 	
