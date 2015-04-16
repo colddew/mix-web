@@ -318,12 +318,13 @@
 	</build>
 	
 	<modules>
-    	<module>mix-persistence</module>
-    	<module>mix-core</module>
+		<module>mix-persistence</module>
+		<module>mix-core</module>
 		<module>mix-front</module>
 		<module>mix-service-provider</module>
 		<module>mix-service-consumer</module>
 		<module>mix-service-public</module>
 		<module>mix-openapi</module>
+		<module>mix-performance</module>
 	</modules>
 </project>
