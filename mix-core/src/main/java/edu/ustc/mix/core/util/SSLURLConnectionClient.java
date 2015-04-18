@@ -1,4 +1,4 @@
-package edu.ustc.mix.openapi.utils;
+package edu.ustc.mix.core.util;
 
 import java.io.IOException;
 import java.io.InputStream;

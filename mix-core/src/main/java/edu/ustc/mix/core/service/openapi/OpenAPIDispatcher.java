@@ -1,11 +1,10 @@
-package edu.ustc.mix.openapi.service;
+package edu.ustc.mix.core.service.openapi;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.ustc.mix.openapi.utils.ChannelType;
+import edu.ustc.mix.core.util.ChannelType;
 
 @Service
 public class OpenAPIDispatcher {

@@ -11,18 +11,7 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
-		<property name="ignoreResourceNotFound" value="true" />
-		<property name="locations">
-			<list>
-				<value>classpath:application.properties</value>
-			</list>
-		</property>
-	</bean>
-	
-	<!-- top -->
-	<bean id="topOpenAPIConfig" class="edu.ustc.mix.openapi.service.OpenAPIConfig">
+	<bean id="topOpenAPIConfig" class="edu.ustc.mix.core.service.openapi.OpenAPIConfig">
 		<property name="appId">
 			<value>${oauth.top.appId}</value>
 		</property>
@@ -51,7 +40,5 @@
 			<value>${oauth.top.state}</value>
 		</property>
 	</bean>
-	
-	<context:component-scan base-package="edu.ustc.mix.openapi" />
 	
 </beans>

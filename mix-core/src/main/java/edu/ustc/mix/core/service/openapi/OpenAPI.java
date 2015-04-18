@@ -1,4 +1,4 @@
-package edu.ustc.mix.openapi.service;
+package edu.ustc.mix.core.service.openapi;
 
 import org.apache.oltu.oauth2.client.response.OAuthJSONAccessTokenResponse;
 

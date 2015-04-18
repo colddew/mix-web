@@ -1,4 +1,4 @@
-package edu.ustc.mix.openapi.service;
+package edu.ustc.mix.core.service.openapi;
 
 public class OpenAPIConfig {
 	

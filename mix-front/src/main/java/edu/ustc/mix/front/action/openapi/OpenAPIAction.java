@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import edu.ustc.mix.openapi.service.OpenAPI;
-import edu.ustc.mix.openapi.service.OpenAPIConfig;
-import edu.ustc.mix.openapi.service.OpenAPIDispatcher;
-import edu.ustc.mix.openapi.utils.SSLURLConnectionClient;
+import edu.ustc.mix.core.service.openapi.OpenAPI;
+import edu.ustc.mix.core.service.openapi.OpenAPIConfig;
+import edu.ustc.mix.core.service.openapi.OpenAPIDispatcher;
+import edu.ustc.mix.core.util.SSLURLConnectionClient;
 
 @Controller
 @Scope("prototype")

@@ -42,4 +42,5 @@ usage
 - build and start mysql database
 - configure and start memcache
 - start zookeeper
-- execute mvn jetty:run command under mix-front project
+- execute mvn clean -Dmaven.test.skip=true install command under root directory
+- execute mvn jetty:run command under mix-front directory

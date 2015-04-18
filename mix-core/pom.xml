@@ -55,6 +55,20 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>com.taobao</groupId>
+			<artifactId>taobao-sdk-java-auto</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.oltu.oauth2</groupId>
+			<artifactId>org.apache.oltu.oauth2.common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.oltu.oauth2</groupId>
+			<artifactId>org.apache.oltu.oauth2.client</artifactId>
+		</dependency>
+		
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>

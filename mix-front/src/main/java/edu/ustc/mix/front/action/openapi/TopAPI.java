@@ -1,4 +1,4 @@
-package edu.ustc.mix.openapi.top;
+package edu.ustc.mix.front.action.openapi;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
