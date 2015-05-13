@@ -31,6 +31,8 @@
 			<list>
 				<value>application/json;charset=utf-8</value>
 				<value>text/html;charset=UTF-8</value>
+				<value>text/plain;charset=utf-8</value>
+                <value>text/json;charset=utf-8</value>
 			</list>
 		</property>
 	</bean>
