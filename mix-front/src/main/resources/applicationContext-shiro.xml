@@ -62,6 +62,10 @@
         <property name="redirectUrl" value="/login.html"/>
     </bean>
     
+    <bean id="loginFilter" class="edu.ustc.mix.front.security.LoginFilter">
+        <property name="redirectUrl" value="/login.html"/>
+    </bean>
+    
     <bean id="systemUserFilter" class="edu.ustc.mix.front.security.SystemUserFilter" />
     
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -74,11 +78,12 @@
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
                 <entry key="logout" value-ref="logoutFilter"/>
                 <entry key="systemUser" value-ref="systemUserFilter"/>
+                <entry key="login" value-ref="loginFilter"/>
             </util:map>
         </property>
 		<property name="filterChainDefinitions">
 			<value>
-				/login.html = authc
+				/login.html = authc,login
 				/logout.html = logout
 				/druid/** = anon
 				/html/css/** = anon
