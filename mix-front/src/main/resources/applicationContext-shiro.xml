@@ -31,11 +31,17 @@
 	
 	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO" />
 	
+	<bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+		<property name="interval" value="1800000" />
+	</bean>
+	
 	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
 		<property name="globalSessionTimeout" value="3600000" />
 		<property name="sessionIdCookieEnabled" value="true" />
 		<property name="sessionIdCookie" ref="cookie" />
 		<property name="sessionDAO" ref="sessionDAO" />
+		<property name="sessionValidationSchedulerEnabled" value="true"/>
+		<property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
 	</bean>
 	
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
