@@ -144,7 +144,7 @@ public class UserServiceImpl implements UserService {
 			
 			for(Role role : roles) {
 				
-				if(StringUtils.isNoneBlank(role.getRoleName())) {
+				if(StringUtils.isNotBlank(role.getRoleName())) {
 					set.add(role.getRoleName());
 				}
 			}
