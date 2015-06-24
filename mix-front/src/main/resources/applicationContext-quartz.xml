@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd   
+    	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+    	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	
+	<bean id="testJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="durability" value="true"/>
+		<property name="jobClass" value="edu.ustc.mix.core.quartz.TestQuartzJob"/>
+	</bean>
+	<bean id="testCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="testJobDetail"/>
+		<property name="cronExpression" value="0/5 * * * * ?"/>
+	</bean>
+	
+	<bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="configLocation" value="classpath:quartz.properties"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <!-- <property name="startupDelay" value="10"/> -->
+        <property name="schedulerName" value="mixQuartzScheduler"/>
+        <!-- <property name="autoStartup" value="true"/> -->
+        <property name="overwriteExistingJobs" value="true"/>
+        <property name="applicationContextSchedulerContextKey" value="applicationContext"/>
+        <property name="schedulerContextAsMap">
+            <map></map>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref bean="testCronTrigger"/>
+            </list>
+        </property>
+    </bean>
+    
+</beans>

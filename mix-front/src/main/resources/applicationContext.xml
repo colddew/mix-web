@@ -17,6 +17,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath*:application.properties</value>
+				<value>classpath:quartz.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -67,5 +68,6 @@
 	
 	<import resource="applicationContext-shiro.xml"/>
 	<import resource="applicationContext-openapi.xml"/>
+	<import resource="applicationContext-quartz.xml"/>
 	
 </beans>

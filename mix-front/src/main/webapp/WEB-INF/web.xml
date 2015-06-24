@@ -69,7 +69,8 @@
 		<servlet-class>org.ralasafe.servlet.RalasafeController</servlet-class>
 		<init-param>
 			<param-name>repositoryDir</param-name>
-			<param-value>D:/workspace-luna/mix-web/mix-front/src/main/webapp/xml</param-value>
+			<!-- <param-value>D:/workspace-luna/mix-web/mix-front/src/main/webapp/xml</param-value> -->
+			<param-value>/xml</param-value>
 		</init-param>
 		<init-param>
 			<param-name>secured</param-name>
