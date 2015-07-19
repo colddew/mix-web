@@ -38,6 +38,7 @@
 		<zkclient.version>0.1</zkclient.version>
 		<oltu.oauth2.version>1.0.0</oltu.oauth2.version>
 		<quartz.version>2.2.1</quartz.version>
+		<rocketmq.version>3.2.6</rocketmq.version>
 		<junit.version>4.11</junit.version>
 		<taobao.sdk.version>20150210</taobao.sdk.version>
 	</properties>
@@ -222,6 +223,12 @@
 			    <groupId>org.quartz-scheduler</groupId>
 			    <artifactId>quartz</artifactId>
 			    <version>${quartz.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.alibaba.rocketmq</groupId>
+				<artifactId>rocketmq-client</artifactId>
+				<version>${rocketmq.version}</version>
 			</dependency>
 			
 			<!-- third party repository -->

@@ -13,7 +13,7 @@ tech
 - nosql: mongodb、redis、*hbase*
 - cache: memcache
 - rpc: dubbo
-- jms: *rabbitmq、activemq、kafka*
+- jms: rocketmq、*rabbitmq、activemq、kafka*
 - deploy: maven、jetty、*tengine*
 - open api: oauth、*spring social*
 - monitor: druid
