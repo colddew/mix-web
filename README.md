@@ -14,7 +14,7 @@ tech
 - cache: memcache
 - rpc: dubbo
 - jms: rocketmq、*rabbitmq、activemq、kafka*
-- deploy: maven、jetty、*tengine*
+- deploy: maven、jetty、nginx
 - open api: oauth、*spring social*
 - monitor: druid
 - search: *lucene、solr、nutch*
@@ -29,6 +29,7 @@ goal
 - performance tuning
 - manipulate business table flexibly and dynamically
 - abstract basic non-business entity bean
+- distributed session and cache for access control
 
 privilege
 =======
@@ -40,7 +41,7 @@ privilege
 usage
 =======
 - build and start mysql database
-- configure and start memcache
+- configure and start memcache & redis
 - start zookeeper
 - execute mvn clean -Dmaven.test.skip=true install command under root directory
-- execute mvn jetty:run command under mix-front directory
+- execute mvn jetty:run -Djetty.port=<port> command under mix-front directory to run two mix-font at least

@@ -104,9 +104,9 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
-					<httpConnector>
+					<!-- <httpConnector>
 						<port>9999</port>
-					</httpConnector>
+					</httpConnector> -->
 					<webApp>
 						<contextPath>/</contextPath>
 					</webApp>
