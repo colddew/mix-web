@@ -44,4 +44,4 @@ usage
 - configure and start memcache & redis
 - start zookeeper
 - execute mvn clean -Dmaven.test.skip=true install command under root directory
-- execute mvn jetty:run -Djetty.port=<port> command under mix-front directory to run two mix-font at least
+- execute mvn jetty:run -Djetty.port=<port> command under mix-front directory
