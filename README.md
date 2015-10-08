@@ -29,7 +29,7 @@ goal
 - performance tuning
 - manipulate business table flexibly and dynamically
 - abstract basic non-business entity bean
-- distributed session and cache for access control
+- cache distributed session, authentication and authorization information
 
 privilege
 =======
