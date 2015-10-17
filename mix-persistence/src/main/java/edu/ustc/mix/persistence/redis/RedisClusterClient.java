@@ -1,6 +1,8 @@
 package edu.ustc.mix.persistence.redis;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import redis.clients.jedis.HostAndPort;
@@ -25,5 +27,13 @@ public class RedisClusterClient {
 		
 		cluster.set("test", "6379");
 		System.out.println(cluster.get("test"));
+		
+		Map<String, String> inviteePhone = new HashMap<String, String>();
+		inviteePhone.put("inviterID", "1001");
+		inviteePhone.put("status", "0");
+		cluster.hmset("inviteePhone", inviteePhone);
+		
+		System.out.println(cluster.hget("inviteePhone", "inviterID"));
+		System.out.println(cluster.hget("inviteePhone", "status"));
 	}
 }
