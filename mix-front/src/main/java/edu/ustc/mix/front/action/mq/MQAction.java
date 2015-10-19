@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.ustc.mix.core.mq.RocketMQService;
+import edu.ustc.mix.core.mq.rocket.RocketMQService;
 import edu.ustc.mix.persistence.entity.system.User;
 
 @Controller

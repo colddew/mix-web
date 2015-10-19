@@ -40,6 +40,7 @@
 		<oltu.oauth2.version>1.0.0</oltu.oauth2.version>
 		<quartz.version>2.2.1</quartz.version>
 		<rocketmq.version>3.2.6</rocketmq.version>
+		<rabbitmq.version>3.5.6</rabbitmq.version>
 		<junit.version>4.11</junit.version>
 		<taobao.sdk.version>20150210</taobao.sdk.version>
 	</properties>
@@ -236,6 +237,12 @@
 				<groupId>com.alibaba.rocketmq</groupId>
 				<artifactId>rocketmq-client</artifactId>
 				<version>${rocketmq.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.rabbitmq</groupId>
+				<artifactId>amqp-client</artifactId>
+				<version>${rabbitmq.version}</version>
 			</dependency>
 			
 			<!-- third party repository -->

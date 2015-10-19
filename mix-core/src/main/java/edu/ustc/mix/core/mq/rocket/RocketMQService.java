@@ -1,4 +1,4 @@
-package edu.ustc.mix.core.mq;
+package edu.ustc.mix.core.mq.rocket;
 
 import static com.alibaba.rocketmq.common.consumer.ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET;
 
