@@ -11,7 +11,9 @@ public class RabbitMQSender {
 	public static void main(String[] args) throws Exception {
 		
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost("localhost");
+//		setRemoteConnectionFactory(factory);
+		setLocalConnectionFactory(factory);
+		
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
 		
@@ -23,5 +25,17 @@ public class RabbitMQSender {
 		
 		channel.close();
 		connection.close();
+	}
+	
+	public static void setLocalConnectionFactory(ConnectionFactory factory) {
+		factory.setHost("localhost");
+	}
+	
+	public static void setRemoteConnectionFactory(ConnectionFactory factory) {
+		factory.setHost("10.0.40.151");
+		factory.setPort(5672);
+		factory.setUsername("gatewayservice");
+		factory.setPassword("pass");
+		factory.setVirtualHost("/contact");
 	}
 }
