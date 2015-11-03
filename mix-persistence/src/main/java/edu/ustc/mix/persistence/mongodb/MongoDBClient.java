@@ -1,33 +1,27 @@
 package edu.ustc.mix.persistence.mongodb;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
+import org.bson.Document;
+
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 public class MongoDBClient {
 	
+	private static final MongoClient mongo = new MongoClient("127.0.0.1", 27017);
+
 	public static void main(String[] args) throws Exception {
 		
-		MongoClient mongo = new MongoClient("192.168.199.199", 27017);
+		MongoDatabase db = mongo.getDatabase("mix");
 		
-		DB db = mongo.getDB("mix");
+		MongoCollection<Document> collection = db.getCollection("users");
+		collection.insertOne(new Document().append("name", "mix7").append("password", 123));
+		collection.insertOne(new Document().append("name", "mix8").append("password", 123));
 		
-		BasicDBObject user = new BasicDBObject();
-		user.put("name", "mix");
-		user.put("password", 123);
-		
-		DBCollection collection = db.getCollection("users");
-		collection.insert(user);
-		
-		BasicDBObject search = new BasicDBObject();
-		search.put("password", 123);
-		
-		DBCursor cursor = collection.find(search);
-		
-		while (cursor.hasNext()) {
-			System.out.println(cursor.next());
+		FindIterable<Document> iterable = collection.find(new Document("password", 123));
+		for (Document document : iterable) {
+			System.out.println(document);
 		}
 	}
 }

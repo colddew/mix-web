@@ -32,7 +32,7 @@
 		<druid.version>1.0.11</druid.version>
 		<ralasafe.version>2.0</ralasafe.version>
 		<alisoft.memcache.version>2.5.1</alisoft.memcache.version>
-		<mongodb.version>2.12.5</mongodb.version>
+		<mongodb.version>3.1.0</mongodb.version>
 		<jedis.version>2.6.2</jedis.version>
 		<redisson.version>2.1.3</redisson.version>
 		<dubbo.version>2.5.3</dubbo.version>
