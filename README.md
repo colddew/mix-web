@@ -2,7 +2,7 @@ mix-web
 =======
 just try out some of my thoughts about web application
 
-tech
+technology stack
 =======
 - front: bootstrap、jquery
 - basic framework: springmvc、spring、mybatis
@@ -13,7 +13,7 @@ tech
 - nosql: mongodb、redis、*hbase*
 - cache: memcache
 - rpc: dubbo
-- jms: rocketmq、rabbitmq、*kafka*
+- jms: rocketmq、rabbitmq
 - deploy: maven、jetty、nginx
 - open api: oauth、*spring social*
 - monitor: druid

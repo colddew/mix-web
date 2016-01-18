@@ -7,12 +7,18 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+
 public class MongoDBClient {
 	
-	private static final MongoClient mongo = new MongoClient("127.0.0.1", 27017);
-
+	public static MongoClient mongo;
+	
 	public static void main(String[] args) throws Exception {
+		testMix();
+	}
+	
+	private static void testMix() {
 		
+		mongo = new MongoClient("127.0.0.1", 27017);
 		MongoDatabase db = mongo.getDatabase("mix");
 		
 		MongoCollection<Document> collection = db.getCollection("users");
